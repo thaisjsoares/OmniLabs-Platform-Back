@@ -20,6 +20,10 @@ export default class CreateCourses1606779339357 implements MigrationInterface {
 
                     },
                     {
+                        name: 'description',
+                        type: 'varchar',
+                    },
+                    {
                         name: 'image',
                         type: 'varchar',
                         isNullable: true

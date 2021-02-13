@@ -12,9 +12,9 @@ export default class UsersController {
     ): Promise<Response> {
         const createCourse = container.resolve(CreateCoursesService);
 
-        const name = request.body;
+        const {name, description} = request.body;
 
-        const course = await createCourse.execute(name);
+        const course = await createCourse.execute({name, description});
 
         return response.json(classToClass(course));
     }

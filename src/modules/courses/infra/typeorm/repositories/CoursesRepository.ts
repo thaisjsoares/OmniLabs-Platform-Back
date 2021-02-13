@@ -19,8 +19,8 @@ class UsersRepository implements ICoursesRepository {
         return courses;
     }
 
-    public async create(name: string): Promise<Courses> {
-        const course = await this.ormRepository.create({name});
+    public async create(name: string, description: string): Promise<Courses> {
+        const course = await this.ormRepository.create({name, description});
 
         await this.ormRepository.save(course);
 

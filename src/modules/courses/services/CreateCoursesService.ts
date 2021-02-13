@@ -7,6 +7,7 @@ import Courses from '../infra/typeorm/entities/Courses';
 
 interface IRequest {
     name: string;
+    description: string;
 }
 
 @injectable()
@@ -16,14 +17,14 @@ class CreateCoursesService {
         private coursesRepository: ICoursesRepository,
     ) {}
 
-    public async execute({ name }: IRequest): Promise<Courses> {
+    public async execute({ name, description}: IRequest): Promise<Courses> {
         const courseExists = await this.coursesRepository.findOneByName(name);
 
         if(courseExists) {
             throw new AppError('this course already exists')
         }
 
-        const course = await this.coursesRepository.create(name);
+        const course = await this.coursesRepository.create(name, description);
 
         return course;
     }
