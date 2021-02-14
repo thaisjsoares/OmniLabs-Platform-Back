@@ -4,6 +4,7 @@ import { classToClass } from 'class-transformer';
 
 import CreateCoursesService from '@modules/courses/services/CreateCoursesService';
 import UpdateCoursesImageService from '@modules/courses/services/UpdateCoursesImageService';
+import ShowCoursesService from '@modules/courses/services/ShowCoursesService';
 
 export default class UsersController {
     public async create(
@@ -33,5 +34,13 @@ export default class UsersController {
         const course = await updateImageCourse.execute({course_id,imageFileName});
 
         return response.json(classToClass(course));
+    }
+
+    public async show(request: Request, response: Response): Promise<Response> {
+        const showCourses = container.resolve(ShowCoursesService)
+
+        const course = await showCourses.execute();
+
+        return response.json(course)
     }
 }

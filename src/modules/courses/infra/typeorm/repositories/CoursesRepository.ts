@@ -19,6 +19,12 @@ class UsersRepository implements ICoursesRepository {
         return courses;
     }
 
+    public async  findAll(): Promise<Courses[]> {
+        const courses = await this.ormRepository.find();
+
+        return courses;
+    }
+
     public async create(name: string, description: string): Promise<Courses> {
         const course = await this.ormRepository.create({name, description});
 
