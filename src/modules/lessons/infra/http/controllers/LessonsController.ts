@@ -9,7 +9,7 @@ import { classToClass } from 'class-transformer';
 
 class LessonsController {
     public async create(request: Request, response: Response): Promise<Response>{
-        const { name, description, course_id, duration, video_id } = request.body;
+        const { name, description, course_id, duration, video_id, module_id } = request.body;
 
         const createLesson = container.resolve(CreateLesson);
 
@@ -18,7 +18,8 @@ class LessonsController {
             description,
             course_id,
             duration,
-            video_id
+            video_id,
+            module_id
         })
 
         return response.json(classToClass(lesson))

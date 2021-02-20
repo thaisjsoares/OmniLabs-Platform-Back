@@ -4,4 +4,5 @@ export default interface ICreateLessonDTO {
     course_id: string;
     duration: number;
     video_id: string;
+    module_id?: string;
 }

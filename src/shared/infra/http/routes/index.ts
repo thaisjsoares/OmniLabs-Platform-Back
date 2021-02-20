@@ -5,6 +5,8 @@ import sessionsRouter from '@modules/users/infra/http/routes/sessions.routes';
 import profileRouter from '@modules/users/infra/http/routes/profile.routes';
 import passwordRouter from '@modules/users/infra/http/routes/password.routes';
 
+import modulesRouter from '@modules/modules/infra/http/routes/modules.routes';
+
 import coursesRouter from '@modules/courses/infra/http/routes/courses.routes';
 
 import lessonsRouter from '@modules/lessons/infra/http/routes/lessons.routes';
@@ -15,6 +17,8 @@ routes.use('/users', usersRouter);
 routes.use('/profile', profileRouter);
 routes.use('/password', passwordRouter);
 routes.use('/sessions', sessionsRouter);
+
+routes.use('/modules', modulesRouter);
 
 routes.use('/courses', coursesRouter);
 

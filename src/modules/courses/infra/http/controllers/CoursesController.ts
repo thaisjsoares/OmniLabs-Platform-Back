@@ -26,12 +26,12 @@ export default class UsersController {
     ): Promise<Response> {
         const updateImageCourse = container.resolve(UpdateCoursesImageService);
 
-        const imageFileName = request.file.filename;
         const {course_id} = request.params;
 
-        console.log(course_id);
-
-        const course = await updateImageCourse.execute({course_id,imageFileName});
+        const course = await updateImageCourse.execute({
+            course_id,
+            imageFileName: request.file.filename
+        })
 
         return response.json(classToClass(course));
     }
