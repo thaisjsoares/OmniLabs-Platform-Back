@@ -26,7 +26,7 @@ class LessonsController {
     }
 
     public async index(request: Request, response: Response): Promise<Response>{
-        const { course_name, } = request.params;
+        const { course_name } = request.params;
 
         const createLesson = container.resolve(ListLessonOfCourse);
 

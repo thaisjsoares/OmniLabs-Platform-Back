@@ -31,12 +31,13 @@ class LessonsRepository implements ILessonsRepository {
         return this.ormRepository.save(lesson);
     }
 
-    public async findLessonCourse(course_name: string): Promise<Lesson[]> {
+    public async findLessonCourse(course_id: string): Promise<Lesson[]> {
         const lesson = await this.ormRepository.find({
             where: {
-                name: course_name
+                course_id: course_id
             }
         })
+        
 
         return lesson;
     }
