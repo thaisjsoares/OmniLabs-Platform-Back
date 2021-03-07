@@ -26,11 +26,11 @@ class LessonsController {
     }
 
     public async index(request: Request, response: Response): Promise<Response>{
-        const { course_id, } = request.params;
+        const { course_name, } = request.params;
 
         const createLesson = container.resolve(ListLessonOfCourse);
 
-        const lesson = await createLesson.execute({course_id})
+        const lesson = await createLesson.execute({course_name})
 
         return response.json(classToClass(lesson))
     }

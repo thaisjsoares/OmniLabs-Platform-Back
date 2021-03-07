@@ -41,6 +41,6 @@ export default class UsersController {
 
         const course = await showCourses.execute();
 
-        return response.json(course)
+        return response.json(classToClass(course))
     }
 }

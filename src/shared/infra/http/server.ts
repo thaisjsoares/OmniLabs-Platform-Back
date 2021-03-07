@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import 'dotenv/config';
 
 import express, { Request, Response, NextFunction } from 'express';
-import cors from 'express';
+import cors from 'cors';
 import { errors } from 'celebrate';
 import 'express-async-errors';
 
@@ -15,13 +15,7 @@ import '@shared/container';
 
 const app = express();
 
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS, PATCH');
-
-    next();
-});
+app.use(cors());
 
 app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));

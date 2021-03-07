@@ -7,7 +7,7 @@ import Lesson from '../infra/typeorm/entities/Lesson';
 import AppError from '@shared/errors/AppError';
 
 interface IRequest {
-    course_id: string;
+    course_name: string;
 }
 
 @injectable()
@@ -17,8 +17,8 @@ class ListLessonOfCourse {
         private lessonsRepository: ILessonsRepository,
     ) {}
 
-    public async execute({ course_id }: IRequest){
-        const lessons = await this.lessonsRepository.findLessonCourse(course_id);
+    public async execute({ course_name }: IRequest){
+        const lessons = await this.lessonsRepository.findLessonCourse(course_name);
 
         const formatedLessons = lessons.map((lesson) => {
             const minutes = Math.floor(lesson.duration/60)
