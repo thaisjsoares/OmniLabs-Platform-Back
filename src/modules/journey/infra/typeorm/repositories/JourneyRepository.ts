@@ -40,6 +40,16 @@ class JourneyRepository implements IJourneyRepository {
 
         return journey;
     }
+
+    public async findByCourseId(course_id: string): Promise<Journey[]> {
+        const journey = await this.ormRepository.find({
+            where: {
+               course_id: course_id 
+            }
+        })
+
+        return journey;
+    }
 }
 
 export default JourneyRepository;

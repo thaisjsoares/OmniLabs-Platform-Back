@@ -6,4 +6,5 @@ export default interface IJourneyRepository {
     create(data: ICreateJourneyDTO): Promise<Journey>;
     save(user: Journey): Promise<Journey>;
     findByName(journeyName: string): Promise<Journey | undefined>;
+    findByCourseId(course_id: string): Promise<Journey[]>;
 }
