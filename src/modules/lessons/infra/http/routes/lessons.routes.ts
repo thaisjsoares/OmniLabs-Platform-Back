@@ -7,7 +7,7 @@ const lessonsRouter = Router()
 const lessonsController = new LessonsController()
 
 lessonsRouter.post('/', lessonsController.create)
-lessonsRouter.get('/:course_name', lessonsController.index);
+lessonsRouter.get('/:journey_name', lessonsController.index);
 lessonsRouter.get('/:lesson_id', lessonsController.show)
 
 export default lessonsRouter;

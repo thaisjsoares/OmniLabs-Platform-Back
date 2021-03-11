@@ -2,21 +2,21 @@ import { Request, Response } from 'express'
 import { container } from 'tsyringe';
 
 import CreateLesson from '@modules/lessons/services/CreateLesson.service';
-import ListLessonOfCourse from '@modules/lessons/services/ListLessonOfCourse.service';
+import ListLessonOfJourney from '@modules/lessons/services/ListLessonOfJourney.service';
 import ListSpecificLesson from '@modules/lessons/services/ListSpecificLesson.service';
 
 import { classToClass } from 'class-transformer';
 
 class LessonsController {
     public async create(request: Request, response: Response): Promise<Response>{
-        const { name, description, course_id, duration, video_id, module_id } = request.body;
+        const { name, description, journey_id, duration, video_id, module_id } = request.body;
 
         const createLesson = container.resolve(CreateLesson);
 
         const lesson = await createLesson.execute({
             name,
             description,
-            course_id,
+            journey_id,
             duration,
             video_id,
             module_id
@@ -26,11 +26,11 @@ class LessonsController {
     }
 
     public async index(request: Request, response: Response): Promise<Response>{
-        const { course_name } = request.params;
+        const { journey_name } = request.params;
 
-        const createLesson = container.resolve(ListLessonOfCourse);
+        const createLesson = container.resolve(ListLessonOfJourney);
 
-        const lesson = await createLesson.execute({course_name})
+        const lesson = await createLesson.execute({journey_name})
 
         return response.json(classToClass(lesson))
     }

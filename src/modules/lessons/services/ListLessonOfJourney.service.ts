@@ -6,9 +6,10 @@ import ICoursesRepository from '@modules/courses/repositories/ICoursesRepository
 import Lesson from '../infra/typeorm/entities/Lesson';
 
 import AppError from '@shared/errors/AppError';
+import IJourneyRepository from '@modules/journey/repositories/IJourneyRepository';
 
 interface IRequest {
-    course_name: string;
+    journey_name: string;
 }
 
 @injectable()
@@ -17,19 +18,19 @@ class ListLessonOfCourse {
         @inject('LessonsRepository')
         private lessonsRepository: ILessonsRepository,
 
-        @inject('CoursesRepository')
-        private coursesRepository: ICoursesRepository 
+        @inject('JourneyRepository')
+        private journeyRepository: IJourneyRepository 
     ) {}
 
-    public async execute({ course_name }: IRequest){
-        const course = await this.coursesRepository.findOneByName(course_name)
+    public async execute({ journey_name }: IRequest){
+        const journey = await this.journeyRepository.findByName(journey_name)
 
 
-        if(!course) {
-            throw new AppError('Not possible to find course')
+        if(!journey) {
+            throw new AppError('Not possible to find journey')
         }
 
-        const lessons = await this.lessonsRepository.findLessonCourse(course.id);
+        const lessons = await this.lessonsRepository.findLessonJourney(journey.id);
 
 
         const formatedLessons = lessons.map((lesson) => {

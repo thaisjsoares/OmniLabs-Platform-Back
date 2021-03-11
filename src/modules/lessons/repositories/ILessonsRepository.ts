@@ -5,5 +5,5 @@ export default interface IUsersRepository {
     findById(id: string): Promise<Lessons | undefined>;
     create(data: ICreateLessonDTO): Promise<Lessons>;
     save(lesson: Lessons): Promise<Lessons>;
-    findLessonCourse(course_id: string): Promise<Lessons[]>;
+    findLessonJourney(journey_id: string): Promise<Lessons[]>;
 }
