@@ -50,6 +50,12 @@ class JourneyRepository implements IJourneyRepository {
 
         return journey;
     }
+
+    public async find(): Promise<Journey[]> {
+        const journeys = await this.ormRepository.find();
+
+        return journeys;
+    }
 }
 
 export default JourneyRepository;

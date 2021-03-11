@@ -7,6 +7,7 @@ const journeyRouter = Router()
 const journeyController = new JourneyController()
 
 journeyRouter.post('/', journeyController.create)
-journeyRouter.get('/:course_id', journeyController.show)
+journeyRouter.get('/:course_id', journeyController.find)
+journeyRouter.get('/', journeyController.show)
 
 export default journeyRouter;
