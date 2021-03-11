@@ -11,6 +11,9 @@ import coursesRouter from '@modules/courses/infra/http/routes/courses.routes';
 
 import lessonsRouter from '@modules/lessons/infra/http/routes/lessons.routes';
 
+import journeyRouter from '@modules/journey/infra/http/routes/journey.routes';
+
+
 const routes = Router();
 
 routes.use('/users', usersRouter);
@@ -23,6 +26,8 @@ routes.use('/modules', modulesRouter);
 routes.use('/courses', coursesRouter);
 
 routes.use('/lessons', lessonsRouter);
+
+routes.use('/journey', journeyRouter);
 
 
 export default routes;

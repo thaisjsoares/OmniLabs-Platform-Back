@@ -18,6 +18,9 @@ import LessonsRepository from '@modules/lessons/infra/typeorm/repositories/Lesso
 import IModulesRepository from '@modules/modules/repositories/IModulesRepository';
 import ModulesRepository from '@modules/modules/infra/typeorm/repositories/ModulesRepository';
 
+import IJourneyRepository from '@modules/journey/repositories/IJourneyRepository';
+import JourneyRepository from '@modules/journey/infra/typeorm/repositories/JourneyRepository';
+
 container.registerSingleton<IUsersRepository>(
     'UsersRepository',
     UsersRepository,
@@ -41,4 +44,9 @@ container.registerSingleton<ILessonsRepository>(
 container.registerSingleton<IModulesRepository>(
     'ModulesRepository',
     ModulesRepository
+)
+
+container.registerSingleton<IJourneyRepository>(
+    'JourneyRepository',
+    JourneyRepository
 )
