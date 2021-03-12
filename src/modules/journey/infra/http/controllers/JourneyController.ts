@@ -4,6 +4,7 @@ import { container } from 'tsyringe';
 import CreateJourney from '@modules/journey/services/CreateJourney.Service';
 import ShowJourneysOfCourse from '@modules/journey/services/ShowJourneysOfCourse.Service';
 import ShowAllJourneys from '@modules/journey/services/ShowAllJourneys.Service';
+import RemoveJourney from '@modules/journey/services/RemoveJourney.Service';
 
 class JourneyController {
     public async create(request: Request, response: Response): Promise<Response>{
@@ -36,6 +37,16 @@ class JourneyController {
         const journeys = await showAllJourneys.execute()
 
         return response.json(journeys)
+    }
+
+    public async remove(request: Request, response: Response): Promise<Response> {
+        const { journey_id } = request.params;
+
+        const removeJourney = container.resolve(RemoveJourney);
+
+        const journey = await removeJourney.execute(journey_id);
+
+        return response.json(journey);
     }
 }
 

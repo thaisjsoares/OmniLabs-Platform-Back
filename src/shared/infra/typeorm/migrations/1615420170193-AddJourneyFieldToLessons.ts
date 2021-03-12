@@ -8,7 +8,7 @@ export default class AddJourneyFieldToLessons1615420170193 implements MigrationI
             new TableColumn({
                 name: 'journey_id',
                 type: 'uuid',
-                isNullable: false,
+                isNullable: true,
             }),
         );
 

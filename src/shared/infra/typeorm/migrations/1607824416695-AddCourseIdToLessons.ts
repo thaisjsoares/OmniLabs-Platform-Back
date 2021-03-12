@@ -26,9 +26,6 @@ export default class AddCourseIdToLessons1607824416695 implements MigrationInter
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropForeignKey('lessons', 'LessonsCourse');
-
-        await queryRunner.dropColumn('lessons', 'course_id');
     }
 
 }

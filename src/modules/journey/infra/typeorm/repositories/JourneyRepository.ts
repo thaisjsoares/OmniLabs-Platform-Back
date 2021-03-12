@@ -56,6 +56,10 @@ class JourneyRepository implements IJourneyRepository {
 
         return journeys;
     }
+
+    public async remove(journey: Journey): Promise<void> {
+        await this.ormRepository.remove(journey)
+    }
 }
 
 export default JourneyRepository;
