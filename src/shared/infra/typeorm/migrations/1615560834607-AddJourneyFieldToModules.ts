@@ -1,10 +1,10 @@
 import {MigrationInterface, QueryRunner, TableColumn, TableForeignKey} from "typeorm";
 
-export default class AddJourneyFieldToLessons1615420170193 implements MigrationInterface {
+export default class AddJourneyFieldToModules1615560834607 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.addColumn(
-            'lessons',
+            'modules',
             new TableColumn({
                 name: 'journey_id',
                 type: 'uuid',
@@ -13,9 +13,9 @@ export default class AddJourneyFieldToLessons1615420170193 implements MigrationI
         );
 
         await queryRunner.createForeignKey(
-            'lessons',
+            'modules',
             new TableForeignKey({
-                name: 'LessonsJourney',
+                name: 'ModulesJourney',
                 columnNames: ['journey_id'],
                 referencedColumnNames: ['id'],
                 referencedTableName: 'journey',
@@ -26,9 +26,9 @@ export default class AddJourneyFieldToLessons1615420170193 implements MigrationI
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropForeignKey('lessons', 'LessonsJourney');
+        await queryRunner.dropForeignKey('modules', 'ModulesJourney');
 
-        await queryRunner.dropColumn('lessons', 'journey_id');
+        await queryRunner.dropColumn('modules', 'journey_id');
     }
 
 }
