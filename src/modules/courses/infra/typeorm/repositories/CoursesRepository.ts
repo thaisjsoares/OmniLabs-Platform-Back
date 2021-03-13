@@ -25,12 +25,10 @@ class UsersRepository implements ICoursesRepository {
         return courses;
     }
 
-    public async create(name: string, description: string): Promise<Courses> {
-        const course = await this.ormRepository.create({name, description});
+    public async create(courseData: ICreateCoursesDTO): Promise<Courses> {
+        const course = await this.ormRepository.create(courseData);
 
         await this.ormRepository.save(course);
-
-        console.log(course);
 
         return course;
     }

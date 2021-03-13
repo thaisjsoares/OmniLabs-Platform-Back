@@ -24,7 +24,10 @@ class CreateCoursesService {
             throw new AppError('this course already exists')
         }
 
-        const course = await this.coursesRepository.create(name, description);
+        const course = await this.coursesRepository.create({
+            name,
+            description
+        });
 
         return course;
     }
