@@ -14,8 +14,14 @@ class FakeJourneyRepository implements IJourneyRepository {
         return journey;
     }
 
-    save(user: Journey): Promise<Journey> {
-        throw new Error('Method not implemented.');
+    public async save(journey: Journey): Promise<Journey> {
+        const findIndex = this.journeys.findIndex(
+            findJourney => findJourney.id === journey.id,
+        );
+
+        this.journeys[findIndex] = journey;
+
+        return journey;
     }
 
     public async findByName(journeyName: string): Promise<Journey | undefined> {
