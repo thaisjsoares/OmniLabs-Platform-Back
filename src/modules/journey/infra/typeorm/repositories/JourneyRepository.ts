@@ -27,8 +27,8 @@ class JourneyRepository implements IJourneyRepository {
         return journey;
     }
 
-    public async save(Journey: Journey): Promise<Journey> {
-        return this.ormRepository.save(Journey);
+    public async save(journey: Journey): Promise<Journey> {
+        return this.ormRepository.save(journey);
     }
 
     public async findByName(journeyName: string): Promise<Journey | undefined> {

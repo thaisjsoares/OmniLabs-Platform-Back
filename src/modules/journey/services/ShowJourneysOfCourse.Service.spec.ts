@@ -6,7 +6,7 @@ import ShowJourneysOfCourse from './ShowJourneysOfCourse.Service';
 let fakeJourneyRepository: FakeJourneyRepository;
 let showJourneysOfCourse: ShowJourneysOfCourse;
 
-describe('List All Journey', () => {
+describe('Show journeys of Course', () => {
     beforeEach(() => {
         fakeJourneyRepository = new FakeJourneyRepository();
 
