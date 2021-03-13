@@ -18,8 +18,8 @@ class FakeCoursesRepository implements ICoursesRepository {
         return findCourse
     }
 
-    findAll(): Promise<Courses[]> {
-        throw new Error('Method not implemented.');
+    public async findAll(): Promise<Courses[]> {
+        return this.courses
     }
 
     public async save(course: Courses): Promise<Courses> {
