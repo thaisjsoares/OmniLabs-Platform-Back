@@ -5,6 +5,7 @@ import CreateJourney from '@modules/journey/services/CreateJourney.Service';
 import ShowJourneysOfCourse from '@modules/journey/services/ShowJourneysOfCourse.Service';
 import ShowAllJourneys from '@modules/journey/services/ShowAllJourneys.Service';
 import RemoveJourney from '@modules/journey/services/RemoveJourney.Service';
+import { classToClass } from 'class-transformer';
 
 class JourneyController {
     public async create(request: Request, response: Response): Promise<Response>{
@@ -28,7 +29,7 @@ class JourneyController {
 
         const journeys = await findJourneysByCourseId.execute(course_id)
 
-        return response.json(journeys)
+        return response.json(classToClass(journeys))
     }
 
     public async show(request: Request, response: Response): Promise<Response>{
@@ -36,7 +37,7 @@ class JourneyController {
 
         const journeys = await showAllJourneys.execute()
 
-        return response.json(journeys)
+        return response.json(classToClass(journeys))
     }
 
     public async remove(request: Request, response: Response): Promise<Response> {
