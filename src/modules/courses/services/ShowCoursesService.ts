@@ -15,10 +15,6 @@ class ShowCoursesService {
     public async execute(): Promise<Courses[]> {
         const course = await this.coursesRepository.findAll();
 
-        if(!course) {
-            throw new AppError('Impossible to find Coruses');
-        }
-
         return course;
     }
 }

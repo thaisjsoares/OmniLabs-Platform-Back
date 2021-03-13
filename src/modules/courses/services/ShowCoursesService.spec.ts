@@ -30,5 +30,4 @@ describe('ShowCourses', () => {
         expect(courses).toEqual([course1, course2])
     })
 
-    
 })
