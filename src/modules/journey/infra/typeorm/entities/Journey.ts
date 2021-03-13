@@ -22,9 +22,6 @@ class Journey {
     description: string
 
     @Column()
-    technology: string;
-
-    @Column()
     image: string;
 
     @ManyToOne(()=> Course)

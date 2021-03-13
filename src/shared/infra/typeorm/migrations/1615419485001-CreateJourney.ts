@@ -23,10 +23,6 @@ export default class CreateJourney1615419485001 implements MigrationInterface {
                         type: 'varchar'
                     },
                     {
-                        name: 'technology',
-                        type: 'varchar'
-                    },
-                    {
                         name: 'image',
                         type: 'varchar',
                         isNullable: true

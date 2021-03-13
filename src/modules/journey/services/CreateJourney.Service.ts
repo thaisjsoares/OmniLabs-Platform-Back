@@ -10,7 +10,6 @@ interface IRequest {
     name: string;
     description: string;
     course_id: string;
-    technology: string;
 }
 
 @injectable()
@@ -23,7 +22,7 @@ class CreateJourneyService {
         private coursesRepository: ICoursesRepository
     ) {}
 
-    public async execute({ name, description, course_id, technology }: IRequest): Promise<Journey> {
+    public async execute({ name, description, course_id}: IRequest): Promise<Journey> {
         const journey = await this.journeyRepository.findByName(name);
 
         if(journey) {
@@ -36,7 +35,7 @@ class CreateJourneyService {
             throw new AppError('Not Possible to find Course')
         }
 
-        const module = await this.journeyRepository.create({name, description, course_id, technology});
+        const module = await this.journeyRepository.create({name, description, course_id});
 
         return module;
     }
