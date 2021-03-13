@@ -24,8 +24,10 @@ class FakeJourneyRepository implements IJourneyRepository {
         return journey
     }
 
-    findByCourseId(course_id: string): Promise<Journey[]> {
-        throw new Error('Method not implemented.');
+    public async findByCourseId(course_id: string): Promise<Journey[]> {
+        const journey = this.journeys.filter(journey => journey.course_id === course_id)
+
+        return [...journey]
     }
 
     public async find(): Promise<Journey[]> {
