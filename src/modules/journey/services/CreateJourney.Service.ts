@@ -23,9 +23,9 @@ class CreateJourneyService {
     ) {}
 
     public async execute({ name, description, course_id}: IRequest): Promise<Journey> {
-        const journey = await this.journeyRepository.findByName(name);
+        const journeyExists = await this.journeyRepository.findByName(name);
 
-        if(journey) {
+        if(journeyExists) {
             throw new AppError('Journey Already booked')
         }
 
@@ -35,9 +35,9 @@ class CreateJourneyService {
             throw new AppError('Not Possible to find Course')
         }
 
-        const module = await this.journeyRepository.create({name, description, course_id});
+        const journey = await this.journeyRepository.create({name, description, course_id});
 
-        return module;
+        return journey;
     }
 }
 
