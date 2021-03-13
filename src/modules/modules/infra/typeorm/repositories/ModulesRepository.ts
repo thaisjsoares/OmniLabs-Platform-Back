@@ -30,6 +30,16 @@ class ModulesRepository implements IModulesRepository {
         return this.ormRepository.save(module);
     }
 
+    public async findByJourney(journey_id: string): Promise<Module[]> {
+        const modules = await this.ormRepository.find({
+            where: {
+                journey_id: journey_id
+            }
+        })
+
+        return modules;
+    }
+
 }
 
 export default ModulesRepository;
