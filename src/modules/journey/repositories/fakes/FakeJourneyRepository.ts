@@ -28,8 +28,8 @@ class FakeJourneyRepository implements IJourneyRepository {
         throw new Error('Method not implemented.');
     }
 
-    find(): Promise<Journey[]> {
-        throw new Error('Method not implemented.');
+    public async find(): Promise<Journey[]> {
+        return this.journeys
     }
 
     public async remove(journey: Journey): Promise<void> {
