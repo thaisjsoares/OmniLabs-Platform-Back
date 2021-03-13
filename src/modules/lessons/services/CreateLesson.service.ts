@@ -4,16 +4,14 @@ import AppError from '@shared/errors/AppError';
 import ILessonsRepository from '../repositories/ILessonsRepository';
 
 import Lesson from '../infra/typeorm/entities/Lesson';
-import ICoursesRepository from '@modules/courses/repositories/ICoursesRepository';
-import IJourneyRepository from '@modules/journey/repositories/IJourneyRepository';
+import IModulesRepository from '@modules/modules/repositories/IModulesRepository';
 
 interface IRequest {
     name: string;
     description: string;
-    journey_id: string;
     duration: number;
     video_id: string;
-    module_id?: string;
+    module_id: string;
 }
 @injectable()
 class CreateLessonService {
@@ -21,21 +19,20 @@ class CreateLessonService {
         @inject('LessonsRepository')
         private lessonsRepository: ILessonsRepository,
 
-        @inject('JourneyRepository')
-        private journeyRepository: IJourneyRepository,
+        @inject('ModulesRepository')
+        private modulesRepository: IModulesRepository
     ) {}
 
-    public async execute({ name, description, journey_id, duration, video_id, module_id }: IRequest): Promise<Lesson> {
-        const journey = await this.journeyRepository.findById(journey_id)
+    public async execute({ name, description, duration, video_id, module_id }: IRequest): Promise<Lesson> {
+        const module = await this.modulesRepository.findById(module_id);
 
-        if(!journey) {
-            throw new AppError('Not possible to find Coruse')
+        if(!module) {
+            throw new AppError('Not possible to find a Module')
         }
 
         const lesson = await this.lessonsRepository.create({
             name, 
             description, 
-            journey_id: journey.id, 
             duration, 
             video_id,
             module_id
