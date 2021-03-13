@@ -25,7 +25,7 @@ describe('Remove Journey', () => {
         expect(await removeJourney.execute(journey.id)).toMatchObject(journey);
     })
 
-    it('should not ble able to remove a non existing journey', async () => {
+    it('should not be able able to remove a non existing journey', async () => {
         await expect(
             removeJourney.execute("asd")
         ).rejects.toBeInstanceOf(AppError)
