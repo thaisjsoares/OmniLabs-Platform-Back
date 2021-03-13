@@ -8,8 +8,10 @@ import Journey from '@modules/journey/infra/typeorm/entities/Journey';
 class FakeJourneyRepository implements IJourneyRepository {
     private journeys: Journey[] = [];
 
-    findById(id: string): Promise<Journey | undefined> {
-        throw new Error('Method not implemented.');
+    public async findById(id: string): Promise<Journey | undefined> {
+        const journey = this.journeys.find(journey => journey.id === id);
+
+        return journey;
     }
 
     save(user: Journey): Promise<Journey> {
@@ -30,8 +32,9 @@ class FakeJourneyRepository implements IJourneyRepository {
         throw new Error('Method not implemented.');
     }
 
-    remove(journey: Journey): Promise<void> {
-        throw new Error('Method not implemented.');
+    public async remove(journey: Journey): Promise<void> {
+        const findedIndex = this.journeys.findIndex(journey => journey.id)
+        this.journeys.splice(findedIndex, 1)
     }
 
     public async create(journeyData: ICreateJourneyDTO): Promise<Journey> {
