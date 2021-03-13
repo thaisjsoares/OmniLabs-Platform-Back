@@ -8,8 +8,10 @@ import ICreateCoursesDTO from '@modules/courses/dtos/ICreateCoursesDTO'
 class FakeCoursesRepository implements ICoursesRepository {
     private courses: Courses[] = [];
 
-    findById(id: string): Promise<Courses | undefined> {
-        throw new Error('Method not implemented.');
+    public async findById(id: string): Promise<Courses | undefined> {
+        const findCourse = this.courses.find(course => course.id === id)
+
+        return findCourse
     }
 
     public async findOneByName(name: string): Promise<Courses | undefined> {

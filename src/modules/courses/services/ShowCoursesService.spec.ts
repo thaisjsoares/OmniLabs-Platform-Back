@@ -5,7 +5,7 @@ import ShowCoursesService from '../services/ShowCoursesService';
 let fakeCoursesRepository: FakeCoursesRepository;
 let showCourses: ShowCoursesService;
 
-describe('CreateCourse', () => {
+describe('ShowCourses', () => {
     beforeEach(() => {
         fakeCoursesRepository = new FakeCoursesRepository();
 
