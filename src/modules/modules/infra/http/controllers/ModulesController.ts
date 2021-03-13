@@ -5,13 +5,14 @@ import CreateModule from '@modules/modules/services/CreateModule.service';
 
 class ModulesController {
     public async create(request: Request, response: Response): Promise<Response>{
-        const { name, description } = request.body;
+        const { name, description, journey_id } = request.body;
 
         const createModule = container.resolve(CreateModule);
 
         const module = await createModule.execute({
             name,
-            description
+            description,
+            journey_id
         })
 
         return response.json(module)

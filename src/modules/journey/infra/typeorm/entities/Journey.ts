@@ -21,6 +21,12 @@ class Journey {
     @Column()
     description: string
 
+    @Column()
+    technology: string;
+
+    @Column()
+    image: string;
+
     @ManyToOne(()=> Course)
     @JoinColumn({name: 'course_id'})
     course: Course

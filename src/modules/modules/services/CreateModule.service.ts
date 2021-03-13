@@ -6,6 +6,7 @@ import IModulesRepository from '../repositories/IModulesRepository';
 interface IRequest {
     name: string;
     description: string;
+    journey_id: string;
 }
 
 @injectable()
@@ -15,8 +16,8 @@ class CreateModuleService {
         private modulesRepository: IModulesRepository,
     ) {}
 
-    public async execute({ name, description }: IRequest): Promise<Module> {
-        const module = await this.modulesRepository.create({name, description});
+    public async execute({ name, description, journey_id }: IRequest): Promise<Module> {
+        const module = await this.modulesRepository.create({name, description, journey_id});
 
         return module;
     }
