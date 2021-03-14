@@ -20,6 +20,10 @@ class ListSpecificLesson {
     public async execute({ lesson_id }: IRequest){
         const lesson = await this.lessonsRepository.findById(lesson_id);
 
+        if(!lesson) {
+            throw new AppError('Not possible to find lesson')
+        }
+
         return lesson;
     }
 }
