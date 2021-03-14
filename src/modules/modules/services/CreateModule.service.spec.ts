@@ -35,7 +35,7 @@ describe('Create Module', () => {
         ).toHaveProperty('id')
     })
 
-    it('should not be able to cretea module if a non existent journey', async () => {
+    it('should not be able to create module if a non existent journey', async () => {
         await expect(
             createModule.execute({
                 name: "iniciando no nodejs",
