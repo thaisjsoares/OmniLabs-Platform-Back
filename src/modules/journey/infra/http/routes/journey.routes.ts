@@ -15,6 +15,7 @@ journeyRouter.post('/', journeyController.create)
 journeyRouter.get('/:course_id', journeyController.find)
 journeyRouter.get('/', journeyController.show)
 journeyRouter.delete('/:journey_id', journeyController.remove)
+journeyRouter.put('/:journey_id', journeyController.update)
 
 journeyRouter.patch('/image/:journey_id', upload.single('image'), journeyImageController.update)
 
