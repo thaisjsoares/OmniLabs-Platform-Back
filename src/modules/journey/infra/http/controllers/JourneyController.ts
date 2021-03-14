@@ -1,11 +1,13 @@
 import { Request, Response } from 'express'
 import { container } from 'tsyringe';
 
+import { classToClass } from 'class-transformer';
+
 import CreateJourney from '@modules/journey/services/CreateJourney.Service';
 import ShowJourneysOfCourse from '@modules/journey/services/ShowJourneysOfCourse.Service';
 import ShowAllJourneys from '@modules/journey/services/ShowAllJourneys.Service';
+import UpdateJourney from '@modules/journey/services/UpdateJourney.Service';
 import RemoveJourney from '@modules/journey/services/RemoveJourney.Service';
-import { classToClass } from 'class-transformer';
 
 class JourneyController {
     public async create(request: Request, response: Response): Promise<Response>{
@@ -38,6 +40,17 @@ class JourneyController {
         const journeys = await showAllJourneys.execute()
 
         return response.json(classToClass(journeys))
+    }
+
+    public async update(request: Request, response: Response): Promise<Response> {
+        const { journey_id } = request.params;
+        const { description, name, course_id } = request.body;
+
+        const updateJourney = container.resolve(UpdateJourney);
+
+        const journey = await updateJourney.execute({journey_id, description, name, course_id});
+
+        return response.json(journey);
     }
 
     public async remove(request: Request, response: Response): Promise<Response> {
