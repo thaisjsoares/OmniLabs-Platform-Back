@@ -55,7 +55,8 @@ class AuthenticateUserService {
     })
 
     await this.loginLogRepository.create({
-      content: `User ${user.name} entered the application`
+      content: `User ${user.name} entered the application`,
+      user_id: user.id
     })
 
     return {
