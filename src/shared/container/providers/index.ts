@@ -1,2 +1,2 @@
-import './StorageProvider'
-import './CacheProvider'
+import './StorageProvider';
+import './CacheProvider';

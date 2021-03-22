@@ -1,26 +1,34 @@
-import { injectable, inject } from 'tsyringe'
+import { injectable, inject } from 'tsyringe';
 
-import AppError from '@shared/errors/AppError'
-import ICoursesRepository from '../repositories/ICoursesRepository'
+import AppError from '@shared/errors/AppError';
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import ICoursesRepository from '../repositories/ICoursesRepository';
 
-import Courses from '../infra/typeorm/entities/Courses'
-import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider'
+import Courses from '../infra/typeorm/entities/Courses';
 
 @injectable()
 class ShowCoursesService {
-  constructor (
+    constructor(
         @inject('CoursesRepository')
         private coursesRepository: ICoursesRepository,
 
         @inject('CacheProvider')
-        private cacheProvider: ICacheProvider
-  ) {}
+        private cacheProvider: ICacheProvider,
+    ) {}
 
-  public async execute (): Promise<Courses[]> {
-    const course = await this.coursesRepository.findAll()
+    public async execute(): Promise<Courses[]> {
+        let course = await this.cacheProvider.recover<Courses[]>(
+            `courses-list`,
+        );
 
-    return course
-  }
+        if (!course) {
+            course = await this.coursesRepository.findAll();
+
+            await this.cacheProvider.save('courses-list', course);
+        }
+
+        return course;
+    }
 }
 
-export default ShowCoursesService
+export default ShowCoursesService;
