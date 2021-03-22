@@ -1,19 +1,19 @@
-import { Router } from 'express';
-import multer from 'multer';
-import uploadConfig from '@config/upload';
+import { Router } from 'express'
+import multer from 'multer'
+import uploadConfig from '@config/upload'
 
-import CoursesController from '../controllers/CoursesController';
+import CoursesController from '../controllers/CoursesController'
 
-const coursesRouter = Router();
-const coursesController = new CoursesController();
-const upload = multer(uploadConfig.multer);
+const coursesRouter = Router()
+const coursesController = new CoursesController()
+const upload = multer(uploadConfig.multer)
 
-coursesRouter.get('/', coursesController.show);
-coursesRouter.post('/', coursesController.create);
+coursesRouter.get('/', coursesController.show)
+coursesRouter.post('/', coursesController.create)
 coursesRouter.patch(
-    '/image/:course_id',
-    upload.single('image'),
-    coursesController.updateImageCourse,
-);
+  '/image/:course_id',
+  upload.single('image'),
+  coursesController.updateImageCourse
+)
 
-export default coursesRouter;
+export default coursesRouter

@@ -6,5 +6,6 @@ temp/
 .vscode/
 ormconfig.json
 
+coverage
 tmp/*
 !tmp/.gitkeep

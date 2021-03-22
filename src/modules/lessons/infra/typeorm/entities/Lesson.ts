@@ -1,14 +1,14 @@
 import {
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-    ManyToOne,
-    JoinColumn,
-    UpdateDateColumn,
-    CreateDateColumn
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+  UpdateDateColumn,
+  CreateDateColumn
 } from 'typeorm'
 
-import Modules from '@modules/modules/infra/typeorm/entities/Module';
+import Groups from '@modules/groups/infra/typeorm/entities/Groups'
 
 @Entity('lessons')
 class Lesson {
@@ -27,12 +27,12 @@ class Lesson {
     @Column()
     video_id: string
 
-    @ManyToOne(()=> Modules)
-    @JoinColumn({name: 'module_id'})
-    module: Modules
+    @ManyToOne(() => Groups)
+    @JoinColumn({ name: 'group_id' })
+    group: Groups
 
     @Column()
-    module_id?: string
+    group_id: string
 
     @CreateDateColumn()
     created_at: Date;
@@ -41,4 +41,4 @@ class Lesson {
     updated_at: Date;
 }
 
-export default Lesson;
+export default Lesson

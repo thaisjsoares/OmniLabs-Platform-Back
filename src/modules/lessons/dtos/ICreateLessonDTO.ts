@@ -3,5 +3,5 @@ export default interface ICreateLessonDTO {
     description: string;
     duration: number;
     video_id: string;
-    module_id?: string;
+    group_id?: string;
 }
