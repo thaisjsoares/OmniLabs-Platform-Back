@@ -44,6 +44,7 @@ export default class CreateLessonHistory1616549415250
                     {
                         name: 'resource',
                         type: 'varchar',
+                        isNullable: true,
                     },
                     {
                         name: 'released_at',
