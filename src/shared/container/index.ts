@@ -26,6 +26,8 @@ import RolesRepository from '@modules/roles/infra/typeorm/repositories/RolesRepo
 
 import ILoginLogRepository from '@modules/logs/repositories/ILoginLogRepository';
 import LoginLogRepository from '@modules/logs/infra/typeorm/repositories/LoginLogRepository';
+import ILessonHistoryRepository from '@modules/lessons/repositories/ILessonHistoryRepository';
+import LessonHistoryRepository from '@modules/lessons/infra/typeorm/repositories/LessonHistoryRepository';
 
 container.registerSingleton<IUsersRepository>(
     'UsersRepository',
@@ -45,6 +47,11 @@ container.registerSingleton<ICoursesRepository>(
 container.registerSingleton<ILessonsRepository>(
     'LessonsRepository',
     LessonsRepository,
+);
+
+container.registerSingleton<ILessonHistoryRepository>(
+    'LessonHistoryRepository',
+    LessonHistoryRepository,
 );
 
 container.registerSingleton<IGroupsRepository>(

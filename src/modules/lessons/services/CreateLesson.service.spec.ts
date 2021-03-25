@@ -1,51 +1,62 @@
-import AppError from '../../../shared/errors/AppError'
+import FakeLessonsRepository from '@modules/lessons/repositories/fakes/FakeLessonsRepository';
+import FakeGroupsRepository from '@modules/groups/repositories/fakes/FakeGroupsRepository';
+import AppError from '../../../shared/errors/AppError';
+import CreateLessonService from './CreateLesson.service';
+import FakeLessonHistoryRepository from '../repositories/fakes/FakeLessonHistoryRepository';
 
-import FakeLessonsRepository from '@modules/lessons/repositories/fakes/FakeLessonsRepository'
-import FakeGroupsRepository from '@modules/groups/repositories/fakes/FakeGroupsRepository'
-import CreateLessonService from './CreateLesson.service'
-
-let createLesson: CreateLessonService
-let fakeLessonsRepository: FakeLessonsRepository
-let fakeGroupsRepository: FakeGroupsRepository
+let createLesson: CreateLessonService;
+let fakeLessonsRepository: FakeLessonsRepository;
+let fakeGroupsRepository: FakeGroupsRepository;
+let fakeLessonHistoryRepository: FakeLessonHistoryRepository;
 
 describe('Create Lesson', () => {
-  beforeEach(() => {
-    fakeLessonsRepository = new FakeLessonsRepository()
-    fakeGroupsRepository = new FakeGroupsRepository()
+    beforeEach(() => {
+        fakeLessonsRepository = new FakeLessonsRepository();
+        fakeGroupsRepository = new FakeGroupsRepository();
+        fakeLessonHistoryRepository = new FakeLessonHistoryRepository();
 
-    createLesson = new CreateLessonService(
-      fakeLessonsRepository,
-      fakeGroupsRepository
-    )
-  })
+        createLesson = new CreateLessonService(
+            fakeLessonsRepository,
+            fakeGroupsRepository,
+            fakeLessonHistoryRepository,
+        );
+    });
 
-  it('should be able to create lesson', async () => {
-    const group = await fakeGroupsRepository.create({
-      name: 'Iniciando no Nodejs',
-      description: 'módulo iniciação em node',
-      journey_id: 'journey_id'
-    })
+    it('should be able to create lesson', async () => {
+        const group = await fakeGroupsRepository.create({
+            name: 'Iniciando no Nodejs',
+            description: 'módulo iniciação em node',
+            journey_id: 'journey_id',
+        });
 
-    const lesson = await createLesson.execute({
-      name: 'métodos http',
-      description: 'get, post, put e delete',
-      duration: 12000,
-      group_id: group.id,
-      video_id: 'video_id'
-    })
+        const lesson = await createLesson.execute({
+            type: 'video',
+            title: 'Video VsCode',
+            name: 'vide-vs-code',
+            resource: '12314124',
+            released_at: '2020/01/20',
+            platform: 'vimeo',
+            description: 'desc',
+            duration: 12000,
+            group_id: group.id,
+        });
 
-    expect(lesson).toHaveProperty('id')
-  })
+        expect(lesson).toHaveProperty('id');
+    });
 
-  it('should not be able to create lesson if group non exists', async () => {
-    await expect(
-      createLesson.execute({
-        name: 'métodos http',
-        description: 'get, post, put e delete',
-        duration: 12000,
-        group_id: 'non-existing-group',
-        video_id: 'video_id'
-      })
-    ).rejects.toBeInstanceOf(AppError)
-  })
-})
+    it('should not be able to create lesson if group non exists', async () => {
+        await expect(
+            createLesson.execute({
+                type: 'video',
+                title: 'Video VsCode',
+                name: 'vide-vs-code',
+                resource: '12314124',
+                released_at: '2020/01/20',
+                platform: 'vimeo',
+                description: 'desc',
+                duration: 12000,
+                group_id: '8345bb5c-6c67-4a6a-9f3d-40bcd45b4104',
+            }),
+        ).rejects.toBeInstanceOf(AppError);
+    });
+});

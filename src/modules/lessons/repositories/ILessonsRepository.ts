@@ -1,9 +1,9 @@
-import ICreateLessonDTO from '../dtos/ICreateLessonDTO'
-import Lesson from '../infra/typeorm/entities/Lesson'
+import ICreateLessonDTO from '../dtos/ICreateLessonDTO';
+import Lessons from '../infra/typeorm/entities/Lessons';
 
-export default interface IUsersRepository {
-    findById(id: string): Promise<Lesson | undefined>;
-    create(data: ICreateLessonDTO): Promise<Lesson>;
-    save(lesson: Lesson): Promise<Lesson>;
-    findByModule(group_id: string): Promise<Lesson[]>;
+export default interface ILessonsRepository {
+    findById(id: string): Promise<Lessons | undefined>;
+    create(data: ICreateLessonDTO): Promise<Lessons>;
+    save(lesson: Lessons): Promise<Lessons>;
+    remove(lesson: Lessons): Promise<void>;
 }
