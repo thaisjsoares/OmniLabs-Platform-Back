@@ -1,8 +1,9 @@
-import {v4} from 'uuid'
+/* eslint-disable no-shadow */
+import { v4 } from 'uuid';
 
-import ICreateJourneyDTO from '@modules/journey/dtos/ICreateJourneyDTO'
-import IJourneyRepository from '../IJourneyRepository';
+import ICreateJourneyDTO from '@modules/journey/dtos/ICreateJourneyDTO';
 import Journey from '@modules/journey/infra/typeorm/entities/Journey';
+import IJourneyRepository from '../IJourneyRepository';
 // Repository possui os metedos do typeORM de criar deletar e etc, recebendo o model como parametro
 
 class FakeJourneyRepository implements IJourneyRepository {
@@ -25,36 +26,41 @@ class FakeJourneyRepository implements IJourneyRepository {
     }
 
     public async findByName(journeyName: string): Promise<Journey | undefined> {
-        const journey = this.journeys.find(journey => journey.name === journeyName);
+        const journey = this.journeys.find(
+            journey => journey.name === journeyName,
+        );
 
-        return journey
+        return journey;
     }
 
     public async findByCourseId(course_id: string): Promise<Journey[]> {
-        const journey = this.journeys.filter(journey => journey.course_id === course_id)
+        const journey = this.journeys.filter(
+            journey => journey.course_id === course_id,
+        );
 
-        return [...journey]
+        return [...journey];
     }
 
     public async find(): Promise<Journey[]> {
-        return this.journeys
+        return this.journeys;
     }
 
     public async remove(journey: Journey): Promise<void> {
-        const findedIndex = this.journeys.findIndex(journey => journey.id)
-        this.journeys.splice(findedIndex, 1)
+        const findedIndex = this.journeys.findIndex(
+            journeys => journeys.id === journey.id,
+        );
+        this.journeys.splice(findedIndex, 1);
     }
 
     public async create(journeyData: ICreateJourneyDTO): Promise<Journey> {
-      const journey = new Journey();
+        const journey = new Journey();
 
-      Object.assign(journey, { id: v4() }, journeyData);
+        Object.assign(journey, { id: v4() }, journeyData);
 
-      this.journeys.push(journey);
+        this.journeys.push(journey);
 
-      return journey;
-  }
-
+        return journey;
+    }
 }
 
 export default FakeJourneyRepository;

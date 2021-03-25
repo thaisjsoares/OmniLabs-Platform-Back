@@ -1,51 +1,93 @@
-import { injectable, inject } from 'tsyringe'
+import { injectable, inject } from 'tsyringe';
 
-import AppError from '@shared/errors/AppError'
-import ILessonsRepository from '../repositories/ILessonsRepository'
+import AppError from '@shared/errors/AppError';
+import IGroupsRepository from '@modules/groups/repositories/IGroupsRepository';
+import { format } from 'date-fns';
+import ILessonsRepository from '../repositories/ILessonsRepository';
 
-import Lesson from '../infra/typeorm/entities/Lesson'
-import IGroupsRepository from '@modules/groups/repositories/IGroupsRepository'
+import Lesson_History from '../infra/typeorm/entities/Lesson_History';
+import ILessonHistoryRepository from '../repositories/ILessonHistoryRepository';
 
 interface IRequest {
-    name: string
-    description: string
-    duration: number
-    video_id: string
-    group_id: string
+    type: 'link' | 'video' | 'material';
+    group_id: string;
+    title: string;
+    duration: number;
+    description: string;
+    resource?: string;
+    released_at: string;
+    platform: string;
+    name: string;
+    link?: string;
 }
 @injectable()
 class CreateLessonService {
-  constructor (
+    constructor(
         @inject('LessonsRepository')
         private lessonsRepository: ILessonsRepository,
 
         @inject('GroupsRepository')
-        private groupsRepository: IGroupsRepository
-  ) {}
+        private groupsRepository: IGroupsRepository,
 
-  public async execute ({
-    name,
-    description,
-    duration,
-    video_id,
-    group_id
-  }: IRequest): Promise<Lesson> {
-    const module = await this.groupsRepository.findById(group_id)
+        @inject('LessonHistoryRepository')
+        private lessonHistoryRepository: ILessonHistoryRepository,
+    ) {}
 
-    if (!module) {
-      throw new AppError('Not possible to find a Module')
+    public async execute({
+        type,
+        group_id,
+        title,
+        duration,
+        description,
+        resource,
+        released_at,
+        platform,
+        name,
+        link,
+    }: IRequest): Promise<Lesson_History> {
+        const group = await this.groupsRepository.findById(group_id);
+
+        if (!group) {
+            throw new AppError('Not possible to find a Module');
+        }
+
+        const findLessonTitle = await this.lessonHistoryRepository.findByTitle(
+            title,
+        );
+
+        const findLessonName = await this.lessonHistoryRepository.findByName(
+            name,
+        );
+
+        if (findLessonName || findLessonTitle) {
+            throw new AppError('This lesson already exists');
+        }
+
+        const lesson = await this.lessonsRepository.create({
+            type,
+        });
+
+        const lessonHistory = await this.lessonHistoryRepository.create({
+            lesson_id: lesson.id,
+            group_id,
+            title,
+            duration,
+            description,
+            resource,
+            released_at: format(new Date(released_at), 'yyyy-MM-dd'),
+            platform,
+            name,
+            link,
+        });
+
+        if (!lessonHistory) {
+            await this.lessonsRepository.remove(lesson);
+
+            throw new AppError('Not possible to create lessons');
+        }
+
+        return lessonHistory;
     }
-
-    const lesson = await this.lessonsRepository.create({
-      name,
-      description,
-      duration,
-      video_id,
-      group_id
-    })
-
-    return lesson
-  }
 }
 
-export default CreateLessonService
+export default CreateLessonService;
