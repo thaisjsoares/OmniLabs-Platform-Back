@@ -16,15 +16,7 @@ class ShowCoursesService {
     ) {}
 
     public async execute(): Promise<Courses[]> {
-        let course = await this.cacheProvider.recover<Courses[]>(
-            `courses-list`,
-        );
-
-        if (!course) {
-            course = await this.coursesRepository.findAll();
-
-            await this.cacheProvider.save('courses-list', course);
-        }
+        const course = await this.coursesRepository.findAll();
 
         return course;
     }
