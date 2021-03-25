@@ -80,12 +80,6 @@ class CreateLessonService {
             link,
         });
 
-        if (!lessonHistory) {
-            await this.lessonsRepository.remove(lesson);
-
-            throw new AppError('Not possible to create lessons');
-        }
-
         return lessonHistory;
     }
 }

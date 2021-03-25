@@ -59,4 +59,38 @@ describe('Create Lesson', () => {
             }),
         ).rejects.toBeInstanceOf(AppError);
     });
+
+    it('should not be able to create lesson if lesson name or title already exists', async () => {
+        const group = await fakeGroupsRepository.create({
+            name: 'Iniciando no Nodejs',
+            description: 'módulo iniciação em node',
+            journey_id: 'journey_id',
+        });
+
+        await createLesson.execute({
+            type: 'video',
+            title: 'Video VsCode',
+            name: 'vide-vs-code',
+            resource: '12314124',
+            released_at: '2020/01/20',
+            platform: 'vimeo',
+            description: 'desc',
+            duration: 12000,
+            group_id: group.id,
+        });
+
+        await expect(
+            createLesson.execute({
+                type: 'video',
+                title: 'Video VsCode',
+                name: 'vide-vs-code',
+                resource: '12314124',
+                released_at: '2020/01/20',
+                platform: 'vimeo',
+                description: 'desc',
+                duration: 12000,
+                group_id: group.id,
+            }),
+        ).rejects.toBeInstanceOf(AppError);
+    });
 });
