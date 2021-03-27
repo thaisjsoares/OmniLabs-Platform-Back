@@ -24,7 +24,7 @@ export default class AddJourneyFieldToGroups1615560834607
                 columnNames: ['journey_id'],
                 referencedColumnNames: ['id'],
                 referencedTableName: 'journey',
-                onDelete: 'SET NULL',
+                onDelete: 'CASCADE',
                 onUpdate: 'CASCADE',
             }),
         );

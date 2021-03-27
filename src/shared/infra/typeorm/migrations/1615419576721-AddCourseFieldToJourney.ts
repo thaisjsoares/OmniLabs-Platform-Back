@@ -24,7 +24,7 @@ export default class AddCourseFieldToJourney1615419576721
                 columnNames: ['course_id'],
                 referencedColumnNames: ['id'],
                 referencedTableName: 'courses',
-                onDelete: 'SET NULL',
+                onDelete: 'CASCADE',
                 onUpdate: 'CASCADE',
             }),
         );
