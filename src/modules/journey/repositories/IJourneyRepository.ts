@@ -7,6 +7,6 @@ export default interface IJourneyRepository {
     save(journey: Journey): Promise<Journey>;
     findByName(journeyName: string): Promise<Journey | undefined>;
     findByCourseId(course_id: string): Promise<Journey[]>;
-    find(): Promise<Journey[]>
+    find(): Promise<Journey[]>;
     remove(journey: Journey): Promise<void>;
 }
