@@ -39,9 +39,14 @@ export default class UsersController {
     }
 
     public async show(request: Request, response: Response): Promise<Response> {
+        const { page, limit } = request.query;
+
         const showCourses = container.resolve(ShowCoursesService);
 
-        const course = await showCourses.execute();
+        const course = await showCourses.execute({
+            page: Number(page),
+            limit: Number(limit),
+        });
 
         return response.json(classToClass(course));
     }
