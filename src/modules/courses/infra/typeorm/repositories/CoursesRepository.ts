@@ -20,9 +20,11 @@ class UsersRepository implements ICoursesRepository {
     }
 
     public async findAll(page: number, limit: number): Promise<Courses[]> {
-        const courses = await this.ormRepository.query(
-            `select * from courses limit ${limit} offset(${page} - 1) * ${limit}`,
-        );
+        const courses = await this.ormRepository
+            .createQueryBuilder('coruses')
+            .limit(limit)
+            .offset((page - 1) * limit)
+            .getMany();
 
         return courses;
     }
