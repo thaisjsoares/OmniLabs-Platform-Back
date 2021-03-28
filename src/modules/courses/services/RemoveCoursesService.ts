@@ -4,7 +4,7 @@ import AppError from '@shared/errors/AppError';
 import ICoursesRepository from '../repositories/ICoursesRepository';
 
 @injectable()
-class RemoveJourneyService {
+class RemoveCoruseService {
     constructor(
         @inject('CoursesRepository')
         private coursesRepository: ICoursesRepository,
@@ -21,4 +21,4 @@ class RemoveJourneyService {
     }
 }
 
-export default RemoveJourneyService;
+export default RemoveCoruseService;

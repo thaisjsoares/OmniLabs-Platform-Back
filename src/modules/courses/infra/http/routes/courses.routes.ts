@@ -16,5 +16,6 @@ coursesRouter.patch(
     coursesController.updateImageCourse,
 );
 coursesRouter.delete('/:course_id', coursesController.delete);
+coursesRouter.put('/:course_id', coursesController.edit);
 
 export default coursesRouter;

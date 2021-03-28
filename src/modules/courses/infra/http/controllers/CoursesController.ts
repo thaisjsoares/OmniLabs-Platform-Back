@@ -5,7 +5,7 @@ import { classToClass } from 'class-transformer';
 import CreateCoursesService from '@modules/courses/services/CreateCoursesService';
 import UpdateCoursesImageService from '@modules/courses/services/UpdateCoursesImageService';
 import ShowCoursesService from '@modules/courses/services/ShowCoursesService';
-
+import EditCourseService from '@modules/courses/services/UpdateCourseService';
 import RemoveCoursesService from '@modules/courses/services/RemoveCoursesService';
 
 export default class UsersController {
@@ -42,6 +42,21 @@ export default class UsersController {
         const showCourses = container.resolve(ShowCoursesService);
 
         const course = await showCourses.execute();
+
+        return response.json(classToClass(course));
+    }
+
+    public async edit(request: Request, response: Response): Promise<Response> {
+        const { name, description } = request.body;
+        const { course_id } = request.params;
+
+        const updateCourse = container.resolve(EditCourseService);
+
+        const course = await updateCourse.execute({
+            name,
+            description,
+            course_id,
+        });
 
         return response.json(classToClass(course));
     }
