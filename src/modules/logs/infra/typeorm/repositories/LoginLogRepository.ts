@@ -20,8 +20,12 @@ class LessonsRepository implements ILoginLogRepository {
         return loginLog;
     }
 
-    public async findAll(): Promise<LoginLog[]> {
-        const logs = await this.ormRepository.find();
+    public async findAll(page: number, limit: number): Promise<LoginLog[]> {
+        const logs = await this.ormRepository
+            .createQueryBuilder('loginLogs')
+            .limit(limit)
+            .offset((page - 1) * limit)
+            .getMany();
 
         return logs;
     }

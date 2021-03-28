@@ -1,6 +1,11 @@
 import { injectable, inject } from 'tsyringe';
 import ILoginLogRepository from '../repositories/ILoginLogRepository';
 
+interface IRequest {
+    page: number;
+    limit: number;
+}
+
 @injectable()
 class ListUsersLogs {
     constructor(
@@ -8,8 +13,8 @@ class ListUsersLogs {
         private loginLogRepository: ILoginLogRepository,
     ) {}
 
-    public async execute() {
-        const logs = await this.loginLogRepository.findAll();
+    public async execute({ page, limit }: IRequest) {
+        const logs = await this.loginLogRepository.findAll(page, limit);
 
         return logs;
     }
