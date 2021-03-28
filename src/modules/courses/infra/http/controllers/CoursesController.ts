@@ -7,6 +7,7 @@ import UpdateCoursesImageService from '@modules/courses/services/UpdateCoursesIm
 import ShowCoursesService from '@modules/courses/services/ShowCoursesService';
 import EditCourseService from '@modules/courses/services/UpdateCourseService';
 import RemoveCoursesService from '@modules/courses/services/RemoveCoursesService';
+import FindSpecificCourse from '@modules/courses/services/FindSpecificCourse';
 
 export default class UsersController {
     public async create(
@@ -46,6 +47,18 @@ export default class UsersController {
         const course = await showCourses.execute({
             page: Number(page),
             limit: Number(limit),
+        });
+
+        return response.json(classToClass(course));
+    }
+
+    public async find(request: Request, response: Response): Promise<Response> {
+        const { course_id } = request.params;
+
+        const findCourse = container.resolve(FindSpecificCourse);
+
+        const course = await findCourse.execute({
+            course_id,
         });
 
         return response.json(classToClass(course));

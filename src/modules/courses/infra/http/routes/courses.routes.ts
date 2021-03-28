@@ -9,6 +9,7 @@ const coursesController = new CoursesController();
 const upload = multer(uploadConfig.multer);
 
 coursesRouter.get('/', coursesController.show);
+coursesRouter.get('/:course_id', coursesController.find);
 coursesRouter.post('/', coursesController.create);
 coursesRouter.patch(
     '/image/:course_id',

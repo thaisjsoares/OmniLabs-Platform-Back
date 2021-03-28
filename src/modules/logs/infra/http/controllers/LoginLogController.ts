@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import ListUsersLogs from '@modules/logs/services/ListUsersLogs.service';
+import ListUsersLogs from '@modules/logs/services/ListLoginLogs.service';
 
 class LoginLogController {
     public async show(request: Request, response: Response): Promise<Response> {
