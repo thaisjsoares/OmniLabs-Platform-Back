@@ -45,6 +45,10 @@ class RolesRepository implements IRolesRepository {
 
         return roles;
     }
+
+    public async remove(role: Roles): Promise<Roles> {
+        return this.ormRepository.remove(role);
+    }
 }
 
 export default RolesRepository;

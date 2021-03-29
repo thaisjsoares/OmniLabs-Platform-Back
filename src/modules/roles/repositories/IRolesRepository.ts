@@ -7,4 +7,5 @@ export default interface IUsersRepository {
     create(data: ICreateRoleDTO): Promise<Roles>;
     save(role: Roles): Promise<Roles>;
     findAll(): Promise<Roles[]>;
+    remove(role: Roles): Promise<Roles>;
 }
