@@ -1,11 +1,12 @@
-import { Router } from 'express'
+import { Router } from 'express';
 
-import RolesController from '@modules/roles/infra/http/controllers/RolesController'
+import RolesController from '@modules/roles/infra/http/controllers/RolesController';
 
-const rolesRouter = Router()
+const rolesRouter = Router();
 
-const rolesController = new RolesController()
+const rolesController = new RolesController();
 
-rolesRouter.post('/', rolesController.create)
+rolesRouter.post('/', rolesController.create);
+rolesRouter.get('/', rolesController.show);
 
-export default rolesRouter
+export default rolesRouter;
