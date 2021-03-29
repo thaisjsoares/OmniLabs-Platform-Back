@@ -34,9 +34,9 @@ class JourneyRepository implements IJourneyRepository {
     public async findByName(journeyName: string): Promise<Journey | undefined> {
         const journey = await this.ormRepository.findOne({
             where: {
-                name: journeyName
-            }
-        })
+                name: journeyName,
+            },
+        });
 
         return journey;
     }
@@ -44,9 +44,9 @@ class JourneyRepository implements IJourneyRepository {
     public async findByCourseId(course_id: string): Promise<Journey[]> {
         const journey = await this.ormRepository.find({
             where: {
-               course_id: course_id 
-            }
-        })
+                course_id,
+            },
+        });
 
         return journey;
     }
@@ -58,7 +58,7 @@ class JourneyRepository implements IJourneyRepository {
     }
 
     public async remove(journey: Journey): Promise<void> {
-        await this.ormRepository.remove(journey)
+        await this.ormRepository.remove(journey);
     }
 }
 

@@ -37,8 +37,16 @@ describe('List All Journey', () => {
         });
 
         expect(await showAllJourneys.execute()).toEqual([
-            { ...journey1, course_name: course1.name },
-            { ...journey2, course_name: course1.name },
+            {
+                ...journey1,
+                image_url: journey1.getAvatarUrl(),
+                course_name: course1.name,
+            },
+            {
+                ...journey2,
+                image_url: journey1.getAvatarUrl(),
+                course_name: course1.name,
+            },
         ]);
     });
 });

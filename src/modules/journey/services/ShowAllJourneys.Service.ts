@@ -40,7 +40,11 @@ class ShowAllJourneys {
                     throw new AppError('Not possible to find Course');
                 }
 
-                return { ...j, course_name: course.name };
+                return {
+                    ...j,
+                    image_url: j.getAvatarUrl(),
+                    course_name: course.name,
+                };
             }),
         );
 

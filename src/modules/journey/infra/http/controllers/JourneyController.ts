@@ -1,4 +1,4 @@
-import { Request, Response } from 'express'
+import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import { classToClass } from 'class-transformer';
@@ -10,7 +10,10 @@ import UpdateJourney from '@modules/journey/services/UpdateJourney.Service';
 import RemoveJourney from '@modules/journey/services/RemoveJourney.Service';
 
 class JourneyController {
-    public async create(request: Request, response: Response): Promise<Response>{
+    public async create(
+        request: Request,
+        response: Response,
+    ): Promise<Response> {
         const { name, description, course_id } = request.body;
 
         const createJourney = container.resolve(CreateJourney);
@@ -18,42 +21,53 @@ class JourneyController {
         const journey = await createJourney.execute({
             name,
             description,
-            course_id
-        })
+            course_id,
+        });
 
-        return response.json(journey)
+        return response.json(journey);
     }
 
-    public async find(request: Request, response: Response): Promise<Response>{
+    public async find(request: Request, response: Response): Promise<Response> {
         const { course_id } = request.params;
 
         const findJourneysByCourseId = container.resolve(ShowJourneysOfCourse);
 
-        const journeys = await findJourneysByCourseId.execute(course_id)
+        const journeys = await findJourneysByCourseId.execute(course_id);
 
-        return response.json(classToClass(journeys))
+        return response.json(classToClass(journeys));
     }
 
-    public async show(request: Request, response: Response): Promise<Response>{
+    public async show(request: Request, response: Response): Promise<Response> {
         const showAllJourneys = container.resolve(ShowAllJourneys);
 
-        const journeys = await showAllJourneys.execute()
+        const journeys = await showAllJourneys.execute();
 
-        return response.json(classToClass(journeys))
+        return response.json(classToClass(journeys));
     }
 
-    public async update(request: Request, response: Response): Promise<Response> {
+    public async update(
+        request: Request,
+        response: Response,
+    ): Promise<Response> {
         const { journey_id } = request.params;
         const { description, name, course_id } = request.body;
 
         const updateJourney = container.resolve(UpdateJourney);
 
-        const journey = await updateJourney.execute({journey_id, description, name, course_id});
+        const journey = await updateJourney.execute({
+            journey_id,
+            description,
+            name,
+            course_id,
+        });
 
         return response.json(journey);
     }
 
-    public async remove(request: Request, response: Response): Promise<Response> {
+    public async remove(
+        request: Request,
+        response: Response,
+    ): Promise<Response> {
         const { journey_id } = request.params;
 
         const removeJourney = container.resolve(RemoveJourney);
@@ -64,4 +78,4 @@ class JourneyController {
     }
 }
 
-export default JourneyController
+export default JourneyController;

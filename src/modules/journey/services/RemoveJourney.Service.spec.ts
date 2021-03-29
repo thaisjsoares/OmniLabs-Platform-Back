@@ -41,12 +41,24 @@ describe('Remove Journey', () => {
         });
 
         expect(await listJourney.execute()).toEqual([
-            { ...journey, course_name: course1.name },
-            { ...journey2, course_name: course1.name },
+            {
+                ...journey,
+                image_url: journey.getAvatarUrl(),
+                course_name: course1.name,
+            },
+            {
+                ...journey2,
+                image_url: journey2.getAvatarUrl(),
+                course_name: course1.name,
+            },
         ]);
         expect(await removeJourney.execute(journey.id)).toMatchObject(journey);
         expect(await listJourney.execute()).toEqual([
-            { ...journey2, course_name: course1.name },
+            {
+                ...journey2,
+                image_url: journey2.getAvatarUrl(),
+                course_name: course1.name,
+            },
         ]);
     });
 
