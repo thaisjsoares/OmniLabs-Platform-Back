@@ -20,8 +20,7 @@ export default class CreateLoginLogs1616307133407
                     },
                     {
                         name: 'login_at',
-                        type: 'timestamp',
-                        default: 'now()',
+                        type: 'varchar',
                     },
                 ],
             }),

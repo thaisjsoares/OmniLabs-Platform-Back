@@ -4,6 +4,7 @@ import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 import ILoginLogRepository from '@modules/logs/repositories/ILoginLogRepository';
+import format from 'date-fns/format';
 import IUsersRepository from '../repositories/IUsersRepository';
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 
@@ -62,6 +63,7 @@ class AuthenticateUserService {
 
         await this.loginLogRepository.create({
             content: `User ${user.name} entered the application`,
+            login_at: `${format(new Date(), "dd-MM-yyyy 'at' HH:mm'h'")}`,
             user_id: user.id,
         });
 
