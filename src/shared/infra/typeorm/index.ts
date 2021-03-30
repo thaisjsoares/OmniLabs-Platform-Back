@@ -1,6 +1,15 @@
-import { createConnections } from 'typeorm';
+import { Connection, getConnectionOptions, createConnection } from 'typeorm';
 
-createConnections().then(() => {
-    console.log('🗃🗃 Database Connected');
-});
-// procura arquivo ormconfig.json para olhar as configurações
+export default async (host = 'localhost'): Promise<Connection> => {
+    const defaultOptions = await getConnectionOptions();
+
+    return createConnection(
+        Object.assign(defaultOptions, {
+            host,
+            database:
+                process.env.NODE_ENV === 'test'
+                    ? 'courses_test'
+                    : defaultOptions.database,
+        }),
+    );
+};

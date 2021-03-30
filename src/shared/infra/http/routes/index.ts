@@ -13,9 +13,8 @@ import lessonsRouter from '@modules/lessons/infra/http/routes/lessons.routes';
 
 import journeyRouter from '@modules/journey/infra/http/routes/journey.routes';
 
-import rolesRouter from '@modules/roles/infra/http/routes/roles.routes';
-
 import loginLogsRouter from '@modules/logs/infra/http/routes/loginLogs.routes';
+import rolesRouter from './roles.routes';
 
 const routes = Router();
 

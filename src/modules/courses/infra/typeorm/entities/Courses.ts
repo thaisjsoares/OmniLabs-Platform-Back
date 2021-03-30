@@ -6,13 +6,11 @@ import {
     UpdateDateColumn,
 } from 'typeorm';
 
-
-import uploadConfig from '@config/upload';
-
 import { Exclude, Expose } from 'class-transformer';
+import uploadConfig from '../../../../../config/upload';
 
 @Entity('courses')
-class User {
+class Courses {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
@@ -24,7 +22,7 @@ class User {
 
     @Column()
     image: string;
-   
+
     @CreateDateColumn()
     created_at: Date;
 
@@ -46,4 +44,4 @@ class User {
     }
 }
 
-export default User;
+export default Courses;

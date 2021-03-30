@@ -1,4 +1,3 @@
-import User from '@modules/courses/infra/typeorm/entities/Courses';
 import {
     Entity,
     PrimaryGeneratedColumn,
@@ -7,6 +6,7 @@ import {
     JoinColumn,
     ManyToOne,
 } from 'typeorm';
+import User from '../../../../courses/infra/typeorm/entities/Courses';
 
 @Entity('login_log')
 class LoginLog {

@@ -1,9 +1,9 @@
 import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
-import IRolesRepository from '../repositories/IRolesRepository';
+import IRolesRepository from '@modules/roles/repositories/models/IRolesRepository';
 
-import Roles from '../infra/typeorm/entities/Roles';
+import Roles from '../../entities/Roles';
 
 interface IRequest {
     name: string;
