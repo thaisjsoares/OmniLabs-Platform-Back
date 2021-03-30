@@ -5,23 +5,23 @@ import {
     ManyToOne,
     JoinColumn,
     CreateDateColumn,
-    UpdateDateColumn
-} from 'typeorm'
+    UpdateDateColumn,
+} from 'typeorm';
 
-import Course from '@modules/courses/infra/typeorm/entities/Courses';
 import { Expose } from 'class-transformer';
-import uploadConfig from '@config/upload';
+import uploadConfig from '../../../../../config/upload';
+import Course from '../../../../courses/infra/typeorm/entities/Courses';
 
 @Entity('journey')
 class Journey {
     @PrimaryGeneratedColumn()
-    id: string
+    id: string;
 
     @Column()
-    name: string
+    name: string;
 
     @Column()
-    description: string
+    description: string;
 
     @Column()
     image: string;
@@ -40,19 +40,18 @@ class Journey {
         }
     }
 
-    @ManyToOne(()=> Course)
-    @JoinColumn({name: 'course_id'})
-    course: Course
+    @ManyToOne(() => Course)
+    @JoinColumn({ name: 'course_id' })
+    course: Course;
 
     @Column()
-    course_id: string
+    course_id: string;
 
     @CreateDateColumn()
     created_at: Date;
 
     @UpdateDateColumn()
     updated_at: Date;
-
 }
 
 export default Journey;

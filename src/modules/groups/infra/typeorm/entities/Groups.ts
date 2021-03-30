@@ -1,13 +1,13 @@
-import Journey from '@modules/journey/infra/typeorm/entities/Journey'
 import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  CreateDateColumn,
-  UpdateDateColumn,
-  JoinColumn,
-  ManyToOne
-} from 'typeorm'
+    Entity,
+    PrimaryGeneratedColumn,
+    Column,
+    CreateDateColumn,
+    UpdateDateColumn,
+    JoinColumn,
+    ManyToOne,
+} from 'typeorm';
+import Journey from '../../../../journey/infra/typeorm/entities/Journey';
 
 @Entity('groups')
 class Groups {
@@ -22,10 +22,10 @@ class Groups {
 
     @ManyToOne(() => Journey)
     @JoinColumn({ name: 'journey_id' })
-    journey: Journey
+    journey: Journey;
 
     @Column()
-    journey_id: string
+    journey_id: string;
 
     @CreateDateColumn()
     created_at: Date;
@@ -33,4 +33,4 @@ class Groups {
     @UpdateDateColumn()
     updated_at: Date;
 }
-export default Groups
+export default Groups;

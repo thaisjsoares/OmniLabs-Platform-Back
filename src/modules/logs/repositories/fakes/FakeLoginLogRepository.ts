@@ -8,6 +8,10 @@ import ILoginLogRepository from '../ILoginLogRepository';
 class FakeLoginLogRepository implements ILoginLogRepository {
     private loginLogs: LoginLog[] = [];
 
+    public async findAll(page: number, limit: number): Promise<LoginLog[]> {
+        return this.loginLogs;
+    }
+
     public async create(data: CreateLoginLogDTO): Promise<LoginLog> {
         const log = new LoginLog();
 

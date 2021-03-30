@@ -5,6 +5,11 @@ import ICoursesRepository from '../repositories/ICoursesRepository';
 
 import Courses from '../infra/typeorm/entities/Courses';
 
+interface IRequest {
+    page: number;
+    limit: number;
+}
+
 @injectable()
 class ShowCoursesService {
     constructor(
@@ -15,16 +20,8 @@ class ShowCoursesService {
         private cacheProvider: ICacheProvider,
     ) {}
 
-    public async execute(): Promise<Courses[]> {
-        let course = await this.cacheProvider.recover<Courses[]>(
-            `courses-list`,
-        );
-
-        if (!course) {
-            course = await this.coursesRepository.findAll();
-
-            await this.cacheProvider.save('courses-list', course);
-        }
+    public async execute({ limit, page }: IRequest): Promise<Courses[]> {
+        const course = await this.coursesRepository.findAll(page, limit);
 
         return course;
     }

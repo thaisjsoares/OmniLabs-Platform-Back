@@ -1,34 +1,52 @@
-import FakeJourneyRepository from '@modules/journey/repositories/fakes/FakeJourneyRepository'
+import FakeJourneyRepository from '@modules/journey/repositories/fakes/FakeJourneyRepository';
+import FakeCoursesRepository from '@modules/courses/repositories/fakes/FakeCoursesRepository';
 
-import ShowAllJourneysService from './ShowAllJourneys.Service'
+import ShowAllJourneysService from './ShowAllJourneys.Service';
 
-let fakeJourneyRepository: FakeJourneyRepository
-let showAllJourneys: ShowAllJourneysService
+let fakeJourneyRepository: FakeJourneyRepository;
+let fakeCoursesRepository: FakeCoursesRepository;
+let showAllJourneys: ShowAllJourneysService;
 
 describe('List All Journey', () => {
-  beforeEach(() => {
-    fakeJourneyRepository = new FakeJourneyRepository()
+    beforeEach(() => {
+        fakeJourneyRepository = new FakeJourneyRepository();
+        fakeCoursesRepository = new FakeCoursesRepository();
 
-    showAllJourneys = new ShowAllJourneysService(
-      fakeJourneyRepository
-    )
-  })
+        showAllJourneys = new ShowAllJourneysService(
+            fakeJourneyRepository,
+            fakeCoursesRepository,
+        );
+    });
 
-  it('should be able to list all Journeys', async () => {
-    const journey1 = await fakeJourneyRepository.create({
-      name: 'NodeJs',
-      description: 'Back-end',
-      course_id: '123'
-    })
+    it('should be able to list all Journeys', async () => {
+        const course1 = await fakeCoursesRepository.create({
+            description: 'asd',
+            name: '123',
+        });
 
-    const journey2 = await fakeJourneyRepository.create({
-      name: 'ReactJs',
-      description: 'Front-end',
-      course_id: '123'
-    })
+        const journey1 = await fakeJourneyRepository.create({
+            name: 'NodeJs',
+            description: 'Back-end',
+            course_id: course1.id,
+        });
 
-    expect(
-      await showAllJourneys.execute()
-    ).toEqual([journey1, journey2])
-  })
-})
+        const journey2 = await fakeJourneyRepository.create({
+            name: 'ReactJs',
+            description: 'Front-end',
+            course_id: course1.id,
+        });
+
+        expect(await showAllJourneys.execute()).toEqual([
+            {
+                ...journey1,
+                image_url: journey1.getAvatarUrl(),
+                course_name: course1.name,
+            },
+            {
+                ...journey2,
+                image_url: journey1.getAvatarUrl(),
+                course_name: course1.name,
+            },
+        ]);
+    });
+});

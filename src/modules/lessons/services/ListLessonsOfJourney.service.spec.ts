@@ -1,90 +1,121 @@
-import AppError from '../../../shared/errors/AppError'
+import FakeLessonsRepository from '@modules/lessons/repositories/fakes/FakeLessonsRepository';
+import FakeJourneyRepository from '@modules/journey/repositories/fakes/FakeJourneyRepository';
+import FakeGroupsRepository from '@modules/groups/repositories/fakes/FakeGroupsRepository';
+import AppError from '../../../shared/errors/AppError';
 
-import FakeLessonsRepository from '@modules/lessons/repositories/fakes/FakeLessonsRepository'
-import FakeJourneyRepository from '@modules/journey/repositories/fakes/FakeJourneyRepository'
-import FakeGroupsRepository from '@modules/groups/repositories/fakes/FakeGroupsRepository'
+import ListLessonsOfJourney from './ListLessonsOfJourney.service';
+import FakeLessonHistoryRepository from '../repositories/fakes/FakeLessonHistoryRepository';
+import CreateLessonService from './CreateLesson.service';
 
-import ListLessonsOfJourney from './ListLessonsOfJourney.service'
+let fakeLessonHistoryRepository: FakeLessonHistoryRepository;
+let fakeLessonsRepository: FakeLessonsRepository;
+let fakeJourneyRepository: FakeJourneyRepository;
+let fakeGroupsRepository: FakeGroupsRepository;
 
-let fakeLessonsRepository: FakeLessonsRepository
-let fakeJourneyRepository: FakeJourneyRepository
-let fakeGroupsRepository: FakeGroupsRepository
-
-let listLessonsOfJourney: ListLessonsOfJourney
+let listLessonsOfJourney: ListLessonsOfJourney;
+let createLesson: CreateLessonService;
 
 describe('List Lessons of Journey', () => {
-  beforeEach(() => {
-    fakeLessonsRepository = new FakeLessonsRepository()
-    fakeJourneyRepository = new FakeJourneyRepository()
-    fakeGroupsRepository = new FakeGroupsRepository()
+    beforeEach(() => {
+        fakeLessonHistoryRepository = new FakeLessonHistoryRepository();
+        fakeJourneyRepository = new FakeJourneyRepository();
+        fakeGroupsRepository = new FakeGroupsRepository();
+        fakeLessonsRepository = new FakeLessonsRepository();
 
-    listLessonsOfJourney = new ListLessonsOfJourney(
-      fakeLessonsRepository,
-      fakeGroupsRepository,
-      fakeJourneyRepository
-    )
-  })
+        listLessonsOfJourney = new ListLessonsOfJourney(
+            fakeLessonHistoryRepository,
+            fakeGroupsRepository,
+            fakeJourneyRepository,
+        );
 
-  it('should be able to list lessons of journey', async () => {
-    const journey = await fakeJourneyRepository.create({
-      name: 'Nodejs',
-      description: 'Back-End',
-      course_id: 'course_id'
-    })
+        createLesson = new CreateLessonService(
+            fakeLessonsRepository,
+            fakeGroupsRepository,
+            fakeLessonHistoryRepository,
+        );
+    });
 
-    const group1 = await fakeGroupsRepository.create({
-      name: 'nodeJs module 1',
-      description: 'múdulo sobre node',
-      journey_id: journey.id
-    })
+    it('should be able to list lessons of journey', async () => {
+        const journey = await fakeJourneyRepository.create({
+            name: 'Nodejs',
+            description: 'Back-End',
+            course_id: 'course_id',
+        });
 
-    const lesson = await fakeLessonsRepository.create({
-      name: 'métodos http',
-      description: 'get, post, put e delete',
-      duration: 12000,
-      group_id: group1.id,
-      video_id: 'video_id'
-    })
+        const group1 = await fakeGroupsRepository.create({
+            name: 'nodeJs module 1',
+            description: 'múdulo sobre node',
+            journey_id: journey.id,
+        });
 
-    const lesson2 = await fakeLessonsRepository.create({
-      name: 'lesson2',
-      description: 'get, post, put e delete',
-      duration: 12000,
-      group_id: group1.id,
-      video_id: 'video_id'
-    })
+        const lesson = await createLesson.execute({
+            type: 'video',
+            title: 'Video VsCode',
+            name: 'vide-vs-code',
+            resource: '12314124',
+            released_at: '2020/01/20',
+            platform: 'vimeo',
+            description: 'desc',
+            duration: 12000,
+            group_id: group1.id,
+        });
 
-    const listLessons = await listLessonsOfJourney.execute({
-      journey_name: 'Nodejs'
-    })
+        const lesson2 = await createLesson.execute({
+            type: 'video',
+            title: 'Video reactjs',
+            name: 'vide-react-js',
+            resource: '12314124',
+            released_at: '2020/01/20',
+            platform: 'vimeo',
+            description: 'desc',
+            duration: 12000,
+            group_id: group1.id,
+        });
 
-    expect(listLessons).toEqual([{
-      group: group1,
-      lessons: [{
-        id: lesson.id,
-        name: lesson.name,
-        description: lesson.description,
-        duration: '20 min, 00 s',
-        group_id: lesson.group_id,
-        video_id: lesson.video_id
-      },
-      {
-        id: lesson2.id,
-        name: lesson2.name,
-        description: lesson2.description,
-        duration: '20 min, 00 s',
-        group_id: lesson2.group_id,
-        video_id: lesson2.video_id
-      }
-      ]
-    }])
-  })
+        const listLessons = await listLessonsOfJourney.execute({
+            journey_name: 'Nodejs',
+        });
 
-  it('should not be able to find journey if jouney_name non exists', async () => {
-    await expect(
-      listLessonsOfJourney.execute({
-        journey_name: 'Nodejs'
-      })
-    ).rejects.toBeInstanceOf(AppError)
-  })
-})
+        expect(listLessons).toEqual([
+            {
+                group: group1,
+                lessons: [
+                    {
+                        id: lesson.id,
+                        lesson_id: lesson.lesson_id,
+                        link: lesson.link,
+                        title: 'Video VsCode',
+                        name: 'vide-vs-code',
+                        resource: '12314124',
+                        released_at: '2020-01-20',
+                        platform: 'vimeo',
+                        description: 'desc',
+                        duration: '20 min, 00 s',
+                        group_id: group1.id,
+                    },
+                    {
+                        id: lesson2.id,
+                        lesson_id: lesson2.lesson_id,
+                        link: lesson2.link,
+                        title: 'Video reactjs',
+                        name: 'vide-react-js',
+                        resource: '12314124',
+                        released_at: '2020-01-20',
+                        platform: 'vimeo',
+                        description: 'desc',
+                        duration: '20 min, 00 s',
+                        group_id: group1.id,
+                    },
+                ],
+            },
+        ]);
+    });
+
+    it('should not be able to find journey if jouney_name non exists', async () => {
+        await expect(
+            listLessonsOfJourney.execute({
+                journey_name: 'Nodejs',
+            }),
+        ).rejects.toBeInstanceOf(AppError);
+    });
+});

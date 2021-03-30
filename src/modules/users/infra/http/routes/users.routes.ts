@@ -3,10 +3,9 @@ import multer from 'multer';
 import uploadConfig from '@config/upload';
 import { celebrate, Segments, Joi } from 'celebrate';
 
+import ensureAuthenticated from '@shared/infra/http/middlewares/ensureAuthenticated';
 import UsersController from '../controllers/UsersController';
 import UserAvatarController from '../controllers/UserAvatarController';
-
-import ensureAuthenticated from '../middleware/ensureAuthenticated';
 
 const usersRouter = Router();
 const usersController = new UsersController();
@@ -27,13 +26,11 @@ usersRouter.post(
     usersController.create,
 );
 
-
 usersRouter.patch(
     '/avatar',
     ensureAuthenticated,
     upload.single('avatar'),
     userAvatarController.update,
 );
-
 
 export default usersRouter;

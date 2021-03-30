@@ -1,44 +1,52 @@
-import { v4 } from 'uuid'
+/* eslint-disable no-shadow */
+import { v4 } from 'uuid';
 
-import ICreateGroupDTO from '@modules/groups/dtos/ICreateGroupDTO'
-import IRolesRepository from '../IRolesRepository'
-
-import Roles from '@modules/roles/infra/typeorm/entities/Roles'
+import ICreateGroupDTO from '@modules/groups/dtos/ICreateGroupDTO';
+import Roles from '@modules/roles/entities/Roles';
+import IRolesRepository from '../models/IRolesRepository';
 
 class FakeRolesRepository implements IRolesRepository {
     private roles: Roles[] = [];
 
-    public async findByName (name: string): Promise<Roles | undefined> {
-      const role = this.roles.find(role => role.name === name)
-
-      return role
+    findAll(): Promise<any[]> {
+        throw new Error('Method not implemented.');
     }
 
-    public async findById (id: string): Promise<Roles | undefined> {
-      const role = this.roles.find(role => role.id === id)
-
-      return role
+    remove(role: any): Promise<any> {
+        throw new Error('Method not implemented.');
     }
 
-    public async create (data: ICreateGroupDTO): Promise<Roles> {
-      const role = new Roles()
+    public async findByName(name: string): Promise<Roles | undefined> {
+        const role = this.roles.find(role => role.name === name);
 
-      Object.assign(role, { id: v4() }, data)
-
-      this.roles.push(role)
-
-      return role
+        return role;
     }
 
-    public async save (role: Roles): Promise<Roles> {
-      const findIndex = this.roles.findIndex(
-        findJourney => findJourney.id === role.id
-      )
+    public async findById(id: string): Promise<Roles | undefined> {
+        const role = this.roles.find(role => role.id === id);
 
-      this.roles[findIndex] = role
+        return role;
+    }
 
-      return role
+    public async create(data: ICreateGroupDTO): Promise<Roles> {
+        const role = new Roles();
+
+        Object.assign(role, { id: v4() }, data);
+
+        this.roles.push(role);
+
+        return role;
+    }
+
+    public async save(role: Roles): Promise<Roles> {
+        const findIndex = this.roles.findIndex(
+            findJourney => findJourney.id === role.id,
+        );
+
+        this.roles[findIndex] = role;
+
+        return role;
     }
 }
 
-export default FakeRolesRepository
+export default FakeRolesRepository;

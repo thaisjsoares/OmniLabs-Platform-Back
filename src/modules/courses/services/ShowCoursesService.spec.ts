@@ -28,7 +28,7 @@ describe('ShowCourses', () => {
             description: '123123',
         });
 
-        const courses = await showCourses.execute();
+        const courses = await showCourses.execute({ page: 1, limit: 5 });
 
         expect(courses).toEqual([course1, course2]);
     });

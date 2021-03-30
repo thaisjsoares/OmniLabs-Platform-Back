@@ -21,11 +21,17 @@ import GroupsRepository from '@modules/groups/infra/typeorm/repositories/GroupsR
 import IJourneyRepository from '@modules/journey/repositories/IJourneyRepository';
 import JourneyRepository from '@modules/journey/infra/typeorm/repositories/JourneyRepository';
 
-import IRolesRepository from '@modules/roles/repositories/IRolesRepository';
-import RolesRepository from '@modules/roles/infra/typeorm/repositories/RolesRepository';
+import IRolesRepository from '@modules/roles/repositories/models/IRolesRepository';
+import RolesRepository from '@modules/roles/repositories/implementations/RolesRepository';
 
 import ILoginLogRepository from '@modules/logs/repositories/ILoginLogRepository';
 import LoginLogRepository from '@modules/logs/infra/typeorm/repositories/LoginLogRepository';
+
+import ILessonHistoryRepository from '@modules/lessons/repositories/ILessonHistoryRepository';
+import LessonHistoryRepository from '@modules/lessons/infra/typeorm/repositories/LessonHistoryRepository';
+
+import UserRoleRepository from '@modules/users/infra/typeorm/repositories/UserRoleRepository';
+import IUserRoleRepository from '@modules/users/repositories/IUserRoleRepository';
 
 container.registerSingleton<IUsersRepository>(
     'UsersRepository',
@@ -47,6 +53,11 @@ container.registerSingleton<ILessonsRepository>(
     LessonsRepository,
 );
 
+container.registerSingleton<ILessonHistoryRepository>(
+    'LessonHistoryRepository',
+    LessonHistoryRepository,
+);
+
 container.registerSingleton<IGroupsRepository>(
     'GroupsRepository',
     GroupsRepository,
@@ -65,4 +76,9 @@ container.registerSingleton<IRolesRepository>(
 container.registerSingleton<ILoginLogRepository>(
     'LoginLogRepository',
     LoginLogRepository,
+);
+
+container.registerSingleton<IUserRoleRepository>(
+    'UserRoleRepository',
+    UserRoleRepository,
 );

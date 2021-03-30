@@ -1,7 +1,7 @@
 import FakeRolesRepository from '@modules/roles/repositories/fakes/FakeRolesRepository';
-import AppError from '../../../shared/errors/AppError';
+import AppError from '@shared/errors/AppError';
 
-import CreateRole from './CreateRoles.service';
+import CreateRole from './CreateRoleUseCase';
 
 let createRole: CreateRole;
 let fakeRolesRepository: FakeRolesRepository;
