@@ -1,4 +1,5 @@
 import FakeRolesRepository from '@modules/roles/repositories/fakes/FakeRolesRepository';
+
 import AppError from '@shared/errors/AppError';
 
 import CreateRole from './CreateRoleUseCase';

@@ -1,7 +1,7 @@
+import IRolesRepository from '@modules/roles/repositories/models/IRolesRepository';
 import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
-import IRolesRepository from '@modules/roles/repositories/models/IRolesRepository';
 
 import Roles from '../../entities/Roles';
 
