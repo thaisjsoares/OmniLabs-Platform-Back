@@ -1,5 +1,6 @@
 import { v4 as uuid } from 'uuid';
 import { hash } from 'bcrypt';
+
 import getConnection from '..';
 
 async function create() {
