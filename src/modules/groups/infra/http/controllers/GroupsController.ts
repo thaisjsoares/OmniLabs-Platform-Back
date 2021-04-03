@@ -1,7 +1,8 @@
+import CreateGroup from '@modules/groups/services/CreateGroup.service';
+import DeleteGroup from '@modules/groups/services/DeleteGroup.service';
+import ShowGroups from '@modules/groups/services/ShowGroups.service';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-
-import CreateGroup from '@modules/groups/services/CreateGroup.service';
 
 class GroupsController {
     public async create(
@@ -17,6 +18,27 @@ class GroupsController {
             description,
             journey_id,
         });
+
+        return response.json(group);
+    }
+
+    public async show(request: Request, response: Response): Promise<Response> {
+        const showGroups = container.resolve(ShowGroups);
+
+        const gruops = await showGroups.execute();
+
+        return response.json(gruops);
+    }
+
+    public async remove(
+        request: Request,
+        response: Response,
+    ): Promise<Response> {
+        const { group_id } = request.params;
+
+        const deleteGroup = container.resolve(DeleteGroup);
+
+        const group = await deleteGroup.execute({ group_id });
 
         return response.json(group);
     }

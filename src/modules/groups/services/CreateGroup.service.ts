@@ -1,9 +1,10 @@
-import { injectable, inject } from 'tsyringe'
+import IJourneyRepository from '@modules/journey/repositories/IJourneyRepository';
+import { injectable, inject } from 'tsyringe';
 
-import Groups from '../infra/typeorm/entities/Groups'
-import IGroupsRepository from '../repositories/IGroupsRepository'
-import IJourneyRepository from '@modules/journey/repositories/IJourneyRepository'
-import AppError from '@shared/errors/AppError'
+import AppError from '@shared/errors/AppError';
+
+import Groups from '../infra/typeorm/entities/Groups';
+import IGroupsRepository from '../repositories/IGroupsRepository';
 
 interface IRequest {
     name: string;
@@ -13,25 +14,33 @@ interface IRequest {
 
 @injectable()
 class CreateGroupService {
-  constructor (
+    constructor(
         @inject('GroupsRepository')
         private groupsRepository: IGroupsRepository,
 
         @inject('JourneyRepository')
-        private journeyRepository: IJourneyRepository
-  ) {}
+        private journeyRepository: IJourneyRepository,
+    ) {}
 
-  public async execute ({ name, description, journey_id }: IRequest): Promise<Groups> {
-    const journey = await this.journeyRepository.findById(journey_id)
+    public async execute({
+        name,
+        description,
+        journey_id,
+    }: IRequest): Promise<Groups> {
+        const journey = await this.journeyRepository.findById(journey_id);
 
-    if (!journey) {
-      throw new AppError('Not possible to find journey')
+        if (!journey) {
+            throw new AppError('Not possible to find journey');
+        }
+
+        const group = await this.groupsRepository.create({
+            name,
+            description,
+            journey_id: journey.id,
+        });
+
+        return group;
     }
-
-    const group = await this.groupsRepository.create({ name, description, journey_id: journey.id })
-
-    return group
-  }
 }
 
-export default CreateGroupService
+export default CreateGroupService;
