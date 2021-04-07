@@ -8,5 +8,6 @@ const groupsController = new GroupsController();
 groupsRouter.post('/', groupsController.create);
 groupsRouter.get('/', groupsController.show);
 groupsRouter.delete('/:group_id', groupsController.remove);
+groupsRouter.put('/:group_id', groupsController.edit);
 
 export default groupsRouter;

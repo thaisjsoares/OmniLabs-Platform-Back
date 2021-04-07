@@ -5,7 +5,7 @@ export default interface ICreateLessonHistoryDTO {
     duration: number;
     description: string;
     resource?: string;
-    released_at: string;
+    released_at: Date;
     platform: string;
     name: string;
     link?: string;

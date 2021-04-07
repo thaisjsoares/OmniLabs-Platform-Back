@@ -1,12 +1,12 @@
+import IGroupsRepository from '@modules/groups/repositories/IGroupsRepository';
+import { format, startOfHour } from 'date-fns';
 import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
-import IGroupsRepository from '@modules/groups/repositories/IGroupsRepository';
-import { format } from 'date-fns';
-import ILessonsRepository from '../repositories/ILessonsRepository';
 
 import Lesson_History from '../infra/typeorm/entities/Lesson_History';
 import ILessonHistoryRepository from '../repositories/ILessonHistoryRepository';
+import ILessonsRepository from '../repositories/ILessonsRepository';
 
 interface IRequest {
     type: 'link' | 'video' | 'material';
@@ -45,6 +45,8 @@ class CreateLessonService {
         name,
         link,
     }: IRequest): Promise<Lesson_History> {
+        const date = startOfHour(new Date(released_at));
+
         const group = await this.groupsRepository.findById(group_id);
 
         if (!group) {
@@ -74,7 +76,7 @@ class CreateLessonService {
             duration,
             description,
             resource,
-            released_at: format(new Date(released_at), 'yyyy-MM-dd'),
+            released_at: new Date(date),
             platform,
             name,
             link,

@@ -1,11 +1,11 @@
-import FakeLessonsRepository from '@modules/lessons/repositories/fakes/FakeLessonsRepository';
-import FakeJourneyRepository from '@modules/journey/repositories/fakes/FakeJourneyRepository';
 import FakeGroupsRepository from '@modules/groups/repositories/fakes/FakeGroupsRepository';
-import AppError from '../../../shared/errors/AppError';
+import FakeJourneyRepository from '@modules/journey/repositories/fakes/FakeJourneyRepository';
+import FakeLessonsRepository from '@modules/lessons/repositories/fakes/FakeLessonsRepository';
 
-import ListLessonsOfJourney from './ListLessonsOfJourney.service';
+import AppError from '../../../shared/errors/AppError';
 import FakeLessonHistoryRepository from '../repositories/fakes/FakeLessonHistoryRepository';
 import CreateLessonService from './CreateLesson.service';
+import ListLessonsOfJourney from './ListLessonsOfJourney.service';
 
 let fakeLessonHistoryRepository: FakeLessonHistoryRepository;
 let fakeLessonsRepository: FakeLessonsRepository;
@@ -87,7 +87,7 @@ describe('List Lessons of Journey', () => {
                         title: 'Video VsCode',
                         name: 'vide-vs-code',
                         resource: '12314124',
-                        released_at: '2020-01-20',
+                        released_at: new Date('2020/01/20'),
                         platform: 'vimeo',
                         description: 'desc',
                         duration: '20 min, 00 s',
@@ -100,7 +100,7 @@ describe('List Lessons of Journey', () => {
                         title: 'Video reactjs',
                         name: 'vide-react-js',
                         resource: '12314124',
-                        released_at: '2020-01-20',
+                        released_at: new Date('2020/01/20'),
                         platform: 'vimeo',
                         description: 'desc',
                         duration: '20 min, 00 s',

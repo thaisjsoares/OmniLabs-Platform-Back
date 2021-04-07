@@ -1,8 +1,9 @@
-import FakeLessonsRepository from '@modules/lessons/repositories/fakes/FakeLessonsRepository';
 import FakeGroupsRepository from '@modules/groups/repositories/fakes/FakeGroupsRepository';
+import FakeLessonsRepository from '@modules/lessons/repositories/fakes/FakeLessonsRepository';
+
 import AppError from '../../../shared/errors/AppError';
-import CreateLessonService from './CreateLesson.service';
 import FakeLessonHistoryRepository from '../repositories/fakes/FakeLessonHistoryRepository';
+import CreateLessonService from './CreateLesson.service';
 
 let createLesson: CreateLessonService;
 let fakeLessonsRepository: FakeLessonsRepository;
