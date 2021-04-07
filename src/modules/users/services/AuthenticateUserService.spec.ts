@@ -1,10 +1,11 @@
+import FakeLoginLogRepository from '@modules/logs/repositories/fakes/FakeLoginLogRepository';
+
 import AppError from '@shared/errors/AppError';
 
-import FakeLoginLogRepository from '@modules/logs/repositories/fakes/FakeLoginLogRepository';
-import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';
 import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';
-import AuthenticateUserService from './AuthenticateUserService';
+import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';
 import FakeUserTokensRepository from '../repositories/fakes/FakeUserTokensRepository';
+import AuthenticateUserService from './AuthenticateUserService';
 
 let fakeUsersRepository: FakeUsersRepository;
 let fakeHashProvider: FakeHashProvider;

@@ -1,10 +1,12 @@
+import ListUsersLogs from '@modules/logs/useCases/ListLoginLogs/ListLoginLogsUseCase';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import ListUsersLogs from '@modules/logs/services/ListLoginLogs.service';
-
-class LoginLogController {
-    public async show(request: Request, response: Response): Promise<Response> {
+class ListLoginLogsController {
+    public async handle(
+        request: Request,
+        response: Response,
+    ): Promise<Response> {
         const { page, limit } = request.query;
 
         const listLoginLog = container.resolve(ListUsersLogs);
@@ -18,4 +20,4 @@ class LoginLogController {
     }
 }
 
-export default LoginLogController;
+export { ListLoginLogsController };

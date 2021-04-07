@@ -1,5 +1,6 @@
 import { injectable, inject } from 'tsyringe';
-import ILoginLogRepository from '../repositories/ILoginLogRepository';
+
+import ILoginLogRepository from '../../repositories/models/ILoginLogRepository';
 
 interface IRequest {
     page: number;

@@ -1,14 +1,14 @@
-import { sign } from 'jsonwebtoken';
 import authConfig from '@config/auth';
+import ILoginLogRepository from '@modules/logs/repositories/models/ILoginLogRepository';
+import format from 'date-fns/format';
+import { sign } from 'jsonwebtoken';
 import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
-import ILoginLogRepository from '@modules/logs/repositories/ILoginLogRepository';
-import format from 'date-fns/format';
-import IUsersRepository from '../repositories/IUsersRepository';
-import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 
 import User from '../infra/typeorm/entities/User';
+import IHashProvider from '../providers/HashProvider/models/IHashProvider';
+import IUsersRepository from '../repositories/IUsersRepository';
 import IUserTokensRepository from '../repositories/IUserTokensRepository';
 
 interface IRequest {
