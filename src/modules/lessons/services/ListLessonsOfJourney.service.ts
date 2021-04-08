@@ -1,9 +1,10 @@
-import { injectable, inject } from 'tsyringe';
+import IGroupsRepository from '@modules/groups/repositories/IGroupsRepository';
+import IJourneyRepository from '@modules/journey/repositories/models/IJourneyRepository';
 import { format } from 'date-fns';
+import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
-import IGroupsRepository from '@modules/groups/repositories/IGroupsRepository';
-import IJourneyRepository from '@modules/journey/repositories/IJourneyRepository';
+
 import ILessonHistoryRepository from '../repositories/ILessonHistoryRepository';
 
 interface IRequest {

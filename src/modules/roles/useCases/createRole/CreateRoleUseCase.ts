@@ -20,7 +20,7 @@ class CreateRolesService {
         const alreadyExistentRole = await this.rolesRepository.findByName(name);
 
         if (alreadyExistentRole) {
-            throw new AppError('This role already created');
+            throw new AppError('This role already created', 400);
         }
 
         const role = await this.rolesRepository.create({

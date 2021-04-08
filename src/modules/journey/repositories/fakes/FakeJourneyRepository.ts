@@ -1,9 +1,9 @@
 /* eslint-disable no-shadow */
+import ICreateJourneyDTO from '@modules/journey/dtos/ICreateJourneyDTO';
+import Journey from '@modules/journey/entities/Journey';
 import { v4 } from 'uuid';
 
-import ICreateJourneyDTO from '@modules/journey/dtos/ICreateJourneyDTO';
-import Journey from '@modules/journey/infra/typeorm/entities/Journey';
-import IJourneyRepository from '../IJourneyRepository';
+import IJourneyRepository from '../models/IJourneyRepository';
 // Repository possui os metedos do typeORM de criar deletar e etc, recebendo o model como parametro
 
 class FakeJourneyRepository implements IJourneyRepository {

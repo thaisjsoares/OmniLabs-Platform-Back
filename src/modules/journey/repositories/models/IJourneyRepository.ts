@@ -1,5 +1,5 @@
-import Journey from '../infra/typeorm/entities/Journey';
-import ICreateJourneyDTO from '../dtos/ICreateJourneyDTO';
+import ICreateJourneyDTO from '../../dtos/ICreateJourneyDTO';
+import Journey from '../../entities/Journey';
 
 export default interface IJourneyRepository {
     findById(id: string): Promise<Journey | undefined>;

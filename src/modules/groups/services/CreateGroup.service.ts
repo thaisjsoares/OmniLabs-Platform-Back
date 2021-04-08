@@ -1,4 +1,4 @@
-import IJourneyRepository from '@modules/journey/repositories/IJourneyRepository';
+import IJourneyRepository from '@modules/journey/repositories/models/IJourneyRepository';
 import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';

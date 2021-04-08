@@ -1,6 +1,6 @@
 import FakeJourneyRepository from '@modules/journey/repositories/fakes/FakeJourneyRepository';
 
-import ShowJourneysOfCourse from './ShowJourneysOfCourse.Service';
+import ShowJourneysOfCourse from './ShowJourneysOfCourseUseCase';
 
 let fakeJourneyRepository: FakeJourneyRepository;
 let showJourneysOfCourse: ShowJourneysOfCourse;

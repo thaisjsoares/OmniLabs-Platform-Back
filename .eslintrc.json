@@ -26,6 +26,7 @@
     ],
     "rules": {
         "camelcase": "off",
+        "import/prefer-default-export": "off",
 			"import/no-unresolved": "error",
 			"@typescript-eslint/naming-convention": [
 			  "error",
@@ -39,7 +40,6 @@
 			  }
 			],
 			"class-methods-use-this": "off",
-			"import/prefer-default-export": "off",
 			"no-shadow": "off",
 			"no-console": "off",
 			"no-useless-constructor": "off",

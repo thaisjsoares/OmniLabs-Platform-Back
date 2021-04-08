@@ -1,10 +1,9 @@
+import ICoursesRepository from '@modules/courses/repositories/ICoursesRepository';
 import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
-import ICoursesRepository from '@modules/courses/repositories/ICoursesRepository';
-import IJourneyRepository from '../repositories/IJourneyRepository';
 
-import Journey from '../infra/typeorm/entities/Journey';
+import IJourneyRepository from '../../repositories/models/IJourneyRepository';
 
 interface IResponse {
     id: string;

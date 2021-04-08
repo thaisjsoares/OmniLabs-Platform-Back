@@ -1,9 +1,9 @@
 import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
-import IJourneyRepository from '../repositories/IJourneyRepository';
 
-import Journey from '../infra/typeorm/entities/Journey';
+import Journey from '../../entities/Journey';
+import IJourneyRepository from '../../repositories/models/IJourneyRepository';
 
 @injectable()
 class RemoveJourneyService {

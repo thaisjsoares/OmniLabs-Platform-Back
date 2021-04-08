@@ -1,7 +1,7 @@
-import FakeJourneyRepository from '@modules/journey/repositories/fakes/FakeJourneyRepository';
 import FakeCoursesRepository from '@modules/courses/repositories/fakes/FakeCoursesRepository';
+import FakeJourneyRepository from '@modules/journey/repositories/fakes/FakeJourneyRepository';
 
-import ShowAllJourneysService from './ShowAllJourneys.Service';
+import ShowAllJourneysService from './ShowAllJourneysUseCase';
 
 let fakeJourneyRepository: FakeJourneyRepository;
 let fakeCoursesRepository: FakeCoursesRepository;

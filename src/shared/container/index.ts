@@ -5,8 +5,8 @@ import CoursesRepository from '@modules/courses/infra/typeorm/repositories/Cours
 import ICoursesRepository from '@modules/courses/repositories/ICoursesRepository';
 import GroupsRepository from '@modules/groups/infra/typeorm/repositories/GroupsRepository';
 import IGroupsRepository from '@modules/groups/repositories/IGroupsRepository';
-import JourneyRepository from '@modules/journey/infra/typeorm/repositories/JourneyRepository';
-import IJourneyRepository from '@modules/journey/repositories/IJourneyRepository';
+import JourneyRepository from '@modules/journey/repositories/implementations/JourneyRepository';
+import IJourneyRepository from '@modules/journey/repositories/models/IJourneyRepository';
 import LessonHistoryRepository from '@modules/lessons/infra/typeorm/repositories/LessonHistoryRepository';
 import LessonsRepository from '@modules/lessons/infra/typeorm/repositories/LessonsRepository';
 import ILessonHistoryRepository from '@modules/lessons/repositories/ILessonHistoryRepository';

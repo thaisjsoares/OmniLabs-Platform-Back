@@ -1,8 +1,9 @@
-import FakeJourneyRepository from '@modules/journey/repositories/fakes/FakeJourneyRepository';
 import FakeCoursesRepository from '@modules/courses/repositories/fakes/FakeCoursesRepository';
-import AppError from '../../../shared/errors/AppError';
+import FakeJourneyRepository from '@modules/journey/repositories/fakes/FakeJourneyRepository';
 
-import CreateJourneyService from './CreateJourney.Service';
+import AppError from '@shared/errors/AppError';
+
+import CreateJourneyService from './CreateJourneyUseCase';
 
 let fakeJourneyRepository: FakeJourneyRepository;
 let fakeCoursesRepository: FakeCoursesRepository;
