@@ -4,7 +4,7 @@ import { Connection } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 
 import { app } from '@shared/infra/http/app';
-import createConnection from '@shared/infra/typeorm/index';
+import createConnection from '@shared/infra/typeorm';
 
 let connection: Connection;
 
@@ -15,24 +15,23 @@ describe('Create Role Controller', () => {
         await connection.runMigrations();
 
         const id = uuid();
-
         const password = await hash('admin', 8);
 
         await connection.query(
-            `INSERT INTO roles(id, name, created_at, updated_at)
+            `INSERT INTO ROLES(id, name, created_at, updated_at)
                 values('acbdc058-fbe8-45b2-9b9e-9f65c35a6987','Admin', 'now()', 'now()' )
             `,
         );
 
         await connection.query(
-            `INSERT INTO users(id, name, email, password, created_at, updated_at)
+            `INSERT INTO USERS(id, name, email, password, created_at, updated_at)
                 values('8e3b0d9d-925e-4be1-b440-e4ccb41f8657','admin', 'admin@omnilabs.com.br', '${password}', 'now()', 'now()' )
             `,
         );
 
         await connection.query(
             `INSERT INTO users_roles(id, user_id, created_at, updated_at, role_id )
-                values('02a1e4e6-39d2-4119-96a7-026687fd49d2','8e3b0d9d-925e-4be1-b440-e4ccb41f8657', 'now()', 'now()', 'acbdc058-fbe8-45b2-9b9e-9f65c35a6987')
+                values('${id}','8e3b0d9d-925e-4be1-b440-e4ccb41f8657', 'now()', 'now()', 'acbdc058-fbe8-45b2-9b9e-9f65c35a6987')
             `,
         );
     });
