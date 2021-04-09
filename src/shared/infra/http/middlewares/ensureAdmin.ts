@@ -1,7 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import UserRoleRepository from '@modules/users/infra/typeorm/repositories/UserRoleRepository';
-import AppError from '@shared/errors/AppError';
 import { Request, Response, NextFunction } from 'express';
+
+import AppError from '@shared/errors/AppError';
 
 export default async function ensureAdmin(
     request: Request,

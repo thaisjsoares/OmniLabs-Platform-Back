@@ -1,4 +1,4 @@
-import Roles from '@modules/roles/infra/entities/Roles';
+import Roles from '@modules/roles/infra/typeorm/entities/Roles';
 import { injectable, inject } from 'tsyringe';
 
 import IRolesRepository from '../../repositories/models/IRolesRepository';
