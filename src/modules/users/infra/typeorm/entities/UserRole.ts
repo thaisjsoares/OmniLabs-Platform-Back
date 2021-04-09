@@ -8,7 +8,8 @@ import {
     OneToOne,
     JoinColumn,
 } from 'typeorm';
-import Roles from '../../../../roles/entities/Roles';
+
+import Roles from '../../../../roles/infra/entities/Roles';
 import User from './User';
 
 @Entity('users_roles')

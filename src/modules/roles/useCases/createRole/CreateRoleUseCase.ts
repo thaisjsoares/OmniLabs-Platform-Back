@@ -3,7 +3,7 @@ import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
 
-import Roles from '../../entities/Roles';
+import Roles from '../../infra/entities/Roles';
 
 interface IRequest {
     name: string;

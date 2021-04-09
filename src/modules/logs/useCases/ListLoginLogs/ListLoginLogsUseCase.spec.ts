@@ -1,10 +1,10 @@
 import FakeLoginLogRepository from '@modules/logs/repositories/fakes/FakeLoginLogRepository';
 import FakeRolesRepository from '@modules/roles/repositories/fakes/FakeRolesRepository';
-import FakeHashProvider from '@modules/users/providers/HashProvider/fakes/FakeHashProvider';
 import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
 import FakeUserTokensRepository from '@modules/users/repositories/fakes/FakeUserTokensRepository';
 import AuthenticateUserService from '@modules/users/services/AuthenticateUserService';
 
+import FakeHashProvider from '@shared/container/providers/HashProvider/fakes/FakeHashProvider';
 import AppError from '@shared/errors/AppError';
 
 import ListLoginLogs from './ListLoginLogsUseCase';

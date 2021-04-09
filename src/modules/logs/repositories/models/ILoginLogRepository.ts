@@ -1,5 +1,5 @@
 import CreateLoginLogDTO from '../../dtos/CreateLoginLogDTO';
-import LoginLog from '../../entities/LoginLog';
+import LoginLog from '../../infra/entities/LoginLog';
 
 export default interface INotificationsRepository {
     create(data: CreateLoginLogDTO): Promise<LoginLog>;

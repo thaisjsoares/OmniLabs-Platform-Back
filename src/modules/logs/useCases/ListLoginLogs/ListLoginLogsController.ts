@@ -7,16 +7,20 @@ class ListLoginLogsController {
         request: Request,
         response: Response,
     ): Promise<Response> {
-        const { page, limit } = request.query;
+        try {
+            const { page, limit } = request.query;
 
-        const listLoginLog = container.resolve(ListUsersLogs);
+            const listLoginLog = container.resolve(ListUsersLogs);
 
-        const logs = await listLoginLog.execute({
-            page: Number(page),
-            limit: Number(limit),
-        });
+            const logs = await listLoginLog.execute({
+                page: Number(page),
+                limit: Number(limit),
+            });
 
-        return response.json(logs);
+            return response.status(200).json(logs);
+        } catch (error) {
+            return response.status(400).json({ error: error.message });
+        }
     }
 }
 

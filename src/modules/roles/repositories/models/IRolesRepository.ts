@@ -1,5 +1,6 @@
-import Roles from '../infra/typeorm/entities/Roles';
-import ICreateRoleDTO from '../dtos/ICreateRoleDTO';
+import Roles from '@modules/roles/infra/entities/Roles';
+
+import ICreateRoleDTO from '../../dtos/ICreateRoleDTO';
 
 export default interface IUsersRepository {
     findById(id: string): Promise<Roles | undefined>;

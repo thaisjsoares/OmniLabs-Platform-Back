@@ -1,9 +1,7 @@
-import { getRepository, Repository } from 'typeorm';
-
-import IRolesRepository from '@modules/roles/repositories/models/IRolesRepository';
 import ICreateRoleDTO from '@modules/roles/dtos/ICreateRoleDTO';
-
-import Roles from '@modules/roles/entities/Roles';
+import Roles from '@modules/roles/infra/entities/Roles';
+import IRolesRepository from '@modules/roles/repositories/models/IRolesRepository';
+import { getRepository, Repository } from 'typeorm';
 
 class RolesRepository implements IRolesRepository {
     private ormRepository: Repository<Roles>;

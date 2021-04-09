@@ -1,4 +1,3 @@
-import '@modules/users/providers';
 import './providers';
 
 import CoursesRepository from '@modules/courses/infra/typeorm/repositories/CoursesRepository';
@@ -11,9 +10,9 @@ import LessonHistoryRepository from '@modules/lessons/infra/typeorm/repositories
 import LessonsRepository from '@modules/lessons/infra/typeorm/repositories/LessonsRepository';
 import ILessonHistoryRepository from '@modules/lessons/repositories/ILessonHistoryRepository';
 import ILessonsRepository from '@modules/lessons/repositories/ILessonsRepository';
-import LoginLogRepository from '@modules/logs/repositories/implementations/LoginLogRepository';
+import LoginLogRepository from '@modules/logs/infra/typeorm/LoginLogRepository';
 import ILoginLogRepository from '@modules/logs/repositories/models/ILoginLogRepository';
-import RolesRepository from '@modules/roles/repositories/implementations/RolesRepository';
+import RolesRepository from '@modules/roles/infra/typeorm/RolesRepository';
 import IRolesRepository from '@modules/roles/repositories/models/IRolesRepository';
 import UserRoleRepository from '@modules/users/infra/typeorm/repositories/UserRoleRepository';
 import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';

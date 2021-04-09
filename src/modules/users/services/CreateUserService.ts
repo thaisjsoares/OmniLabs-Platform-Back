@@ -1,10 +1,10 @@
-import { injectable, inject } from 'tsyringe'
+import { injectable, inject } from 'tsyringe';
 
-import AppError from '@shared/errors/AppError'
-import IUsersRepository from '../repositories/IUsersRepository'
-import IHashProvider from '../providers/HashProvider/models/IHashProvider'
+import AppError from '@shared/errors/AppError';
 
-import User from '../infra/typeorm/entities/User'
+import IHashProvider from '../../../shared/container/providers/HashProvider/models/IHashProvider';
+import User from '../infra/typeorm/entities/User';
+import IUsersRepository from '../repositories/IUsersRepository';
 
 interface IRequest {
     name: string;
@@ -14,32 +14,32 @@ interface IRequest {
 
 @injectable()
 class CreateUserService {
-  constructor (
+    constructor(
         @inject('UsersRepository')
         private usersRepository: IUsersRepository,
 
         @inject('HashProvider')
-        private hashProvider: IHashProvider
-  ) {}
+        private hashProvider: IHashProvider,
+    ) {}
 
-  public async execute ({ name, email, password }: IRequest): Promise<User> {
-    const checkUserExists = await this.usersRepository.findByEmail(email)
+    public async execute({ name, email, password }: IRequest): Promise<User> {
+        const checkUserExists = await this.usersRepository.findByEmail(email);
 
-    if (checkUserExists) {
-      throw new AppError('Email address already used.')
+        if (checkUserExists) {
+            throw new AppError('Email address already used.');
+        }
+
+        const hashedPassword = await this.hashProvider.generateHash(password);
+
+        const user = await this.usersRepository.create({
+            // create cria a instancia mas n salva no banco
+            name,
+            email,
+            password: hashedPassword,
+        });
+
+        return user;
     }
-
-    const hashedPassword = await this.hashProvider.generateHash(password)
-
-    const user = await this.usersRepository.create({
-      // create cria a instancia mas n salva no banco
-      name,
-      email,
-      password: hashedPassword
-    })
-
-    return user
-  }
 }
 
-export default CreateUserService
+export default CreateUserService;

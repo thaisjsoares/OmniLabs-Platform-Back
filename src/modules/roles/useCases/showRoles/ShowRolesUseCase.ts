@@ -1,6 +1,6 @@
+import Roles from '@modules/roles/infra/entities/Roles';
 import { injectable, inject } from 'tsyringe';
 
-import Roles from '@modules/roles/entities/Roles';
 import IRolesRepository from '../../repositories/models/IRolesRepository';
 
 @injectable()

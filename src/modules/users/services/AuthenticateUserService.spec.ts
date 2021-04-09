@@ -2,7 +2,7 @@ import FakeLoginLogRepository from '@modules/logs/repositories/fakes/FakeLoginLo
 
 import AppError from '@shared/errors/AppError';
 
-import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';
+import FakeHashProvider from '../../../shared/container/providers/HashProvider/fakes/FakeHashProvider';
 import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';
 import FakeUserTokensRepository from '../repositories/fakes/FakeUserTokensRepository';
 import AuthenticateUserService from './AuthenticateUserService';
