@@ -1,11 +1,9 @@
-import { Request, Response } from 'express';
-import { container } from 'tsyringe';
-
 import CreateLesson from '@modules/lessons/services/CreateLesson.service';
 import ListLessonsOfJourney from '@modules/lessons/services/ListLessonsOfJourney.service';
 import ListSpecificLesson from '@modules/lessons/services/ListSpecificLesson.service';
-
 import { classToClass } from 'class-transformer';
+import { Request, Response } from 'express';
+import { container } from 'tsyringe';
 
 class LessonsController {
     public async create(

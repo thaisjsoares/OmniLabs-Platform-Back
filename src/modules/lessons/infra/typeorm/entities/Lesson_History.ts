@@ -42,7 +42,7 @@ class Lesson_History {
     @Column()
     resource: string;
 
-    @Column()
+    @Column('timestamp with time zone')
     released_at: Date;
 
     @Column()

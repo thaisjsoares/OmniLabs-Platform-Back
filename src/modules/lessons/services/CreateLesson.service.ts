@@ -1,5 +1,5 @@
 import IGroupsRepository from '@modules/groups/repositories/IGroupsRepository';
-import { format, startOfHour } from 'date-fns';
+import { format, isBefore, startOfHour } from 'date-fns';
 import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
@@ -45,9 +45,11 @@ class CreateLessonService {
         name,
         link,
     }: IRequest): Promise<Lesson_History> {
-        const date = released_at;
+        const formatedDate = startOfHour(new Date(released_at));
 
-        console.log(date);
+        if (isBefore(formatedDate, Date.now())) {
+            throw new AppError("You can't create an lesson on a past date.");
+        }
 
         const group = await this.groupsRepository.findById(group_id);
 
@@ -78,7 +80,7 @@ class CreateLessonService {
             duration,
             description,
             resource,
-            released_at: new Date(date),
+            released_at: formatedDate,
             platform,
             name,
             link,
