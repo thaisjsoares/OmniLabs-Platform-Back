@@ -45,7 +45,9 @@ class CreateLessonService {
         name,
         link,
     }: IRequest): Promise<Lesson_History> {
-        const date = startOfHour(new Date(released_at));
+        const date = released_at;
+
+        console.log(date);
 
         const group = await this.groupsRepository.findById(group_id);
 
