@@ -1,9 +1,8 @@
+import Groups from '@modules/groups/infra/typeorm/entities/Groups';
+import IGroupsRepository from '@modules/groups/repositories/models/IGroupsRepository';
 import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
-
-import Groups from '../infra/typeorm/entities/Groups';
-import IGroupsRepository from '../repositories/IGroupsRepository';
 
 interface IRequest {
     name: string;
@@ -13,7 +12,7 @@ interface IRequest {
 }
 
 @injectable()
-class UpdateGroupService {
+class UpdateGroupUseCase {
     constructor(
         @inject('GroupsRepository')
         private groupsRepository: IGroupsRepository,
@@ -41,4 +40,4 @@ class UpdateGroupService {
     }
 }
 
-export default UpdateGroupService;
+export { UpdateGroupUseCase };

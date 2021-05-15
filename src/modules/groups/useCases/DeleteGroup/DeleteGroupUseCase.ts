@@ -1,16 +1,14 @@
+import IGroupsRepository from '@modules/groups/repositories/models/IGroupsRepository';
 import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
-
-import Groups from '../infra/typeorm/entities/Groups';
-import IGroupsRepository from '../repositories/IGroupsRepository';
 
 interface IRequest {
     group_id: string;
 }
 
 @injectable()
-class DeleteGroupService {
+class DeleteGroupUseCase {
     constructor(
         @inject('GroupsRepository')
         private groupsRepository: IGroupsRepository,
@@ -27,4 +25,4 @@ class DeleteGroupService {
     }
 }
 
-export default DeleteGroupService;
+export { DeleteGroupUseCase };

@@ -1,10 +1,11 @@
 import FakeGroupsRepository from '@modules/groups/repositories/fakes/FakeGroupsRepository';
 import FakeJourneyRepository from '@modules/journey/repositories/fakes/FakeJourneyRepository';
 
-import AppError from '../../../shared/errors/AppError';
-import CreateGroup from './CreateGroup.service';
+import AppError from '@shared/errors/AppError';
 
-let createGroup: CreateGroup;
+import { CreateGroupUseCase } from './CreateGroupUseCase';
+
+let createGroup: CreateGroupUseCase;
 let fakeGroupsRepository: FakeGroupsRepository;
 let fakeJourneyRepository: FakeJourneyRepository;
 
@@ -13,7 +14,7 @@ describe('Create Group', () => {
         fakeGroupsRepository = new FakeGroupsRepository();
         fakeJourneyRepository = new FakeJourneyRepository();
 
-        createGroup = new CreateGroup(
+        createGroup = new CreateGroupUseCase(
             fakeGroupsRepository,
             fakeJourneyRepository,
         );
