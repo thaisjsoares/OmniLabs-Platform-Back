@@ -1,10 +1,9 @@
-import { Router } from 'express';
+import { AuthenticateUserController } from '@modules/users/useCases/AuthenticateUser/AuthenticateUserController';
 import { celebrate, Segments, Joi } from 'celebrate';
-
-import SessionsController from '../controllers/SessionsController';
+import { Router } from 'express';
 
 const sessionsRouter = Router();
-const sessionsController = new SessionsController();
+const sessionsController = new AuthenticateUserController();
 
 sessionsRouter.post(
     '/',

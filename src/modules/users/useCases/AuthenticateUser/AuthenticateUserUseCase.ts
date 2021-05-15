@@ -1,15 +1,14 @@
 import authConfig from '@config/auth';
 import ILoginLogRepository from '@modules/logs/repositories/models/ILoginLogRepository';
+import User from '@modules/users/infra/typeorm/entities/User';
+import IUsersRepository from '@modules/users/repositories/models/IUsersRepository';
+import IUserTokensRepository from '@modules/users/repositories/models/IUserTokensRepository';
 import format from 'date-fns/format';
 import { sign } from 'jsonwebtoken';
 import { injectable, inject } from 'tsyringe';
 
+import IHashProvider from '@shared/container/providers/HashProvider/models/IHashProvider';
 import AppError from '@shared/errors/AppError';
-
-import IHashProvider from '../../../shared/container/providers/HashProvider/models/IHashProvider';
-import User from '../infra/typeorm/entities/User';
-import IUsersRepository from '../repositories/IUsersRepository';
-import IUserTokensRepository from '../repositories/IUserTokensRepository';
 
 interface IRequest {
     email: string;
@@ -22,7 +21,7 @@ interface IResponse {
 }
 
 @injectable()
-class AuthenticateUserService {
+class AuthenticateUserUseCase {
     constructor(
         @inject('UsersRepository')
         private usersRepository: IUsersRepository,
@@ -74,4 +73,4 @@ class AuthenticateUserService {
     }
 }
 
-export default AuthenticateUserService;
+export { AuthenticateUserUseCase };

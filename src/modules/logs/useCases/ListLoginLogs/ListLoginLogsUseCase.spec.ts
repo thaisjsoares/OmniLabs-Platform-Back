@@ -1,16 +1,14 @@
 import FakeLoginLogRepository from '@modules/logs/repositories/fakes/FakeLoginLogRepository';
-import FakeRolesRepository from '@modules/roles/repositories/fakes/FakeRolesRepository';
 import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
 import FakeUserTokensRepository from '@modules/users/repositories/fakes/FakeUserTokensRepository';
-import AuthenticateUserService from '@modules/users/services/AuthenticateUserService';
+import { AuthenticateUserUseCase } from '@modules/users/useCases/AuthenticateUser/AuthenticateUserUseCase';
 
 import FakeHashProvider from '@shared/container/providers/HashProvider/fakes/FakeHashProvider';
-import AppError from '@shared/errors/AppError';
 
 import ListLoginLogs from './ListLoginLogsUseCase';
 
 let listLoginLogs: ListLoginLogs;
-let authenticateUser: AuthenticateUserService;
+let authenticateUser: AuthenticateUserUseCase;
 let fakeLoginLogsRepository: FakeLoginLogRepository;
 
 let fakeUsersRepository: FakeUsersRepository;
@@ -25,7 +23,7 @@ describe('List Login Logs', () => {
         fakeHashProvider = new FakeHashProvider();
         fakeUserTokensRepository = new FakeUserTokensRepository();
 
-        authenticateUser = new AuthenticateUserService(
+        authenticateUser = new AuthenticateUserUseCase(
             fakeUsersRepository,
             fakeHashProvider,
             fakeLoginLogsRepository,
@@ -36,7 +34,7 @@ describe('List Login Logs', () => {
     });
 
     it('should be able to list login logs', async () => {
-        const user = await fakeUsersRepository.create({
+        await fakeUsersRepository.create({
             name: 'john Doe',
             email: 'jhondoe@example.com',
             password: '123456',

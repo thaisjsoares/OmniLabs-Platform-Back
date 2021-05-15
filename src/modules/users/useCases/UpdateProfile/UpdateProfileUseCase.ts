@@ -1,11 +1,10 @@
+import User from '@modules/users/infra/typeorm/entities/User';
+import IUsersRepository from '@modules/users/repositories/models/IUsersRepository';
 import { injectable, inject } from 'tsyringe';
 
 // import AppError from '@shared/errors/AppError';
+import IHashProvider from '@shared/container/providers/HashProvider/models/IHashProvider';
 import AppError from '@shared/errors/AppError';
-
-import IHashProvider from '../../../shared/container/providers/HashProvider/models/IHashProvider';
-import User from '../infra/typeorm/entities/User';
-import IUsersRepository from '../repositories/IUsersRepository';
 
 /* eslint-disable camelcase */
 interface IRequest {
@@ -17,7 +16,7 @@ interface IRequest {
 }
 
 @injectable()
-class UpdateProfileService {
+class UpdateProfileUseCase {
     constructor(
         @inject('UsersRepository')
         private usersRepository: IUsersRepository,
@@ -73,4 +72,4 @@ class UpdateProfileService {
     }
 }
 
-export default UpdateProfileService;
+export { UpdateProfileUseCase };

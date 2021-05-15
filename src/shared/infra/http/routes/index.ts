@@ -1,15 +1,15 @@
 import coursesRouter from '@modules/courses/infra/http/routes/courses.routes';
 import groupsRouter from '@modules/groups/infra/http/routes/groups.routes';
 import lessonsRouter from '@modules/lessons/infra/http/routes/lessons.routes';
-import passwordRouter from '@modules/users/infra/http/routes/password.routes';
-import profileRouter from '@modules/users/infra/http/routes/profile.routes';
-import sessionsRouter from '@modules/users/infra/http/routes/sessions.routes';
-import usersRouter from '@modules/users/infra/http/routes/users.routes';
 import { Router } from 'express';
 
 import journeyRouter from './journey.routes';
 import loginLogsRouter from './loginLogs.routes';
 import rolesRouter from './roles.routes';
+import passwordRouter from './users/password.routes';
+import profileRouter from './users/profile.routes';
+import sessionsRouter from './users/sessions.routes';
+import usersRouter from './users/users.routes';
 
 const routes = Router();
 

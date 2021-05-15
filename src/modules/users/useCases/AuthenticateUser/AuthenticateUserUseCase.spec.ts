@@ -1,15 +1,15 @@
 import FakeLoginLogRepository from '@modules/logs/repositories/fakes/FakeLoginLogRepository';
+import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
+import FakeUserTokensRepository from '@modules/users/repositories/fakes/FakeUserTokensRepository';
 
+import FakeHashProvider from '@shared/container/providers/HashProvider/fakes/FakeHashProvider';
 import AppError from '@shared/errors/AppError';
 
-import FakeHashProvider from '../../../shared/container/providers/HashProvider/fakes/FakeHashProvider';
-import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';
-import FakeUserTokensRepository from '../repositories/fakes/FakeUserTokensRepository';
-import AuthenticateUserService from './AuthenticateUserService';
+import { AuthenticateUserUseCase } from './AuthenticateUserUseCase';
 
 let fakeUsersRepository: FakeUsersRepository;
 let fakeHashProvider: FakeHashProvider;
-let authenticateUser: AuthenticateUserService;
+let authenticateUser: AuthenticateUserUseCase;
 let fakeLoginLogRepository: FakeLoginLogRepository;
 let fakeUserTokensRepository: FakeUserTokensRepository;
 
@@ -20,7 +20,7 @@ describe('AuthenticateUser', () => {
         fakeLoginLogRepository = new FakeLoginLogRepository();
         fakeUserTokensRepository = new FakeUserTokensRepository();
 
-        authenticateUser = new AuthenticateUserService(
+        authenticateUser = new AuthenticateUserUseCase(
             fakeUsersRepository,
             fakeHashProvider,
             fakeLoginLogRepository,

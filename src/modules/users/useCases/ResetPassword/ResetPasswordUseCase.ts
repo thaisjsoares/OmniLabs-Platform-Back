@@ -1,11 +1,10 @@
+import IUsersRepository from '@modules/users/repositories/models/IUsersRepository';
+import IUserTokensRepository from '@modules/users/repositories/models/IUserTokensRepository';
 import { isAfter, addHours } from 'date-fns';
 import { injectable, inject } from 'tsyringe';
 
+import IHashProvider from '@shared/container/providers/HashProvider/models/IHashProvider';
 import AppError from '@shared/errors/AppError';
-
-import IHashProvider from '../../../shared/container/providers/HashProvider/models/IHashProvider';
-import IUsersRepository from '../repositories/IUsersRepository';
-import IUserTokensRepository from '../repositories/IUserTokensRepository';
 
 // import User from '../infra/typeorm/entities/User';
 
@@ -15,7 +14,7 @@ interface IRequest {
 }
 
 @injectable()
-class ResetPasswordService {
+class ResetPasswordUseCase {
     constructor(
         @inject('UsersRepository')
         private usersRepository: IUsersRepository,
@@ -53,7 +52,7 @@ class ResetPasswordService {
     }
 }
 
-export default ResetPasswordService;
+export { ResetPasswordUseCase };
 
 // Hash
 // 2h expiração

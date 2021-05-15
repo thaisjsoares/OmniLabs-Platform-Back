@@ -1,10 +1,9 @@
+import User from '@modules/users/infra/typeorm/entities/User';
+import IUsersRepository from '@modules/users/repositories/models/IUsersRepository';
 import { injectable, inject } from 'tsyringe';
 
 // import AppError from '@shared/errors/AppError';
 import AppError from '@shared/errors/AppError';
-import IUsersRepository from '../repositories/IUsersRepository';
-
-import User from '../infra/typeorm/entities/User';
 
 /* eslint-disable camelcase */
 interface IRequest {
@@ -12,7 +11,7 @@ interface IRequest {
 }
 
 @injectable()
-class ShowProfileService {
+class ShowProfileUseCase {
     constructor(
         @inject('UsersRepository')
         private usersRepository: IUsersRepository,
@@ -29,4 +28,4 @@ class ShowProfileService {
     }
 }
 
-export default ShowProfileService;
+export { ShowProfileUseCase };

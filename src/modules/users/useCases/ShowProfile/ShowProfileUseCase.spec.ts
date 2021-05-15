@@ -1,16 +1,17 @@
-import AppError from '../../../shared/errors/AppError';
+import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
 
-import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';
-import ShowProfileService from './ShowProfileService';
+import AppError from '@shared/errors/AppError';
+
+import { ShowProfileUseCase } from './ShowProfileUseCase';
 
 let fakeUsersRepository: FakeUsersRepository;
-let showProfile: ShowProfileService;
+let showProfile: ShowProfileUseCase;
 
 describe('UpdateProfile', () => {
     beforeEach(() => {
         fakeUsersRepository = new FakeUsersRepository();
 
-        showProfile = new ShowProfileService(fakeUsersRepository);
+        showProfile = new ShowProfileUseCase(fakeUsersRepository);
     });
 
     it('should be able to show the profile', async () => {

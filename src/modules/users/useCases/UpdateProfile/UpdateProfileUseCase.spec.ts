@@ -1,18 +1,20 @@
-import FakeHashProvider from '../../../shared/container/providers/HashProvider/fakes/FakeHashProvider';
-import AppError from '../../../shared/errors/AppError';
-import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';
-import UpdateProfileService from './UpdateProfileService';
+import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
+
+import FakeHashProvider from '@shared/container/providers/HashProvider/fakes/FakeHashProvider';
+import AppError from '@shared/errors/AppError';
+
+import { UpdateProfileUseCase } from './UpdateProfileUseCase';
 
 let fakeUsersRepository: FakeUsersRepository;
 let fakeHashProvider: FakeHashProvider;
-let updateProfile: UpdateProfileService;
+let updateProfile: UpdateProfileUseCase;
 
 describe('UpdateProfile', () => {
     beforeEach(() => {
         fakeUsersRepository = new FakeUsersRepository();
         fakeHashProvider = new FakeHashProvider();
 
-        updateProfile = new UpdateProfileService(
+        updateProfile = new UpdateProfileUseCase(
             fakeUsersRepository,
             fakeHashProvider,
         );

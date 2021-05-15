@@ -1,15 +1,17 @@
-import { Router } from 'express';
+import { ShowProfileController } from '@modules/users/useCases/ShowProfile/ShowProfileController';
+import { UpdateProfileController } from '@modules/users/useCases/UpdateProfile/UpdateProfileController';
 import { celebrate, Segments, Joi } from 'celebrate';
+import { Router } from 'express';
 
 import ensureAuthenticated from '@shared/infra/http/middlewares/ensureAuthenticated';
-import ProfileController from '../controllers/ProfileController';
 
 const profileRouter = Router();
-const profileController = new ProfileController();
+const showProfileController = new ShowProfileController();
+const updateProfileController = new UpdateProfileController();
 
 profileRouter.use(ensureAuthenticated);
 
-profileRouter.get('/', profileController.show);
+profileRouter.get('/', showProfileController.show);
 profileRouter.put(
     '/',
     celebrate({
@@ -21,7 +23,7 @@ profileRouter.put(
             password_confirmation: Joi.string().valid(Joi.ref('password')),
         },
     }),
-    profileController.update,
+    updateProfileController.update,
 );
 
 export default profileRouter;

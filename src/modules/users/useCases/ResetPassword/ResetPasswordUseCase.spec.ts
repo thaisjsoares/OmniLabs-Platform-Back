@@ -1,14 +1,15 @@
+import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
+import FakeUserTokensRepository from '@modules/users/repositories/fakes/FakeUserTokensRepository';
+
+import FakeHashProvider from '@shared/container/providers/HashProvider/fakes/FakeHashProvider';
 import AppError from '@shared/errors/AppError';
 
-import FakeHashProvider from '../../../shared/container/providers/HashProvider/fakes/FakeHashProvider';
-import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';
-import FakeUserTokensRepository from '../repositories/fakes/FakeUserTokensRepository';
-import ResetPasswordService from './ResetPasswordService';
+import { ResetPasswordUseCase } from './ResetPasswordUseCase';
 
 let fakeUsersRepository: FakeUsersRepository;
 let fakeUserTokensRepository: FakeUserTokensRepository;
 let fakeHashProvider: FakeHashProvider;
-let resetPassword: ResetPasswordService;
+let resetPassword: ResetPasswordUseCase;
 
 describe('ResetPasswordService', () => {
     beforeEach(() => {
@@ -16,7 +17,7 @@ describe('ResetPasswordService', () => {
         fakeUserTokensRepository = new FakeUserTokensRepository();
         fakeHashProvider = new FakeHashProvider();
 
-        resetPassword = new ResetPasswordService(
+        resetPassword = new ResetPasswordUseCase(
             fakeUsersRepository,
             fakeUserTokensRepository,
             fakeHashProvider,
