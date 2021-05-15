@@ -1,13 +1,15 @@
 import FakeCoursesRepository from '@modules/courses/repositories/fakes/FakeCoursesRepository';
+
 import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import FakeStorageProvider from '@shared/container/providers/StorageProvider/fakes/FakeSotrageProvider';
-import AppError from '../../../shared/errors/AppError';
-import UpdateCourseImage from './UpdateCoursesImageService';
+import AppError from '@shared/errors/AppError';
+
+import { UpdateCoursesImageUseCase } from './UpdateCoursesImageUseCase';
 
 let fakeCoursesRepository: FakeCoursesRepository;
 let fakeStorageProvider: FakeStorageProvider;
 let fakeCacheProvider: FakeCacheProvider;
-let updateCourseImage: UpdateCourseImage;
+let updateCourseImage: UpdateCoursesImageUseCase;
 
 describe('UpdateCourseImage', () => {
     beforeEach(() => {
@@ -15,7 +17,7 @@ describe('UpdateCourseImage', () => {
         fakeStorageProvider = new FakeStorageProvider();
         fakeCacheProvider = new FakeCacheProvider();
 
-        updateCourseImage = new UpdateCourseImage(
+        updateCourseImage = new UpdateCoursesImageUseCase(
             fakeCoursesRepository,
             fakeStorageProvider,
             fakeCacheProvider,

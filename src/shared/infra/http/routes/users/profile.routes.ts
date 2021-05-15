@@ -11,7 +11,7 @@ const updateProfileController = new UpdateProfileController();
 
 profileRouter.use(ensureAuthenticated);
 
-profileRouter.get('/', showProfileController.show);
+profileRouter.get('/', showProfileController.handle);
 profileRouter.put(
     '/',
     celebrate({
@@ -23,7 +23,7 @@ profileRouter.put(
             password_confirmation: Joi.string().valid(Joi.ref('password')),
         },
     }),
-    updateProfileController.update,
+    updateProfileController.handle,
 );
 
 export default profileRouter;

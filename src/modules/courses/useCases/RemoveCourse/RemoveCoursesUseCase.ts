@@ -1,10 +1,10 @@
+import ICoursesRepository from '@modules/courses/repositories/models/ICoursesRepository';
 import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
-import ICoursesRepository from '../repositories/ICoursesRepository';
 
 @injectable()
-class RemoveCoruseService {
+class RemoveCoruseUseCase {
     constructor(
         @inject('CoursesRepository')
         private coursesRepository: ICoursesRepository,
@@ -21,4 +21,4 @@ class RemoveCoruseService {
     }
 }
 
-export default RemoveCoruseService;
+export { RemoveCoruseUseCase };

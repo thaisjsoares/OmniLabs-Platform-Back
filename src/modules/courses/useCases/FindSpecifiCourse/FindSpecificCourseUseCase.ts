@@ -1,16 +1,15 @@
+import Courses from '@modules/courses/infra/typeorm/entities/Courses';
+import ICoursesRepository from '@modules/courses/repositories/models/ICoursesRepository';
 import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
-import ICoursesRepository from '../repositories/ICoursesRepository';
-
-import Courses from '../infra/typeorm/entities/Courses';
 
 interface IRequest {
     course_id: string;
 }
 
 @injectable()
-class FindSpecificCourse {
+class FindSpecificCourseUseCase {
     constructor(
         @inject('CoursesRepository')
         private coursesRepository: ICoursesRepository,
@@ -27,4 +26,4 @@ class FindSpecificCourse {
     }
 }
 
-export default FindSpecificCourse;
+export { FindSpecificCourseUseCase };

@@ -1,20 +1,20 @@
 import FakeCoursesRepository from '@modules/courses/repositories/fakes/FakeCoursesRepository';
 
 import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
+import AppError from '@shared/errors/AppError';
 
-import AppError from '../../../shared/errors/AppError';
-import CreateCoursesService from './CreateCoursesService';
+import { CreateCoursesUseCase } from './CreateCoursesUseCase';
 
 let fakeCoursesRepository: FakeCoursesRepository;
 let fakeCacheProvider: FakeCacheProvider;
-let createCourse: CreateCoursesService;
+let createCourse: CreateCoursesUseCase;
 
 describe('CreateCourse', () => {
     beforeEach(() => {
         fakeCoursesRepository = new FakeCoursesRepository();
         fakeCacheProvider = new FakeCacheProvider();
 
-        createCourse = new CreateCoursesService(
+        createCourse = new CreateCoursesUseCase(
             fakeCoursesRepository,
             fakeCacheProvider,
         );

@@ -1,10 +1,9 @@
+import Courses from '@modules/courses/infra/typeorm/entities/Courses';
+import ICoursesRepository from '@modules/courses/repositories/models/ICoursesRepository';
 import { injectable, inject } from 'tsyringe';
 
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import AppError from '@shared/errors/AppError';
-
-import Courses from '../infra/typeorm/entities/Courses';
-import ICoursesRepository from '../repositories/ICoursesRepository';
 
 interface IRequest {
     name: string;
@@ -12,7 +11,7 @@ interface IRequest {
 }
 
 @injectable()
-class CreateCoursesService {
+class CreateCoursesUseCase {
     constructor(
         @inject('CoursesRepository')
         private coursesRepository: ICoursesRepository,
@@ -39,4 +38,4 @@ class CreateCoursesService {
     }
 }
 
-export default CreateCoursesService;
+export { CreateCoursesUseCase };

@@ -1,17 +1,19 @@
 import FakeCoursesRepository from '@modules/courses/repositories/fakes/FakeCoursesRepository';
+
 import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
-import ShowCoursesService from './ShowCoursesService';
+
+import { ShowCoursesUseCase } from './ShowCoursesUseCase';
 
 let fakeCoursesRepository: FakeCoursesRepository;
 let fakeCacheProvider: FakeCacheProvider;
-let showCourses: ShowCoursesService;
+let showCourses: ShowCoursesUseCase;
 
 describe('ShowCourses', () => {
     beforeEach(() => {
         fakeCoursesRepository = new FakeCoursesRepository();
         fakeCacheProvider = new FakeCacheProvider();
 
-        showCourses = new ShowCoursesService(
+        showCourses = new ShowCoursesUseCase(
             fakeCoursesRepository,
             fakeCacheProvider,
         );

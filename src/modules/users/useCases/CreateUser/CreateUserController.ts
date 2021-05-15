@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 export class CreateUserController {
-    public async create(
+    public async handle(
         request: Request,
         response: Response,
     ): Promise<Response> {

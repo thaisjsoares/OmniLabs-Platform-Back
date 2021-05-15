@@ -4,7 +4,10 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 export class ShowProfileController {
-    public async show(request: Request, response: Response): Promise<Response> {
+    public async handle(
+        request: Request,
+        response: Response,
+    ): Promise<Response> {
         // exibição do perfil
 
         const user_id = request.user.id;
