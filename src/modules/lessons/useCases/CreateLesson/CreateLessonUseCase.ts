@@ -1,12 +1,11 @@
-import IGroupsRepository from '@modules/groups/repositories/IGroupsRepository';
-import { format, isBefore, startOfHour } from 'date-fns';
+import IGroupsRepository from '@modules/groups/repositories/models/IGroupsRepository';
+import Lesson_History from '@modules/lessons/infra/typeorm/entities/Lesson_History';
+import ILessonHistoryRepository from '@modules/lessons/repositories/models/ILessonHistoryRepository';
+import ILessonsRepository from '@modules/lessons/repositories/models/ILessonsRepository';
+import { isBefore, startOfHour } from 'date-fns';
 import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
-
-import Lesson_History from '../infra/typeorm/entities/Lesson_History';
-import ILessonHistoryRepository from '../repositories/ILessonHistoryRepository';
-import ILessonsRepository from '../repositories/ILessonsRepository';
 
 interface IRequest {
     type: 'link' | 'video' | 'material';
@@ -21,7 +20,7 @@ interface IRequest {
     link?: string;
 }
 @injectable()
-class CreateLessonService {
+class CreateLessonUseCase {
     constructor(
         @inject('LessonsRepository')
         private lessonsRepository: ILessonsRepository,
@@ -90,4 +89,4 @@ class CreateLessonService {
     }
 }
 
-export default CreateLessonService;
+export { CreateLessonUseCase };

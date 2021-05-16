@@ -1,11 +1,10 @@
-import IGroupsRepository from '@modules/groups/repositories/IGroupsRepository';
+import IGroupsRepository from '@modules/groups/repositories/models/IGroupsRepository';
 import IJourneyRepository from '@modules/journey/repositories/models/IJourneyRepository';
+import ILessonHistoryRepository from '@modules/lessons/repositories/models/ILessonHistoryRepository';
 import { format } from 'date-fns';
 import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';
-
-import ILessonHistoryRepository from '../repositories/ILessonHistoryRepository';
 
 interface IRequest {
     journey_name: string;
@@ -34,7 +33,7 @@ interface IResponse {
 }
 
 @injectable()
-class ListLessonOfCourse {
+class ListLessonOfCourseUseCase {
     constructor(
         @inject('LessonHistoryRepository')
         private lessonHistoryRepository: ILessonHistoryRepository,
@@ -85,4 +84,4 @@ class ListLessonOfCourse {
     }
 }
 
-export default ListLessonOfCourse;
+export { ListLessonOfCourseUseCase };

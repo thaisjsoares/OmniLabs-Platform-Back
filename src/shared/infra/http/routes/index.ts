@@ -1,9 +1,9 @@
-import lessonsRouter from '@modules/lessons/infra/http/routes/lessons.routes';
 import { Router } from 'express';
 
 import coursesRouter from './courses.routes';
 import groupsRouter from './groups.routes';
 import journeyRouter from './journey.routes';
+import lessonsRouter from './lessons.routes';
 import loginLogsRouter from './loginLogs.routes';
 import rolesRouter from './roles.routes';
 import passwordRouter from './users/password.routes';

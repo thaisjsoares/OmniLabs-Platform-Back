@@ -1,4 +1,4 @@
-import ICoursesRepository from '@modules/courses/repositories/ICoursesRepository';
+import ICoursesRepository from '@modules/courses/repositories/models/ICoursesRepository';
 import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/errors/AppError';

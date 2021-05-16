@@ -1,19 +1,20 @@
 import FakeGroupsRepository from '@modules/groups/repositories/fakes/FakeGroupsRepository';
 import FakeJourneyRepository from '@modules/journey/repositories/fakes/FakeJourneyRepository';
+import FakeLessonHistoryRepository from '@modules/lessons/repositories/fakes/FakeLessonHistoryRepository';
 import FakeLessonsRepository from '@modules/lessons/repositories/fakes/FakeLessonsRepository';
 
-import AppError from '../../../shared/errors/AppError';
-import FakeLessonHistoryRepository from '../repositories/fakes/FakeLessonHistoryRepository';
-import CreateLessonService from './CreateLesson.service';
-import ListLessonsOfJourney from './ListLessonsOfJourney.service';
+import AppError from '@shared/errors/AppError';
+
+import { CreateLessonUseCase } from '../CreateLesson/CreateLessonUseCase';
+import { ListLessonOfCourseUseCase } from './ListLessonsOfJourneyUseCase';
 
 let fakeLessonHistoryRepository: FakeLessonHistoryRepository;
 let fakeLessonsRepository: FakeLessonsRepository;
 let fakeJourneyRepository: FakeJourneyRepository;
 let fakeGroupsRepository: FakeGroupsRepository;
 
-let listLessonsOfJourney: ListLessonsOfJourney;
-let createLesson: CreateLessonService;
+let listLessonsOfJourney: ListLessonOfCourseUseCase;
+let createLesson: CreateLessonUseCase;
 
 describe('List Lessons of Journey', () => {
     beforeEach(() => {
@@ -22,13 +23,13 @@ describe('List Lessons of Journey', () => {
         fakeGroupsRepository = new FakeGroupsRepository();
         fakeLessonsRepository = new FakeLessonsRepository();
 
-        listLessonsOfJourney = new ListLessonsOfJourney(
+        listLessonsOfJourney = new ListLessonOfCourseUseCase(
             fakeLessonHistoryRepository,
             fakeGroupsRepository,
             fakeJourneyRepository,
         );
 
-        createLesson = new CreateLessonService(
+        createLesson = new CreateLessonUseCase(
             fakeLessonsRepository,
             fakeGroupsRepository,
             fakeLessonHistoryRepository,

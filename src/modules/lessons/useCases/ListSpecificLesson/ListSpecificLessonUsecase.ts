@@ -1,20 +1,21 @@
+import Lesson from '@modules/lessons/infra/typeorm/entities/Lessons';
+import ILessonsRepository from '@modules/lessons/repositories/models/ILessonsRepository';
 import { injectable, inject } from 'tsyringe';
-import { format } from 'date-fns';
+
 import AppError from '@shared/errors/AppError';
-import ILessonsRepository from '../repositories/ILessonsRepository';
 
 interface IRequest {
     lesson_id: string;
 }
 
 @injectable()
-class ListSpecificLesson {
+class ListSpecificLessonUseCase {
     constructor(
         @inject('LessonsRepository')
         private lessonsRepository: ILessonsRepository,
     ) {}
 
-    public async execute({ lesson_id }: IRequest) {
+    public async execute({ lesson_id }: IRequest): Promise<Lesson> {
         const lesson = await this.lessonsRepository.findById(lesson_id);
 
         if (!lesson) {
@@ -25,4 +26,4 @@ class ListSpecificLesson {
     }
 }
 
-export default ListSpecificLesson;
+export { ListSpecificLessonUseCase };

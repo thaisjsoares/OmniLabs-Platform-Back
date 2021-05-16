@@ -1,16 +1,19 @@
 import FakeLessonsRepository from '@modules/lessons/repositories/fakes/FakeLessonsRepository';
-import AppError from '../../../shared/errors/AppError';
 
-import ListSpecificLesson from './ListSpecificLesson.service';
+import AppError from '@shared/errors/AppError';
 
-let listSpecificLesson: ListSpecificLesson;
+import { ListSpecificLessonUseCase } from './ListSpecificLessonUsecase';
+
+let listSpecificLesson: ListSpecificLessonUseCase;
 let fakeLessonsRepository: FakeLessonsRepository;
 
 describe('List Specific Lesson', () => {
     beforeEach(() => {
         fakeLessonsRepository = new FakeLessonsRepository();
 
-        listSpecificLesson = new ListSpecificLesson(fakeLessonsRepository);
+        listSpecificLesson = new ListSpecificLessonUseCase(
+            fakeLessonsRepository,
+        );
     });
 
     it('should be able to list a specific lesson', async () => {

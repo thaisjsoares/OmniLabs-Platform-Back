@@ -1,15 +1,15 @@
 import './providers';
 
 import CoursesRepository from '@modules/courses/infra/typeorm/repositories/CoursesRepository';
-import ICoursesRepository from '@modules/courses/repositories/ICoursesRepository';
+import ICoursesRepository from '@modules/courses/repositories/models/ICoursesRepository';
 import GroupsRepository from '@modules/groups/infra/typeorm/repositories/GroupsRepository';
-import IGroupsRepository from '@modules/groups/repositories/IGroupsRepository';
+import IGroupsRepository from '@modules/groups/repositories/models/IGroupsRepository';
 import JourneyRepository from '@modules/journey/repositories/implementations/JourneyRepository';
 import IJourneyRepository from '@modules/journey/repositories/models/IJourneyRepository';
 import LessonHistoryRepository from '@modules/lessons/infra/typeorm/repositories/LessonHistoryRepository';
 import LessonsRepository from '@modules/lessons/infra/typeorm/repositories/LessonsRepository';
-import ILessonHistoryRepository from '@modules/lessons/repositories/ILessonHistoryRepository';
-import ILessonsRepository from '@modules/lessons/repositories/ILessonsRepository';
+import ILessonHistoryRepository from '@modules/lessons/repositories/models/ILessonHistoryRepository';
+import ILessonsRepository from '@modules/lessons/repositories/models/ILessonsRepository';
 import LoginLogRepository from '@modules/logs/infra/typeorm/repositories/LoginLogRepository';
 import ILoginLogRepository from '@modules/logs/repositories/models/ILoginLogRepository';
 import RolesRepository from '@modules/roles/infra/typeorm/repositories/RolesRepository';
@@ -17,9 +17,9 @@ import IRolesRepository from '@modules/roles/repositories/models/IRolesRepositor
 import UserRoleRepository from '@modules/users/infra/typeorm/repositories/UserRoleRepository';
 import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
 import UserTokensRepository from '@modules/users/infra/typeorm/repositories/UserTokensRepository';
-import IUserRoleRepository from '@modules/users/repositories/IUserRoleRepository';
-import IUsersRepository from '@modules/users/repositories/IUsersRepository';
-import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository';
+import IUserRoleRepository from '@modules/users/repositories/models/IUserRoleRepository';
+import IUsersRepository from '@modules/users/repositories/models/IUsersRepository';
+import IUserTokensRepository from '@modules/users/repositories/models/IUserTokensRepository';
 import { container } from 'tsyringe';
 
 container.registerSingleton<IUsersRepository>(

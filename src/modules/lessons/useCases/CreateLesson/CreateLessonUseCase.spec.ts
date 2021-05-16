@@ -1,11 +1,12 @@
 import FakeGroupsRepository from '@modules/groups/repositories/fakes/FakeGroupsRepository';
+import FakeLessonHistoryRepository from '@modules/lessons/repositories/fakes/FakeLessonHistoryRepository';
 import FakeLessonsRepository from '@modules/lessons/repositories/fakes/FakeLessonsRepository';
 
-import AppError from '../../../shared/errors/AppError';
-import FakeLessonHistoryRepository from '../repositories/fakes/FakeLessonHistoryRepository';
-import CreateLessonService from './CreateLesson.service';
+import AppError from '@shared/errors/AppError';
 
-let createLesson: CreateLessonService;
+import { CreateLessonUseCase } from './CreateLessonUseCase';
+
+let createLesson: CreateLessonUseCase;
 let fakeLessonsRepository: FakeLessonsRepository;
 let fakeGroupsRepository: FakeGroupsRepository;
 let fakeLessonHistoryRepository: FakeLessonHistoryRepository;
@@ -16,7 +17,7 @@ describe('Create Lesson', () => {
         fakeGroupsRepository = new FakeGroupsRepository();
         fakeLessonHistoryRepository = new FakeLessonHistoryRepository();
 
-        createLesson = new CreateLessonService(
+        createLesson = new CreateLessonUseCase(
             fakeLessonsRepository,
             fakeGroupsRepository,
             fakeLessonHistoryRepository,

@@ -10,11 +10,11 @@ import cors from 'cors';
 import express, { json, Request, Response, NextFunction } from 'express';
 
 // import rateLimiter from '@shared/infra/http/middlewares/rateLimiter';
+import AppError from '@shared/errors/AppError';
 import routes from '@shared/infra/http/routes';
 
 import '@shared/container';
 import getConnection from '@shared/infra/typeorm/';
-import AppError from '@shared/errors/AppError';
 
 getConnection();
 
