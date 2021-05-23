@@ -1,8 +1,7 @@
 import CreateLoginLogDTO from '@modules/logs/dtos/CreateLoginLogDTO';
+import LoginLog from '@modules/logs/entities/LoginLog';
 import ILoginLogRepository from '@modules/logs/repositories/models/ILoginLogRepository';
 import { getRepository, Repository } from 'typeorm';
-
-import LoginLog from '../entities/LoginLog';
 
 class LessonsRepository implements ILoginLogRepository {
     private ormRepository: Repository<LoginLog>;

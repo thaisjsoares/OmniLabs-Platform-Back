@@ -1,4 +1,4 @@
-import User from '@modules/users/infra/typeorm/entities/User';
+import User from '@modules/users/entities/User';
 import IUsersRepository from '@modules/users/repositories/models/IUsersRepository';
 import { injectable, inject } from 'tsyringe';
 

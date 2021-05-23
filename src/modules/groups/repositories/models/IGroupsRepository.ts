@@ -1,5 +1,5 @@
-import ICreateGroupDTO from '../dtos/ICreateGroupDTO';
-import Groups from '../infra/typeorm/entities/Groups';
+import ICreateGroupDTO from '@modules/groups/dtos/ICreateGroupDTO';
+import Groups from '@modules/groups/entities/Groups';
 
 export default interface IGroupsRepository {
     findById(id: string): Promise<Groups | undefined>;

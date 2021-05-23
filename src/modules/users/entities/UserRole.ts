@@ -9,7 +9,7 @@ import {
     JoinColumn,
 } from 'typeorm';
 
-import Roles from '../../../../roles/infra/typeorm/entities/Roles';
+import Roles from '../../roles/entities/Roles';
 import User from './User';
 
 @Entity('users_roles')

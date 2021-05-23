@@ -1,9 +1,8 @@
+import ICreateCoursesDTO from '@modules/courses/dtos/ICreateCoursesDTO';
+import Courses from '@modules/courses/entities/Courses';
+import ICoursesRepository from '@modules/courses/repositories/models/ICoursesRepository';
 import { getRepository, Repository } from 'typeorm';
 
-import ICoursesRepository from '@modules/courses/repositories/ICoursesRepository';
-import ICreateCoursesDTO from '@modules/courses/dtos/ICreateCoursesDTO';
-
-import Courses from '../entities/Courses';
 // Repository possui os metedos do typeORM de criar deletar e etc, recebendo o model como parametro
 
 class UsersRepository implements ICoursesRepository {

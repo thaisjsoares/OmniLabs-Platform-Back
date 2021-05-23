@@ -8,7 +8,7 @@ import {
     ManyToOne,
 } from 'typeorm';
 
-import Journey from '../../../../journey/entities/Journey';
+import Journey from '../../journey/entities/Journey';
 
 @Entity('groups')
 class Groups {

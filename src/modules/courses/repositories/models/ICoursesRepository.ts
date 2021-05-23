@@ -1,5 +1,5 @@
-import ICreateCoursesDTO from '../dtos/ICreateCoursesDTO';
-import Courses from '../infra/typeorm/entities/Courses';
+import ICreateCoursesDTO from '@modules/courses/dtos/ICreateCoursesDTO';
+import Courses from '@modules/courses/entities/Courses';
 
 export default interface IUsersRepository {
     findById(id: string): Promise<Courses | undefined>;

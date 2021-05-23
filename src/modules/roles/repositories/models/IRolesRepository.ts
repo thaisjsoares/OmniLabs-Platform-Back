@@ -1,4 +1,4 @@
-import Roles from '@modules/roles/infra/typeorm/entities/Roles';
+import Roles from '@modules/roles/entities/Roles';
 
 import ICreateRoleDTO from '../../dtos/ICreateRoleDTO';
 

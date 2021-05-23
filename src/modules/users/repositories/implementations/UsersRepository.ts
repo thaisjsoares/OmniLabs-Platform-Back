@@ -1,9 +1,7 @@
-import { getRepository, Repository, Not } from 'typeorm';
-
-import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO';
-
-import User from '../entities/User';
+import User from '@modules/users/entities/User';
+import IUsersRepository from '@modules/users/repositories/models/IUsersRepository';
+import { getRepository, Repository, Not } from 'typeorm';
 // Repository possui os metedos do typeORM de criar deletar e etc, recebendo o model como parametro
 
 class UsersRepository implements IUsersRepository {

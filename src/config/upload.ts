@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import path from 'path';
 import crypto from 'crypto';
 import multer, { StorageEngine } from 'multer';
+import path from 'path';
 
 const tmpFolder = path.resolve(__dirname, '..', '..', 'tmp');
 

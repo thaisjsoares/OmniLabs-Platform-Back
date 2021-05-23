@@ -1,4 +1,4 @@
-import Groups from '@modules/groups/infra/typeorm/entities/Groups';
+import Groups from '@modules/groups/entities/Groups';
 import IGroupsRepository from '@modules/groups/repositories/models/IGroupsRepository';
 import { injectable, inject } from 'tsyringe';
 
