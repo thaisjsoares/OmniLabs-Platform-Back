@@ -1,5 +1,5 @@
 import ICreateLessonDTO from '@modules/lessons/dtos/ICreateLessonDTO';
-import Lessons from '@modules/lessons/infra/typeorm/entities/Lessons';
+import Lessons from '@modules/lessons/entities/Lessons';
 
 export default interface ILessonsRepository {
     findById(id: string): Promise<Lessons | undefined>;

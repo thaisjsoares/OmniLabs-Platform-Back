@@ -1,9 +1,8 @@
+import ICreateLessonHistoryDTO from '@modules/lessons/dtos/ICreateLessonHistoryDTO';
+import Lesson_History from '@modules/lessons/entities/Lesson_History';
+import ILessonHistoryRepository from '@modules/lessons/repositories/models/ILessonHistoryRepository';
 import { getRepository, Repository } from 'typeorm';
 
-import ILessonHistoryRepository from '@modules/lessons/repositories/ILessonHistoryRepository';
-
-import ICreateLessonHistoryDTO from '@modules/lessons/dtos/ICreateLessonHistoryDTO';
-import Lesson_History from '../entities/Lesson_History';
 // Repository possui os metedos do typeORM de criar deletar e etc, recebendo o model como parametro
 
 class LessonHistoryRepository implements ILessonHistoryRepository {

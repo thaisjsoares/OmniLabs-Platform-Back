@@ -6,8 +6,8 @@ import GroupsRepository from '@modules/groups/repositories/implementations/Group
 import IGroupsRepository from '@modules/groups/repositories/models/IGroupsRepository';
 import JourneyRepository from '@modules/journey/repositories/implementations/JourneyRepository';
 import IJourneyRepository from '@modules/journey/repositories/models/IJourneyRepository';
-import LessonHistoryRepository from '@modules/lessons/infra/typeorm/repositories/LessonHistoryRepository';
-import LessonsRepository from '@modules/lessons/infra/typeorm/repositories/LessonsRepository';
+import LessonHistoryRepository from '@modules/lessons/repositories/implementations/LessonHistoryRepository';
+import LessonsRepository from '@modules/lessons/repositories/implementations/LessonsRepository';
 import ILessonHistoryRepository from '@modules/lessons/repositories/models/ILessonHistoryRepository';
 import ILessonsRepository from '@modules/lessons/repositories/models/ILessonsRepository';
 import LoginLogRepository from '@modules/logs/repositories/implementations/LoginLogRepository';

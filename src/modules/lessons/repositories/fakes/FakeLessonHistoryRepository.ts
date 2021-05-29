@@ -1,9 +1,9 @@
 /* eslint-disable no-shadow */
+import ICreateLessonHistoryDTO from '@modules/lessons/dtos/ICreateLessonHistoryDTO';
+import Lesson_History from '@modules/lessons/entities/Lesson_History';
 import { v4 } from 'uuid';
 
-import ICreateLessonHistoryDTO from '@modules/lessons/dtos/ICreateLessonHistoryDTO';
-import Lesson_History from '@modules/lessons/infra/typeorm/entities/Lesson_History';
-import ILessonHistoryRepository from '../ILessonHistoryRepository';
+import ILessonHistoryRepository from '../models/ILessonHistoryRepository';
 // Repository possui os metedos do typeORM de criar deletar e etc, recebendo o model como parametro
 
 class FakeLessonHistoryRepository implements ILessonHistoryRepository {
