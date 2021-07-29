@@ -10,7 +10,7 @@ import LessonHistoryRepository from '@modules/lessons/repositories/implementatio
 import LessonsRepository from '@modules/lessons/repositories/implementations/LessonsRepository';
 import ILessonHistoryRepository from '@modules/lessons/repositories/models/ILessonHistoryRepository';
 import ILessonsRepository from '@modules/lessons/repositories/models/ILessonsRepository';
-import LoginLogRepository from '@modules/logs/repositories/implementations/LoginLogRepository';
+import LoginLogRepository from '@modules/logs/infra/typeorm/repositories/LoginLogRepository';
 import ILoginLogRepository from '@modules/logs/repositories/models/ILoginLogRepository';
 import RolesRepository from '@modules/roles/infra/typeorm/repositories/RolesRepository';
 import IRolesRepository from '@modules/roles/repositories/models/IRolesRepository';

@@ -2,12 +2,11 @@ import {
     Entity,
     PrimaryGeneratedColumn,
     Column,
-    CreateDateColumn,
     JoinColumn,
     ManyToOne,
 } from 'typeorm';
 
-import User from '../../courses/entities/Courses';
+import User from '../../../../courses/entities/Courses';
 
 @Entity('login_log')
 class LoginLog {

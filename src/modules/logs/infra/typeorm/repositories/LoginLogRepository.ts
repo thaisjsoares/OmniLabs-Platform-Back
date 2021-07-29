@@ -1,5 +1,5 @@
 import CreateLoginLogDTO from '@modules/logs/dtos/CreateLoginLogDTO';
-import LoginLog from '@modules/logs/entities/LoginLog';
+import LoginLog from '@modules/logs/infra/typeorm/entities/LoginLog';
 import ILoginLogRepository from '@modules/logs/repositories/models/ILoginLogRepository';
 import { getRepository, Repository } from 'typeorm';
 
