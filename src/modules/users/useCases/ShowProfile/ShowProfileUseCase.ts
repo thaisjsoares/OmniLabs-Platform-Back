@@ -1,4 +1,6 @@
+import { IUserResponseDTO } from '@modules/users/dtos/IUserResponseDTO';
 import User from '@modules/users/infra/typeorm/entities/User';
+import { UserMap } from '@modules/users/mapper/UserMap';
 import IUsersRepository from '@modules/users/repositories/models/IUsersRepository';
 import { injectable, inject } from 'tsyringe';
 
@@ -17,14 +19,14 @@ class ShowProfileUseCase {
         private usersRepository: IUsersRepository,
     ) {}
 
-    public async execute({ user_id }: IRequest): Promise<User> {
+    public async execute({ user_id }: IRequest): Promise<IUserResponseDTO> {
         const user = await this.usersRepository.findById(user_id);
 
         if (!user) {
             throw new AppError('User not found');
         }
 
-        return user;
+        return UserMap.toDTO(user);
     }
 }
 

@@ -32,10 +32,13 @@ class UpdateUserAvatarUseCase {
         }
 
         if (user.avatar) {
-            await this.storageProvider.deleteFile(user.avatar);
+            await this.storageProvider.deleteFile(user.avatar, 'avatar');
         }
 
-        const filename = await this.storageProvider.saveFile(avatarFilename);
+        const filename = await this.storageProvider.saveFile(
+            avatarFilename,
+            'avatar',
+        );
 
         user.avatar = filename;
         await this.usersRepository.save(user);
