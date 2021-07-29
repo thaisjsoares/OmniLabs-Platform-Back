@@ -10,8 +10,6 @@ import LessonHistoryRepository from '@modules/lessons/infra/typeorm/repositories
 import LessonsRepository from '@modules/lessons/infra/typeorm/repositories/LessonsRepository';
 import ILessonHistoryRepository from '@modules/lessons/repositories/models/ILessonHistoryRepository';
 import ILessonsRepository from '@modules/lessons/repositories/models/ILessonsRepository';
-import LoginLogRepository from '@modules/logs/infra/typeorm/repositories/LoginLogRepository';
-import ILoginLogRepository from '@modules/logs/repositories/models/ILoginLogRepository';
 import RolesRepository from '@modules/roles/infra/typeorm/repositories/RolesRepository';
 import IRolesRepository from '@modules/roles/repositories/models/IRolesRepository';
 import UserRoleRepository from '@modules/users/infra/typeorm/repositories/UserRoleRepository';
@@ -60,11 +58,6 @@ container.registerSingleton<IJourneyRepository>(
 container.registerSingleton<IRolesRepository>(
     'RolesRepository',
     RolesRepository,
-);
-
-container.registerSingleton<ILoginLogRepository>(
-    'LoginLogRepository',
-    LoginLogRepository,
 );
 
 container.registerSingleton<IUserRoleRepository>(

@@ -1,13 +1,11 @@
-import authConfig from '@config/auth';
-import ILoginLogRepository from '@modules/logs/repositories/models/ILoginLogRepository';
-import User from '@modules/users/infra/typeorm/entities/User';
+import auth from '@config/auth';
 import IUsersRepository from '@modules/users/repositories/models/IUsersRepository';
-import IUserTokensRepository from '@modules/users/repositories/models/IUserTokensRepository';
-import format from 'date-fns/format';
+import IUsersTokensRepository from '@modules/users/repositories/models/IUserTokensRepository';
+import { compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
-import { injectable, inject } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
 
-import IHashProvider from '@shared/container/providers/HashProvider/models/IHashProvider';
+import { IDateProvider } from '@shared/container/providers/DateProvider/models/IDateProvider';
 import AppError from '@shared/errors/AppError';
 
 interface IRequest {
@@ -16,8 +14,12 @@ interface IRequest {
 }
 
 interface IResponse {
-    user: User;
+    user: {
+        name: string;
+        email: string;
+    };
     token: string;
+    refresh_token: string;
 }
 
 @injectable()
@@ -26,50 +28,63 @@ class AuthenticateUserUseCase {
         @inject('UsersRepository')
         private usersRepository: IUsersRepository,
 
-        @inject('HashProvider')
-        private hashProvider: IHashProvider,
-
-        @inject('LoginLogRepository')
-        private loginLogRepository: ILoginLogRepository,
-
         @inject('UserTokensRepository')
-        private userTokensRepositoru: IUserTokensRepository,
+        private usersTokensRepository: IUsersTokensRepository,
+
+        @inject('DayjsDateProvider')
+        private dateProvider: IDateProvider,
     ) {}
 
-    public async execute({ email, password }: IRequest): Promise<IResponse> {
+    async execute({ email, password }: IRequest): Promise<IResponse> {
         const user = await this.usersRepository.findByEmail(email);
+        const {
+            expires_in_token,
+            secret_refresh_token,
+            secret_token,
+            expires_in_refresh_token,
+            expires_refresh_token_days,
+        } = auth;
 
         if (!user) {
-            throw new AppError('Incorrect email/password combination.', 401);
+            throw new AppError('Email or password incorrect!');
         }
 
-        const passwordMatched = await this.hashProvider.compareHash(
-            password,
-            user.password,
+        const passwordMatch = await compare(password, user.password);
+
+        if (!passwordMatch) {
+            throw new AppError('Email or password incorrect!');
+        }
+
+        const token = sign({}, secret_token, {
+            subject: user.id,
+            expiresIn: expires_in_token,
+        });
+
+        const refresh_token = sign({ email }, secret_refresh_token, {
+            subject: user.id,
+            expiresIn: expires_in_refresh_token,
+        });
+
+        const refresh_token_expires_date = this.dateProvider.addDays(
+            expires_refresh_token_days,
         );
 
-        if (!passwordMatched) {
-            throw new AppError('Incorrect email/password combination.', 401);
-        }
-
-        const { secret, expiresIn } = authConfig.jwt;
-        const token = sign({}, secret, {
-            subject: user.id,
-            expiresIn,
-        });
-
-        await this.userTokensRepositoru.generate(user.id);
-
-        await this.loginLogRepository.create({
-            content: `User ${user.name} entered the application`,
-            login_at: `${format(new Date(), "dd-MM-yyyy 'at' HH:mm'h'")}`,
+        await this.usersTokensRepository.create({
             user_id: user.id,
+            refresh_token,
+            expires_date: refresh_token_expires_date,
         });
 
-        return {
-            user,
+        const tokenReturn: IResponse = {
             token,
+            refresh_token,
+            user: {
+                name: user.name,
+                email: user.email,
+            },
         };
+
+        return tokenReturn;
     }
 }
 

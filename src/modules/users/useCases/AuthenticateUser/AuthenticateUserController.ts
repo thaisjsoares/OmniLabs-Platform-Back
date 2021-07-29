@@ -1,22 +1,23 @@
-import { AuthenticateUserUseCase } from '@modules/users/useCases/AuthenticateUser/AuthenticateUserUseCase';
-import { classToClass } from 'class-transformer';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-export class AuthenticateUserController {
-    public async handle(
-        request: Request,
-        response: Response,
-    ): Promise<Response> {
-        const { email, password } = request.body;
+import { AuthenticateUserUseCase } from './AuthenticateUserUseCase';
 
-        const authenticateUser = container.resolve(AuthenticateUserUseCase);
+class AuthenticateUserController {
+    async handle(request: Request, response: Response): Promise<Response> {
+        const { password, email } = request.body;
 
-        const { user, token } = await authenticateUser.execute({
-            email,
+        const authenticateUserUseCase = container.resolve(
+            AuthenticateUserUseCase,
+        );
+
+        const token = await authenticateUserUseCase.execute({
             password,
+            email,
         });
 
-        return response.json({ user: classToClass(user), token });
+        return response.json(token);
     }
 }
+
+export default AuthenticateUserController;
