@@ -1,6 +1,6 @@
 import authConfig from '@config/auth';
 import ILoginLogRepository from '@modules/logs/repositories/models/ILoginLogRepository';
-import User from '@modules/users/entities/User';
+import User from '@modules/users/infra/typeorm/entities/User';
 import IUsersRepository from '@modules/users/repositories/models/IUsersRepository';
 import IUserTokensRepository from '@modules/users/repositories/models/IUserTokensRepository';
 import format from 'date-fns/format';

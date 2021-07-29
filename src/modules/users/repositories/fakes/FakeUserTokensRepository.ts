@@ -1,7 +1,7 @@
+import UserToken from '@modules/users/infra/typeorm/entities/UserToken';
 import IUserTokensRepository from '@modules/users/repositories/models/IUserTokensRepository';
 import { v4 } from 'uuid';
 
-import UserToken from '../../entities/UserToken';
 // Repository possui os metedos do typeORM de criar deletar e etc, recebendo o model como parametro
 
 class FakeUserTokensRepository implements IUserTokensRepository {

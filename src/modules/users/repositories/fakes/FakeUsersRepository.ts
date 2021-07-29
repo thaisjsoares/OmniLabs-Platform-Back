@@ -1,8 +1,8 @@
 import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO';
+import User from '@modules/users/infra/typeorm/entities/User';
 import IUsersRepository from '@modules/users/repositories/models/IUsersRepository';
 import { v4 } from 'uuid';
 
-import User from '../../entities/User';
 // Repository possui os metedos do typeORM de criar deletar e etc, recebendo o model como parametro
 
 class FakeUsersRepository implements IUsersRepository {

@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import UserRoleRepository from '@modules/users/repositories/implementations/UserRoleRepository';
+import UserRoleRepository from '@modules/users/infra/typeorm/repositories/UserRoleRepository';
 import { Request, Response, NextFunction } from 'express';
 
 import AppError from '@shared/errors/AppError';

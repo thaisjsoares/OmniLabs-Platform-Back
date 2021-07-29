@@ -1,4 +1,4 @@
-import UserRole from '@modules/users/entities/UserRole';
+import UserRole from '@modules/users/infra/typeorm/entities/UserRole';
 import IUserRoleRepository from '@modules/users/repositories/models/IUserRoleRepository';
 import { getRepository, Repository } from 'typeorm';
 

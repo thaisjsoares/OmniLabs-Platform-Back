@@ -14,9 +14,9 @@ import LoginLogRepository from '@modules/logs/repositories/implementations/Login
 import ILoginLogRepository from '@modules/logs/repositories/models/ILoginLogRepository';
 import RolesRepository from '@modules/roles/infra/typeorm/repositories/RolesRepository';
 import IRolesRepository from '@modules/roles/repositories/models/IRolesRepository';
-import UserRoleRepository from '@modules/users/repositories/implementations/UserRoleRepository';
-import UsersRepository from '@modules/users/repositories/implementations/UsersRepository';
-import UserTokensRepository from '@modules/users/repositories/implementations/UserTokensRepository';
+import UserRoleRepository from '@modules/users/infra/typeorm/repositories/UserRoleRepository';
+import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
+import UserTokensRepository from '@modules/users/infra/typeorm/repositories/UserTokensRepository';
 import IUserRoleRepository from '@modules/users/repositories/models/IUserRoleRepository';
 import IUsersRepository from '@modules/users/repositories/models/IUsersRepository';
 import IUserTokensRepository from '@modules/users/repositories/models/IUserTokensRepository';
