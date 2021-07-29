@@ -1,5 +1,5 @@
 import ICreateLessonDTO from '@modules/lessons/dtos/ICreateLessonDTO';
-import Lessons from '@modules/lessons/entities/Lessons';
+import Lessons from '@modules/lessons/infra/typeorm/entities/Lessons';
 import ILessonsRepository from '@modules/lessons/repositories/models/ILessonsRepository';
 import { getRepository, Repository } from 'typeorm';
 

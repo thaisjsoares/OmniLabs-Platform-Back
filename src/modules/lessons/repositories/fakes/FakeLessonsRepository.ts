@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 import ICreateLessonDTO from '@modules/lessons/dtos/ICreateLessonDTO';
-import Lesson from '@modules/lessons/entities/Lessons';
+import Lesson from '@modules/lessons/infra/typeorm/entities/Lessons';
 import { v4 } from 'uuid';
 
 import ILessonsRepository from '../models/ILessonsRepository';

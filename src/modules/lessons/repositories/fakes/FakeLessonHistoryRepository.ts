@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 import ICreateLessonHistoryDTO from '@modules/lessons/dtos/ICreateLessonHistoryDTO';
-import Lesson_History from '@modules/lessons/entities/Lesson_History';
+import Lesson_History from '@modules/lessons/infra/typeorm/entities/Lesson_History';
 import { v4 } from 'uuid';
 
 import ILessonHistoryRepository from '../models/ILessonHistoryRepository';

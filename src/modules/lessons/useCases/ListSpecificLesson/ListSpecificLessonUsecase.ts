@@ -1,4 +1,4 @@
-import Lesson from '@modules/lessons/entities/Lessons';
+import Lesson from '@modules/lessons/infra/typeorm/entities/Lessons';
 import ILessonsRepository from '@modules/lessons/repositories/models/ILessonsRepository';
 import { injectable, inject } from 'tsyringe';
 

@@ -1,5 +1,5 @@
 import ICreateLessonHistoryDTO from '@modules/lessons/dtos/ICreateLessonHistoryDTO';
-import Lesson_History from '@modules/lessons/entities/Lesson_History';
+import Lesson_History from '@modules/lessons/infra/typeorm/entities/Lesson_History';
 
 export default interface ILessonHistoryRepository {
     findById(id: string): Promise<Lesson_History | undefined>;

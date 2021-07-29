@@ -8,7 +8,7 @@ import {
     ManyToOne,
 } from 'typeorm';
 
-import Groups from '../../groups/entities/Groups';
+import Groups from '../../../../groups/entities/Groups';
 import Lessons from './Lessons';
 
 @Entity('lesson_history')

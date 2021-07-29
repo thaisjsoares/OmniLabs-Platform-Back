@@ -1,5 +1,5 @@
 import IGroupsRepository from '@modules/groups/repositories/models/IGroupsRepository';
-import Lesson_History from '@modules/lessons/entities/Lesson_History';
+import Lesson_History from '@modules/lessons/infra/typeorm/entities/Lesson_History';
 import ILessonHistoryRepository from '@modules/lessons/repositories/models/ILessonHistoryRepository';
 import ILessonsRepository from '@modules/lessons/repositories/models/ILessonsRepository';
 import { isBefore, startOfHour } from 'date-fns';
