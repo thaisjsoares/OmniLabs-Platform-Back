@@ -7,7 +7,7 @@ import {
     UpdateDateColumn,
 } from 'typeorm';
 
-import uploadConfig from '../../../config/upload';
+import uploadConfig from '../../../../../config/upload';
 
 @Entity('courses')
 class Courses {

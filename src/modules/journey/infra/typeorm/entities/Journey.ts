@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 
 import uploadConfig from '../../../../../config/upload';
-import Course from '../../../../courses/entities/Courses';
+import Course from '../../../../courses/infra/typeorm/entities/Courses';
 
 @Entity('journey')
 class Journey {

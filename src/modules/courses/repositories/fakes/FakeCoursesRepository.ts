@@ -2,7 +2,7 @@ import ICreateCoursesDTO from '@modules/courses/dtos/ICreateCoursesDTO';
 import ICoursesRepository from '@modules/courses/repositories/models/ICoursesRepository';
 import { v4 } from 'uuid';
 
-import Courses from '../../entities/Courses';
+import Courses from '../../infra/typeorm/entities/Courses';
 // Repository possui os metedos do typeORM de criar deletar e etc, recebendo o model como parametro
 
 class FakeCoursesRepository implements ICoursesRepository {

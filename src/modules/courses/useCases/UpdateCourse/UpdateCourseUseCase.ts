@@ -1,4 +1,4 @@
-import Courses from '@modules/courses/entities/Courses';
+import Courses from '@modules/courses/infra/typeorm/entities/Courses';
 import ICoursesRepository from '@modules/courses/repositories/models/ICoursesRepository';
 import { injectable, inject } from 'tsyringe';
 

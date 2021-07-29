@@ -6,7 +6,7 @@ import {
     ManyToOne,
 } from 'typeorm';
 
-import User from '../../../../courses/entities/Courses';
+import User from '../../../../courses/infra/typeorm/entities/Courses';
 
 @Entity('login_log')
 class LoginLog {

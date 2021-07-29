@@ -1,6 +1,6 @@
 import './providers';
 
-import CoursesRepository from '@modules/courses/repositories/implementations/CoursesRepository';
+import CoursesRepository from '@modules/courses/infra/typeorm/repositories/CoursesRepository';
 import ICoursesRepository from '@modules/courses/repositories/models/ICoursesRepository';
 import GroupsRepository from '@modules/groups/infra/typeorm/repositories/GroupsRepository';
 import IGroupsRepository from '@modules/groups/repositories/models/IGroupsRepository';
