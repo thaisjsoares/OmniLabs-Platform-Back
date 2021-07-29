@@ -1,5 +1,5 @@
 import ICreateGroupDTO from '@modules/groups/dtos/ICreateGroupDTO';
-import Groups from '@modules/groups/entities/Groups';
+import Groups from '@modules/groups/infra/typeorm/entities/Groups';
 import IGroupsRepository from '@modules/groups/repositories/models/IGroupsRepository';
 import { getRepository, Repository } from 'typeorm';
 

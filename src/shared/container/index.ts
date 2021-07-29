@@ -2,7 +2,7 @@ import './providers';
 
 import CoursesRepository from '@modules/courses/repositories/implementations/CoursesRepository';
 import ICoursesRepository from '@modules/courses/repositories/models/ICoursesRepository';
-import GroupsRepository from '@modules/groups/repositories/implementations/GroupsRepository';
+import GroupsRepository from '@modules/groups/infra/typeorm/repositories/GroupsRepository';
 import IGroupsRepository from '@modules/groups/repositories/models/IGroupsRepository';
 import JourneyRepository from '@modules/journey/infra/typeorm/repositories/JourneyRepository';
 import IJourneyRepository from '@modules/journey/repositories/models/IJourneyRepository';
