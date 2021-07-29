@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 import ICreateGroupDTO from '@modules/groups/dtos/ICreateGroupDTO';
-import Roles from '@modules/roles/entities/Roles';
+import Roles from '@modules/roles/infra/typeorm/entities/Roles';
 import { v4 } from 'uuid';
 
 import IRolesRepository from '../models/IRolesRepository';

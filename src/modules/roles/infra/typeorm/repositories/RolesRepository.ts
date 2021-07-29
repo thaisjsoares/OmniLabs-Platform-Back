@@ -1,5 +1,5 @@
 import ICreateRoleDTO from '@modules/roles/dtos/ICreateRoleDTO';
-import Roles from '@modules/roles/entities/Roles';
+import Roles from '@modules/roles/infra/typeorm/entities/Roles';
 import IRolesRepository from '@modules/roles/repositories/models/IRolesRepository';
 import { getRepository, Repository } from 'typeorm';
 

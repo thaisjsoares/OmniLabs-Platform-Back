@@ -12,7 +12,7 @@ import ILessonHistoryRepository from '@modules/lessons/repositories/models/ILess
 import ILessonsRepository from '@modules/lessons/repositories/models/ILessonsRepository';
 import LoginLogRepository from '@modules/logs/repositories/implementations/LoginLogRepository';
 import ILoginLogRepository from '@modules/logs/repositories/models/ILoginLogRepository';
-import RolesRepository from '@modules/roles/repositories/implementations/RolesRepository';
+import RolesRepository from '@modules/roles/infra/typeorm/repositories/RolesRepository';
 import IRolesRepository from '@modules/roles/repositories/models/IRolesRepository';
 import UserRoleRepository from '@modules/users/repositories/implementations/UserRoleRepository';
 import UsersRepository from '@modules/users/repositories/implementations/UsersRepository';
