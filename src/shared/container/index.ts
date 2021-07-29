@@ -4,7 +4,7 @@ import CoursesRepository from '@modules/courses/repositories/implementations/Cou
 import ICoursesRepository from '@modules/courses/repositories/models/ICoursesRepository';
 import GroupsRepository from '@modules/groups/repositories/implementations/GroupsRepository';
 import IGroupsRepository from '@modules/groups/repositories/models/IGroupsRepository';
-import JourneyRepository from '@modules/journey/repositories/implementations/JourneyRepository';
+import JourneyRepository from '@modules/journey/infra/typeorm/repositories/JourneyRepository';
 import IJourneyRepository from '@modules/journey/repositories/models/IJourneyRepository';
 import LessonHistoryRepository from '@modules/lessons/infra/typeorm/repositories/LessonHistoryRepository';
 import LessonsRepository from '@modules/lessons/infra/typeorm/repositories/LessonsRepository';

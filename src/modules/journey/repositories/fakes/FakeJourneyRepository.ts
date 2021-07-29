@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 import ICreateJourneyDTO from '@modules/journey/dtos/ICreateJourneyDTO';
-import Journey from '@modules/journey/entities/Journey';
+import Journey from '@modules/journey/infra/typeorm/entities/Journey';
 import { v4 } from 'uuid';
 
 import IJourneyRepository from '../models/IJourneyRepository';

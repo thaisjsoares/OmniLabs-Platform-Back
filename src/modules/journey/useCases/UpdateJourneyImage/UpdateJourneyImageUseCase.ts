@@ -3,7 +3,7 @@ import { injectable, inject } from 'tsyringe';
 import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProvider';
 import AppError from '@shared/errors/AppError';
 
-import Journey from '../../entities/Journey';
+import Journey from '../../infra/typeorm/entities/Journey';
 import IJourneyRepository from '../../repositories/models/IJourneyRepository';
 
 /* eslint-disable camelcase */

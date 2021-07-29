@@ -1,8 +1,8 @@
 import ICreateJourneyDTO from '@modules/journey/dtos/ICreateJourneyDTO';
+import Journey from '@modules/journey/infra/typeorm/entities/Journey';
 import IJourneyRepository from '@modules/journey/repositories/models/IJourneyRepository';
 import { getRepository, Repository, Not } from 'typeorm';
 
-import Journey from '../../entities/Journey';
 // Repository possui os metedos do typeORM de criar deletar e etc, recebendo o model como parametro
 
 class JourneyRepository implements IJourneyRepository {

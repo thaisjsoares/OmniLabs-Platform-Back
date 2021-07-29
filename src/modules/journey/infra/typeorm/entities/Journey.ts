@@ -9,8 +9,8 @@ import {
     UpdateDateColumn,
 } from 'typeorm';
 
-import uploadConfig from '../../../config/upload';
-import Course from '../../courses/entities/Courses';
+import uploadConfig from '../../../../../config/upload';
+import Course from '../../../../courses/entities/Courses';
 
 @Entity('journey')
 class Journey {
