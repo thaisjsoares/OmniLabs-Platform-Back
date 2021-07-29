@@ -1,8 +1,8 @@
 /* eslint-disable no-shadow */
+import ICreateGroupDTO from '@modules/groups/dtos/ICreateGroupDTO';
+import Roles from '@modules/roles/infra/typeorm/entities/Roles';
 import { v4 } from 'uuid';
 
-import ICreateGroupDTO from '@modules/groups/dtos/ICreateGroupDTO';
-import Roles from '@modules/roles/entities/Roles';
 import IRolesRepository from '../models/IRolesRepository';
 
 class FakeRolesRepository implements IRolesRepository {

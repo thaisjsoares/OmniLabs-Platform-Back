@@ -1,3 +1,4 @@
+import Roles from '@modules/roles/infra/typeorm/entities/Roles';
 import {
     Entity,
     PrimaryGeneratedColumn,
@@ -8,7 +9,7 @@ import {
     OneToOne,
     JoinColumn,
 } from 'typeorm';
-import Roles from '../../../../roles/entities/Roles';
+
 import User from './User';
 
 @Entity('users_roles')

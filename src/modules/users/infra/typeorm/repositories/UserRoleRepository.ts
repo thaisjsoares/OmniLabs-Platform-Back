@@ -1,8 +1,6 @@
+import UserRole from '@modules/users/infra/typeorm/entities/UserRole';
+import IUserRoleRepository from '@modules/users/repositories/models/IUserRoleRepository';
 import { getRepository, Repository } from 'typeorm';
-
-import IUserRoleRepository from '@modules/users/repositories/IUserRoleRepository';
-
-import UserRole from '../entities/UserRole';
 
 class UserRoleRepository implements IUserRoleRepository {
     private ormRepository: Repository<UserRole>;

@@ -48,7 +48,7 @@ export default class CreateLessonHistory1616549415250
                     },
                     {
                         name: 'released_at',
-                        type: 'date',
+                        type: 'timestamp with time zone',
                     },
                     {
                         name: 'platform',

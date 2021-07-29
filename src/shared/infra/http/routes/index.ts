@@ -1,20 +1,14 @@
 import { Router } from 'express';
 
-import usersRouter from '@modules/users/infra/http/routes/users.routes';
-import sessionsRouter from '@modules/users/infra/http/routes/sessions.routes';
-import profileRouter from '@modules/users/infra/http/routes/profile.routes';
-import passwordRouter from '@modules/users/infra/http/routes/password.routes';
-
-import groupsRouter from '@modules/groups/infra/http/routes/groups.routes';
-
-import coursesRouter from '@modules/courses/infra/http/routes/courses.routes';
-
-import lessonsRouter from '@modules/lessons/infra/http/routes/lessons.routes';
-
-import journeyRouter from '@modules/journey/infra/http/routes/journey.routes';
-
-import loginLogsRouter from '@modules/logs/infra/http/routes/loginLogs.routes';
+import coursesRouter from './courses.routes';
+import groupsRouter from './groups.routes';
+import journeyRouter from './journey.routes';
+import lessonsRouter from './lessons.routes';
 import rolesRouter from './roles.routes';
+import passwordRouter from './users/password.routes';
+import profileRouter from './users/profile.routes';
+import sessionsRouter from './users/sessions.routes';
+import usersRouter from './users/users.routes';
 
 const routes = Router();
 
@@ -32,7 +26,5 @@ routes.use('/lessons', lessonsRouter);
 routes.use('/journey', journeyRouter);
 
 routes.use('/roles', rolesRouter);
-
-routes.use('/loginLogs', loginLogsRouter);
 
 export default routes;

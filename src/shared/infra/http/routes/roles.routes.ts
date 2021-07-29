@@ -1,11 +1,10 @@
+import CreateRolesController from '@modules/roles/useCases/createRole/CreateRoleController';
+import DeleteRoleController from '@modules/roles/useCases/deleteRole/DeleteRoleController';
+import ShowRolesController from '@modules/roles/useCases/showRoles/ShowRolesController';
 import { Router } from 'express';
 
-import CreateRolesController from '@modules/roles/useCases/createRole/CreateRoleController';
-import ShowRolesController from '@modules/roles/useCases/showRoles/ShowRolesController';
-import DeleteRoleController from '@modules/roles/useCases/deleteRole/DeleteRoleController';
-
-import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 import ensureAdmin from '../middlewares/ensureAdmin';
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
 const rolesRouter = Router();
 

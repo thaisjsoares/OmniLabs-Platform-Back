@@ -1,7 +1,6 @@
+import CreateRoles from '@modules/roles/useCases/createRole/CreateRoleUseCase';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-
-import CreateRoles from '@modules/roles/useCases/createRole/CreateRoleUseCase';
 
 class RolesController {
     public async handle(

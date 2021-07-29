@@ -5,39 +5,34 @@ export default class CreateUserTokens1606430128976
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: 'user_tokens',
+                name: 'users_tokens',
                 columns: [
                     {
                         name: 'id',
                         type: 'uuid',
                         isPrimary: true,
-                        generationStrategy: 'uuid',
-                        default: 'uuid_generate_v4()',
                     },
                     {
-                        name: 'token',
-                        type: 'uuid',
-                        generationStrategy: 'uuid',
-                        default: 'uuid_generate_v4()',
+                        name: 'refresh_token',
+                        type: 'varchar',
                     },
                     {
                         name: 'user_id',
                         type: 'uuid',
                     },
                     {
-                        name: 'created_at',
+                        name: 'expires_date',
                         type: 'timestamp',
-                        default: 'now()',
                     },
                     {
-                        name: 'updated_at',
+                        name: 'created_at',
                         type: 'timestamp',
                         default: 'now()',
                     },
                 ],
                 foreignKeys: [
                     {
-                        name: 'TokenUser',
+                        name: 'FKUserToken',
                         referencedTableName: 'users',
                         referencedColumnNames: ['id'],
                         columnNames: ['user_id'],
@@ -50,6 +45,6 @@ export default class CreateUserTokens1606430128976
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('user_tokens');
+        await queryRunner.dropTable('users_tokens');
     }
 }

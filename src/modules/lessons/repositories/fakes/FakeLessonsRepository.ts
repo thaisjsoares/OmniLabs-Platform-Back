@@ -1,9 +1,9 @@
 /* eslint-disable no-shadow */
-import { v4 } from 'uuid';
-
 import ICreateLessonDTO from '@modules/lessons/dtos/ICreateLessonDTO';
 import Lesson from '@modules/lessons/infra/typeorm/entities/Lessons';
-import ILessonsRepository from '../ILessonsRepository';
+import { v4 } from 'uuid';
+
+import ILessonsRepository from '../models/ILessonsRepository';
 // Repository possui os metedos do typeORM de criar deletar e etc, recebendo o model como parametro
 
 class FakeLessonsRepository implements ILessonsRepository {

@@ -1,7 +1,6 @@
+import DeleteRole from '@modules/roles/useCases/deleteRole/DeleteRoleUseCase';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-
-import DeleteRole from '@modules/roles/useCases/deleteRole/DeleteRoleUseCase';
 
 class RolesController {
     public async handle(

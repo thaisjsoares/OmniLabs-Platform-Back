@@ -7,6 +7,7 @@ import {
     JoinColumn,
     ManyToOne,
 } from 'typeorm';
+
 import Journey from '../../../../journey/infra/typeorm/entities/Journey';
 
 @Entity('groups')

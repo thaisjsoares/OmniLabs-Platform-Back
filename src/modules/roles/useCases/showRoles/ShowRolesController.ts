@@ -1,7 +1,6 @@
+import ShoRoles from '@modules/roles/useCases/showRoles/ShowRolesUseCase';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
-
-import ShoRoles from '@modules/roles/useCases/showRoles/ShowRolesUseCase';
 
 class RolesController {
     public async handle(

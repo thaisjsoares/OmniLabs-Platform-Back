@@ -1,3 +1,5 @@
+import uploadConfig from '@config/upload';
+import { Exclude, Expose } from 'class-transformer';
 import {
     Entity,
     PrimaryGeneratedColumn,
@@ -5,9 +7,6 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
 } from 'typeorm';
-
-import { Exclude, Expose } from 'class-transformer';
-import uploadConfig from '../../../../../config/upload';
 
 @Entity('users')
 class User {
@@ -21,29 +20,28 @@ class User {
     email: string;
 
     @Column()
-    @Exclude()
     password: string;
 
     @Column()
     avatar: string;
 
     @CreateDateColumn()
-    // eslint-disable-next-line camelcase
     created_at: Date;
 
     @UpdateDateColumn()
-    // eslint-disable-next-line camelcase
     updated_at: Date;
 
     @Expose({ name: 'avatar_url' })
-    getAvatarUrl(): string | null {
+    avatar_url(): string | null {
         if (!this.avatar) {
             return null;
         }
 
-        switch (uploadConfig.driver) {
+        switch (process.env.STORAGE_DRIVER) {
             case 'disk':
-                return `${process.env.APP_API_URL}/files/${this.avatar}`;
+                return `${process.env.APP_API_URL}/avatar/${this.avatar}`;
+            case 's3':
+                return `${process.env.AWS_BUCKET_URL}/avatar/${this.avatar}`;
             default:
                 return null;
         }

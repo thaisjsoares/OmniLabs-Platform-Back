@@ -5,27 +5,40 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
     Generated,
+    JoinColumn,
+    ManyToOne,
+    PrimaryColumn,
 } from 'typeorm';
+import { v4 as uuidv4 } from 'uuid';
 
-@Entity('user_tokens')
+import User from './User';
+
+@Entity('users_tokens')
 class UserToken {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryColumn()
     id: string;
 
     @Column()
-    @Generated('uuid')
-    token: string;
+    refresh_token: string;
 
     @Column()
     user_id: string;
 
+    @ManyToOne(() => User)
+    @JoinColumn({ name: 'user_id' })
+    user: User;
+
+    @Column()
+    expires_date: Date;
+
     @CreateDateColumn()
-    // eslint-disable-next-line camelcase
     created_at: Date;
 
-    @UpdateDateColumn()
-    // eslint-disable-next-line camelcase
-    updated_at: Date;
+    constructor() {
+        if (!this.id) {
+            this.id = uuidv4();
+        }
+    }
 }
 
 export default UserToken;

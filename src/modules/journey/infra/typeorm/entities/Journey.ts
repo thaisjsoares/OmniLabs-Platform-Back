@@ -1,3 +1,4 @@
+import { Expose } from 'class-transformer';
 import {
     Entity,
     PrimaryGeneratedColumn,
@@ -8,7 +9,6 @@ import {
     UpdateDateColumn,
 } from 'typeorm';
 
-import { Expose } from 'class-transformer';
 import uploadConfig from '../../../../../config/upload';
 import Course from '../../../../courses/infra/typeorm/entities/Courses';
 
@@ -32,7 +32,7 @@ class Journey {
             return null;
         }
 
-        switch (uploadConfig.driver) {
+        switch (process.env.STORAGE_DRIVER) {
             case 'disk':
                 return `${process.env.APP_API_URL}/files/${this.image}`;
             default:

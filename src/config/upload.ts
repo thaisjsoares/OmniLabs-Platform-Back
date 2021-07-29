@@ -1,22 +1,16 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import path from 'path';
 import crypto from 'crypto';
 import multer, { StorageEngine } from 'multer';
+import path from 'path';
 
 const tmpFolder = path.resolve(__dirname, '..', '..', 'tmp');
 
 interface IUploadConfig {
-    driver: 'disk';
-
     tmpFolder: string;
     uploadsFolder: string;
 
     multer: {
         storage: StorageEngine;
-    };
-
-    config: {
-        disk: {};
     };
 }
 
@@ -36,9 +30,5 @@ export default {
                 return callback(null, fileName);
             },
         }),
-    },
-
-    config: {
-        disk: {},
     },
 } as IUploadConfig;
