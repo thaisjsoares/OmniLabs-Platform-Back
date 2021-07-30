@@ -26,6 +26,8 @@ app.use(express.json());
 app.use('/files', express.static(uploadConfig.uploadsFolder));
 app.use('/avatar', express.static(`${uploadConfig.tmpFolder}/avatar`));
 
+console.log('teste');
+
 app.use(routes);
 
 app.use(errors());
