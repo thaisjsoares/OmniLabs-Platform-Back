@@ -5,6 +5,7 @@ temp/
 .env
 .vscode/
 ormconfig.json
+dist/
 
 coverage
 tmp/*
