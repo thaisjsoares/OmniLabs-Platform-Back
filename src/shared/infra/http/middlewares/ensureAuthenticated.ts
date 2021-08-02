@@ -13,13 +13,25 @@ export default async function ensureAuthenticated(
     response: Response,
     next: NextFunction,
 ) {
-    const authHeader = request.headers.authorization;
+    const { authorization } = request.headers;
 
-    if (!authHeader) {
-        throw new AppError('Token missing', 401);
+    if (!authorization) {
+        return response.status(401).json({
+            error: true,
+            code: 'token.invalid',
+            message: 'Token not present.',
+        });
     }
 
-    const [, token] = authHeader.split(' ');
+    const [, token] = authorization.split(' ');
+
+    if (!token) {
+        return response.status(401).json({
+            error: true,
+            code: 'token.invalid',
+            message: 'Token not present.',
+        });
+    }
 
     try {
         const { sub: user_id } = verify(token, auth.secret_token) as IPayload;
@@ -29,7 +41,11 @@ export default async function ensureAuthenticated(
         };
 
         next();
-    } catch {
-        throw new AppError('Invalid token!', 401);
+    } catch (err) {
+        return response.status(401).json({
+            error: true,
+            code: 'token.expired',
+            message: 'Token invalid.',
+        });
     }
 }
