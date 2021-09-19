@@ -1,8 +1,8 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable consistent-return */
 import auth from '@config/auth';
 import { NextFunction, Request, Response } from 'express';
 import { verify } from 'jsonwebtoken';
-
-import AppError from '@shared/errors/AppError';
 
 interface IPayload {
     sub: string;

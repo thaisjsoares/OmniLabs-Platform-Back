@@ -65,7 +65,7 @@ describe('UpdateCourseImage', () => {
             imageFileName: 'image2.jpg',
         });
 
-        expect(deleteFile).toHaveBeenCalledWith('image.jpg');
+        expect(deleteFile).toHaveBeenCalledWith('image.jpg', 'uploads');
         expect(course.image).toBe('image2.jpg');
     });
 });
