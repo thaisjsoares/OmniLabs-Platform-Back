@@ -45,4 +45,4 @@ jobs:
             cd ~/api/OmniLabs-Platform-Back
             yarn
             ./node_modules/.bin/typeorm migration:run
-            pm2 restart omnilabs_education
+            pm2 restart omni-education-api
