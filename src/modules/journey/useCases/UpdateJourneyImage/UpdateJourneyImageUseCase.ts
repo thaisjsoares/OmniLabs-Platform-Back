@@ -33,10 +33,13 @@ class UpdateJourneyImageService {
         }
 
         if (journey.image) {
-            await this.storageProvider.deleteFile(journey.image);
+            await this.storageProvider.deleteFile(journey.image, 'uploads');
         }
 
-        const filename = await this.storageProvider.saveFile(imageName);
+        const filename = await this.storageProvider.saveFile(
+            imageName,
+            'uploads',
+        );
 
         journey.image = filename;
         await this.journeyRepository.save(journey);

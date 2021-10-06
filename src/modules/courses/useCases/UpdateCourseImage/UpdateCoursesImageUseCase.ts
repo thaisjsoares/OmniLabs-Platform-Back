@@ -38,10 +38,13 @@ class UpdateCoursesImageUseCase {
         await this.cacheProvider.invalidate('courses-list');
 
         if (course.image) {
-            await this.storageProvider.deleteFile(course.image);
+            await this.storageProvider.deleteFile(course.image, 'uploads');
         }
 
-        const filename = await this.storageProvider.saveFile(imageFileName);
+        const filename = await this.storageProvider.saveFile(
+            imageFileName,
+            'uploads',
+        );
 
         course.image = filename;
         await this.coursesRepository.save(course);

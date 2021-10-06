@@ -64,7 +64,7 @@ describe('Update Journey image', () => {
             imageName: 'avatar2.jpg',
         });
 
-        expect(deleteFile).toHaveBeenCalledWith('avatar.jpg');
+        expect(deleteFile).toHaveBeenCalledWith('avatar.jpg', 'uploads');
         expect(journey.image).toBe('avatar2.jpg');
     });
 });
