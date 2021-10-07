@@ -1,7 +1,7 @@
-import { v4 as uuid } from 'uuid';
 import { hash } from 'bcrypt';
+import { v4 as uuid } from 'uuid';
 
-import getConnection from '..';
+import getConnection from '../index';
 
 async function create() {
     const connection = await getConnection();
@@ -28,4 +28,6 @@ async function create() {
     );
 }
 
-create().then(() => console.log('Admin has created'));
+create()
+    .then(() => console.log('Admin has created'))
+    .catch(err => console.log(err));
