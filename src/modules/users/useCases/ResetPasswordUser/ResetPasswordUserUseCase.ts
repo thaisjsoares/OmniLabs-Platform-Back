@@ -14,7 +14,7 @@ interface IRequest {
 @injectable()
 class ResetPasswordUserUseCase {
     constructor(
-        @inject('UsersTokensRepository')
+        @inject('UserTokensRepository')
         private usersTokensRepository: IUsersTokensRepository,
         @inject('DayjsDateProvider')
         private dateProvider: IDateProvider,
