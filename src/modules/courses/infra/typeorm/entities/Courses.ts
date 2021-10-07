@@ -38,6 +38,8 @@ class Courses {
         switch (process.env.STORAGE_DRIVER) {
             case 'disk':
                 return `${process.env.APP_API_URL}/files/${this.image}`;
+            case 's3':
+                return `${process.env.AWS_BUCKET_URL}/uploads/${this.image}`;
             default:
                 return null;
         }
