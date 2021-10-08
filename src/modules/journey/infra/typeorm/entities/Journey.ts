@@ -36,7 +36,7 @@ class Journey {
             case 'disk':
                 return `${process.env.APP_API_URL}/files/${this.image}`;
             case 's3':
-                return `${process.env.AWS_BUCKET_URL}/uploads/${this.image}`;
+                return `${process.env.AWS_BUCKET_URL}/journeys_logo/${this.image}`;
             default:
                 return null;
         }
