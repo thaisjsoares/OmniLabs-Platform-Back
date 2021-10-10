@@ -1,4 +1,5 @@
 import auth from '@config/auth';
+import { UserMap } from '@modules/users/mapper/UserMap';
 import IUsersRepository from '@modules/users/repositories/models/IUsersRepository';
 import IUsersTokensRepository from '@modules/users/repositories/models/IUserTokensRepository';
 import { compare } from 'bcrypt';
@@ -17,6 +18,7 @@ interface IResponse {
     user: {
         name: string;
         email: string;
+        avatar_url: () => string;
     };
     token: string;
     refresh_token: string;
@@ -37,6 +39,7 @@ class AuthenticateUserUseCase {
 
     async execute({ email, password }: IRequest): Promise<IResponse> {
         const user = await this.usersRepository.findByEmail(email);
+
         const {
             expires_in_token,
             secret_refresh_token,
@@ -75,12 +78,15 @@ class AuthenticateUserUseCase {
             expires_date: refresh_token_expires_date,
         });
 
+        const userFormated = UserMap.toDTO(user);
+
         const tokenReturn: IResponse = {
             token,
             refresh_token,
             user: {
-                name: user.name,
-                email: user.email,
+                name: userFormated.name,
+                email: userFormated.email,
+                avatar_url: userFormated.avatar_url,
             },
         };
 

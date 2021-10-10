@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import UserRoleRepository from '@modules/users/infra/typeorm/repositories/UserRoleRepository';
 import { Request, Response, NextFunction } from 'express';
 
@@ -6,7 +6,7 @@ import AppError from '@shared/errors/AppError';
 
 export default async function ensureAdmin(
     request: Request,
-    response: Response,
+    _response: Response,
     next: NextFunction,
 ) {
     const { id } = request.user;
