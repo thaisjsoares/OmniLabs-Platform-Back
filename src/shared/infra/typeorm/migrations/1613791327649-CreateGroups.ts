@@ -1,4 +1,9 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+    MigrationInterface,
+    QueryRunner,
+    Table,
+    TableForeignKey,
+} from 'typeorm';
 
 export default class CreateGroups1613791327649 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
@@ -22,6 +27,11 @@ export default class CreateGroups1613791327649 implements MigrationInterface {
                         type: 'varchar',
                     },
                     {
+                        name: 'course_id',
+                        type: 'uuid',
+                        isNullable: false,
+                    },
+                    {
                         name: 'created_at',
                         type: 'timestamp',
                         default: 'now()',
@@ -32,6 +42,18 @@ export default class CreateGroups1613791327649 implements MigrationInterface {
                         default: 'now()',
                     },
                 ],
+            }),
+        );
+
+        await queryRunner.createForeignKey(
+            'groups',
+            new TableForeignKey({
+                name: 'CourseId',
+                columnNames: ['course_id'],
+                referencedColumnNames: ['id'],
+                referencedTableName: 'courses',
+                onDelete: 'CASCADE',
+                onUpdate: 'CASCADE',
             }),
         );
     }
