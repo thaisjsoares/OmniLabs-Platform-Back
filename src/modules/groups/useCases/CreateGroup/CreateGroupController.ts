@@ -7,14 +7,14 @@ class CreateGroupController {
         request: Request,
         response: Response,
     ): Promise<Response> {
-        const { name, description, journey_id } = request.body;
+        const { name, description, course_id } = request.body;
 
         const createGroup = container.resolve(CreateGroupUseCase);
 
         const group = await createGroup.execute({
             name,
             description,
-            journey_id,
+            course_id,
         });
 
         return response.json(group);
