@@ -6,4 +6,7 @@ export default interface ILessonsRepository {
     create(data: ICreateLessonDTO): Promise<Lessons>;
     save(lesson: Lessons): Promise<Lessons>;
     remove(lesson: Lessons): Promise<void>;
+    findByTitle(title: string): Promise<Lessons | undefined>;
+    findByGroup(group_id: string): Promise<Lessons[]>;
+    findByName(name: string): Promise<Lessons | undefined>;
 }

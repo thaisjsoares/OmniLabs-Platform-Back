@@ -12,6 +12,30 @@ class LessonsRepository implements ILessonsRepository {
         this.ormRepository = getRepository(Lessons);
     }
 
+    public async findByTitle(title: string): Promise<Lessons | undefined> {
+        const lesson = await this.ormRepository.findOne({
+            where: {
+                title,
+            },
+        });
+
+        return lesson;
+    }
+
+    public async findByGroup(group_id: string): Promise<Lessons[]> {
+        throw new Error('Method not implemented.');
+    }
+
+    public async findByName(name: string): Promise<Lessons | undefined> {
+        const lesson = await this.ormRepository.findOne({
+            where: {
+                name,
+            },
+        });
+
+        return lesson;
+    }
+
     public async findById(id: string): Promise<Lessons | undefined> {
         const lesson = await this.ormRepository.findOne(id);
 
@@ -19,7 +43,7 @@ class LessonsRepository implements ILessonsRepository {
     }
 
     public async create(data: ICreateLessonDTO): Promise<Lessons> {
-        const lesson = await this.ormRepository.create(data);
+        const lesson = this.ormRepository.create(data);
 
         await this.ormRepository.save(lesson);
 
