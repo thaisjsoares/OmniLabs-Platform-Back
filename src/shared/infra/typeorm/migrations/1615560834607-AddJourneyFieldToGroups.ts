@@ -6,7 +6,8 @@ import {
 } from 'typeorm';
 
 export default class AddJourneyFieldToGroups1615560834607
-    implements MigrationInterface {
+    implements MigrationInterface
+{
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.addColumn(
             'groups',
