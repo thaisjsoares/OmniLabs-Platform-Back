@@ -28,10 +28,10 @@ class GroupsRepository implements IGroupsRepository {
         return this.ormRepository.save(groups);
     }
 
-    public async findByCourse(course_id: string): Promise<Groups[]> {
+    public async findByJourney(journey_id: string): Promise<Groups[]> {
         const groups = await this.ormRepository.find({
             where: {
-                course_id,
+                journey_id,
             },
         });
 

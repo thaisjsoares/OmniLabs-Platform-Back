@@ -4,6 +4,8 @@ import CoursesRepository from '@modules/courses/infra/typeorm/repositories/Cours
 import ICoursesRepository from '@modules/courses/repositories/models/ICoursesRepository';
 import GroupsRepository from '@modules/groups/infra/typeorm/repositories/GroupsRepository';
 import IGroupsRepository from '@modules/groups/repositories/models/IGroupsRepository';
+import JourneyRepository from '@modules/journey/infra/typeorm/repositories/JourneyRepository';
+import IJourneyRepository from '@modules/journey/repositories/models/IJourneyRepository';
 import LessonHistoryRepository from '@modules/lessons/infra/typeorm/repositories/LessonHistoryRepository';
 import LessonsRepository from '@modules/lessons/infra/typeorm/repositories/LessonsRepository';
 import ILessonHistoryRepository from '@modules/lessons/repositories/models/ILessonHistoryRepository';
@@ -46,6 +48,11 @@ container.registerSingleton<ILessonHistoryRepository>(
 container.registerSingleton<IGroupsRepository>(
     'GroupsRepository',
     GroupsRepository,
+);
+
+container.registerSingleton<IJourneyRepository>(
+    'JourneyRepository',
+    JourneyRepository,
 );
 
 container.registerSingleton<IRolesRepository>(

@@ -6,13 +6,11 @@ import { injectable, inject } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 
 interface IRequest {
-    name: string;
-    description: string;
     journey_id: string;
 }
 
 @injectable()
-class CreateGroupUseCase {
+class ShowGroupsOfJourneyUseCase {
     constructor(
         @inject('GroupsRepository')
         private groupsRepository: IGroupsRepository,
@@ -21,25 +19,17 @@ class CreateGroupUseCase {
         private journeyRepository: IJourneyRepository,
     ) {}
 
-    public async execute({
-        name,
-        description,
-        journey_id,
-    }: IRequest): Promise<Groups> {
+    public async execute({ journey_id }: IRequest): Promise<Groups[]> {
         const journey = await this.journeyRepository.findById(journey_id);
 
         if (!journey) {
             throw new AppError('Not possible to find journey');
         }
 
-        const group = await this.groupsRepository.create({
-            name,
-            description,
-            journey_id: journey.id,
-        });
+        const groups = await this.groupsRepository.findByJourney(journey.id);
 
-        return group;
+        return groups;
     }
 }
 
-export { CreateGroupUseCase };
+export { ShowGroupsOfJourneyUseCase };
