@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import coursesRouter from './courses.routes';
 import groupsRouter from './groups.routes';
+import journeyRouter from './journey.routes';
 import lessonsRouter from './lessons.routes';
 import rolesRouter from './roles.routes';
 import passwordRouter from './users/password.routes';
@@ -21,6 +22,8 @@ routes.use('/groups', groupsRouter);
 routes.use('/courses', coursesRouter);
 
 routes.use('/lessons', lessonsRouter);
+
+routes.use('/journey', journeyRouter);
 
 routes.use('/roles', rolesRouter);
 

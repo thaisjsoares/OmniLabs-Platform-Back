@@ -8,7 +8,7 @@ class UpdateGroupController {
         response: Response,
     ): Promise<Response> {
         const { group_id } = request.params;
-        const { name, description, course_id } = request.body;
+        const { name, description, journey_id } = request.body;
 
         const updateGroup = container.resolve(UpdateGroupUseCase);
 
@@ -16,7 +16,7 @@ class UpdateGroupController {
             group_id,
             name,
             description,
-            course_id,
+            journey_id,
         });
 
         return response.json(group);

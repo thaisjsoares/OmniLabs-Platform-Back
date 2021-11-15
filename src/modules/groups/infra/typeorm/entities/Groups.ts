@@ -1,4 +1,3 @@
-import Courses from '@modules/courses/infra/typeorm/entities/Courses';
 import {
     Entity,
     PrimaryGeneratedColumn,
@@ -8,6 +7,8 @@ import {
     JoinColumn,
     ManyToOne,
 } from 'typeorm';
+
+import Journey from '../../../../journey/infra/typeorm/entities/Journey';
 
 @Entity('groups')
 class Groups {
@@ -20,12 +21,12 @@ class Groups {
     @Column()
     description: string;
 
-    @ManyToOne(() => Courses)
-    @JoinColumn({ name: 'course_id' })
-    course: Courses;
+    @ManyToOne(() => Journey)
+    @JoinColumn({ name: 'journey_id' })
+    journey: Journey;
 
     @Column()
-    course_id: string;
+    journey_id: string;
 
     @CreateDateColumn()
     created_at: Date;

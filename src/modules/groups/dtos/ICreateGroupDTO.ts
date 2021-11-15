@@ -1,5 +1,5 @@
-export default interface ICreateGroupDTO {
+export default interface ICreateGroupDTO{
     name: string;
     description: string;
-    course_id: string;
+    journey_id: string;
 }

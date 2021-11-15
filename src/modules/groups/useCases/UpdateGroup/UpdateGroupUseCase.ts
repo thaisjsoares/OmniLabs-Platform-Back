@@ -7,7 +7,7 @@ import AppError from '@shared/errors/AppError';
 interface IRequest {
     name: string;
     description: string;
-    course_id: string;
+    journey_id: string;
     group_id: string;
 }
 
@@ -21,7 +21,7 @@ class UpdateGroupUseCase {
     public async execute({
         group_id,
         description,
-        course_id,
+        journey_id,
         name,
     }: IRequest): Promise<Groups> {
         const group = await this.groupsRepository.findById(group_id);
@@ -32,7 +32,7 @@ class UpdateGroupUseCase {
 
         group.name = name;
         group.description = description;
-        group.course_id = course_id;
+        group.journey_id = journey_id;
 
         await this.groupsRepository.save(group);
 
